@@ -4,6 +4,13 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>회생의기적 — 빚, 정리할 수 있습니다</title>
+<!-- Naver Wcs (공통) -->
+<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+  if(!wcs_add) var wcs_add = {};
+  wcs_add["wa"] = "s_239fc16c4c17";
+  if(window.wcs) { wcs_do(); }
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
@@ -1512,6 +1519,16 @@
         data.append('source', window.location.href);
         data.append('ua', navigator.userAgent);
         await fetch(GSCRIPT_URL, { method: 'POST', mode: 'no-cors', body: data });
+        // Naver Wcs 전환 발사
+        try {
+          if (window.wcs) {
+            if(!wcs_add) var wcs_add = {};
+            wcs_add["wa"] = "s_239fc16c4c17";
+            var _nasa = {};
+            _nasa["cnv"] = wcs.cnv("4", "1");
+            wcs.trans(_nasa);
+          }
+        } catch (_) {}
         form.reset();
         showStatus('success', '✓ <strong>상담 신청이 접수되었습니다.</strong><br />담당 변호사가 24시간 내 연락드립니다.');
         btn.textContent = '접수 완료';
