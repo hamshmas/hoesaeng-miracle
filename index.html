@@ -11,26 +11,22 @@
 <style>
   /* ===== Design Tokens ===== */
   :root {
-    /* Primary: Champagne Gold (lighter variant for dark bg readability) */
-    --primary: #C9A95C;
-    --primary-dark: #A88847;
-    --primary-light: rgba(201,169,92,0.15);
-    --primary-text: #E0BE74;  /* bright gold for text on dark — AA contrast */
-    /* Black system */
-    --bg: #0F0F12;
-    --bg-soft: #18181D;
-    --bg-card: #1F1F25;
-    --bg-elevated: #25252C;
-    --text-strong: #FAFAFA;
-    --text-base: #B8B8C0;
-    --text-weak: #6B6B73;
-    --border: #2A2A32;
-    --border-soft: #1F1F25;
-    --success: #6FA060;
-    --warning: #C68A2E;
-    --danger: #B85547;
-    --shadow-card: 0 1px 3px rgba(0,0,0,0.4), 0 10px 28px rgba(0,0,0,0.5);
-    --shadow-elevated: 0 6px 14px rgba(0,0,0,0.5), 0 24px 48px rgba(0,0,0,0.6);
+    --primary: #3182F6;
+    --primary-dark: #1B64DA;
+    --primary-light: #E8F1FE;
+    --bg: #FFFFFF;
+    --bg-soft: #F9FAFB;
+    --bg-card: #FFFFFF;
+    --text-strong: #191F28;
+    --text-base: #4E5968;
+    --text-weak: #8B95A1;
+    --border: #E5E8EB;
+    --border-soft: #F2F4F6;
+    --success: #00C896;
+    --warning: #FF9800;
+    --danger: #FF5847;
+    --shadow-card: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06);
+    --shadow-elevated: 0 4px 12px rgba(0,0,0,0.08), 0 20px 40px rgba(0,0,0,0.08);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -39,11 +35,10 @@
     font-family: 'Pretendard', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
     color: var(--text-strong);
     background: var(--bg-soft);
-    line-height: 1.55;
+    line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     word-break: keep-all;
-    font-size: 15px;
   }
   .container {
     max-width: 600px;
@@ -59,13 +54,13 @@
     justify-content: space-between;
     align-items: center;
     padding: 16px 24px;
-    background: rgba(15,15,18,0.85);
-    backdrop-filter: blur(16px) saturate(140%);
-    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     position: sticky;
     top: 0;
     z-index: 100;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--border-soft);
   }
   .logo {
     font-weight: 800;
@@ -83,46 +78,32 @@
     font-weight: 500;
     color: var(--text-weak);
     padding-left: 8px;
-    border-left: 1px solid var(--border);
+    border-left: 1px solid var(--border-soft);
   }
   .nav-cta {
-    background: var(--primary);
-    color: #1A1308;
+    background: var(--text-strong);
+    color: #fff;
     padding: 8px 14px;
     border-radius: 8px;
     font-size: 13px;
-    font-weight: 700;
+    font-weight: 600;
   }
-  .nav-cta:hover { background: var(--primary-text); }
 
   /* ===== Hero ===== */
   .hero {
     padding: 80px 24px 60px;
-    background: linear-gradient(180deg, var(--bg) 0%, #0A0A0E 100%);
+    background: linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 100%);
     text-align: left;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -100px;
-    right: -120px;
-    width: 360px;
-    height: 360px;
-    background: radial-gradient(circle, rgba(201,169,92,0.12) 0%, transparent 65%);
-    pointer-events: none;
   }
   .hero .pre {
     display: inline-block;
     background: var(--primary-light);
-    color: var(--primary-text);
+    color: var(--primary);
     padding: 6px 12px;
     border-radius: 999px;
     font-size: 13px;
-    font-weight: 800;
+    font-weight: 700;
     margin-bottom: 20px;
-    letter-spacing: -0.2px;
   }
   .hero h1 {
     font-size: 40px;
@@ -132,7 +113,7 @@
     color: var(--text-strong);
     margin-bottom: 16px;
   }
-  .hero h1 .accent { color: var(--primary-text); }
+  .hero h1 .accent { color: var(--primary); }
   .hero .sub {
     font-size: 17px;
     line-height: 1.6;
@@ -159,26 +140,24 @@
   }
   .btn-primary {
     background: var(--primary);
-    color: #1A1308;
+    color: #fff;
     flex: 1;
-    font-weight: 800;
   }
   .btn-primary:hover {
-    background: var(--primary-text);
+    background: var(--primary-dark);
     transform: translateY(-1px);
   }
   .btn-ghost {
-    background: var(--bg-elevated);
+    background: var(--bg-soft);
     color: var(--text-strong);
-    border: 1px solid var(--border);
   }
   .btn-ghost:hover {
-    background: var(--border);
+    background: var(--border-soft);
   }
 
   .hero-lawyer {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
+    background: #fff;
+    border: 1px solid var(--border-soft);
     border-radius: 20px;
     padding: 24px;
     display: flex;
@@ -196,8 +175,8 @@
   }
   .hero-lawyer .info .role {
     font-size: 12px;
-    color: var(--primary-text);
-    font-weight: 800;
+    color: var(--primary);
+    font-weight: 700;
     letter-spacing: -0.2px;
   }
   .hero-lawyer .info .name {
@@ -216,7 +195,7 @@
   /* ===== Section base ===== */
   section.block {
     padding: 80px 24px;
-    border-top: 8px solid #0A0A0E;
+    border-top: 8px solid var(--bg-soft);
   }
   section.block.flush {
     border-top: none;
@@ -227,8 +206,8 @@
   }
   .section-head .eyebrow {
     font-size: 13px;
-    font-weight: 800;
-    color: var(--primary-text);
+    font-weight: 700;
+    color: var(--primary);
     margin-bottom: 8px;
     letter-spacing: -0.2px;
   }
@@ -253,8 +232,7 @@
     gap: 8px;
   }
   .metric-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
+    background: var(--bg-soft);
     border-radius: 16px;
     padding: 22px 20px;
   }
@@ -291,7 +269,7 @@
 
   /* ===== Featured case ===== */
   .featured-case {
-    background: linear-gradient(135deg, #2A2520 0%, #3D362C 100%);
+    background: linear-gradient(135deg, #191F28 0%, #2E3540 100%);
     color: #fff;
     border-radius: 24px;
     padding: 32px 24px;
@@ -323,7 +301,7 @@
     margin-bottom: 4px;
   }
   .featured-case .big-num .pct {
-    color: #E8C766;
+    color: #4DABF7;
     font-size: 56px;
   }
   .featured-case .desc {
@@ -354,7 +332,7 @@
 
   /* ===== AI Calculator CTA ===== */
   .ai-calc {
-    background: linear-gradient(135deg, #2A2520 0%, #7A6532 45%, #B5985A 100%);
+    background: linear-gradient(135deg, #4F46E5 0%, #3182F6 60%, #06B6D4 100%);
     border-radius: 24px;
     padding: 36px 28px;
     color: #fff;
@@ -397,7 +375,7 @@
     margin-bottom: 10px;
   }
   .ai-calc h3 .accent {
-    color: #FFE9A8;
+    color: #FFEC3D;
   }
   .ai-calc .ai-sub {
     font-size: 15px;
@@ -444,7 +422,7 @@
     align-items: center;
     justify-content: space-between;
     background: #fff;
-    color: var(--primary-text);
+    color: var(--primary);
     padding: 18px 22px;
     border-radius: 14px;
     font-weight: 800;
@@ -452,14 +430,13 @@
     text-decoration: none;
     transition: transform 0.15s, box-shadow 0.15s;
     box-shadow: 0 8px 22px rgba(0,0,0,0.18);
-    letter-spacing: -0.3px;
   }
   .ai-calc-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 12px 28px rgba(0,0,0,0.24);
   }
   .ai-calc-btn .arrow {
-    background: var(--primary-dark);
+    background: var(--primary);
     color: #fff;
     width: 28px;
     height: 28px;
@@ -483,23 +460,22 @@
     gap: 8px;
   }
   .case-item {
-    background: var(--bg-card);
+    background: var(--bg-soft);
     border-radius: 14px;
     padding: 18px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 12px;
+    transition: all 0.15s;
   }
   .case-item:hover {
-    background: var(--bg-elevated);
-    border-color: var(--primary);
+    background: var(--primary-light);
   }
-  .case-item { border: 1px solid transparent; transition: background 0.15s, border-color 0.15s; }
   .case-item .left { flex: 1; min-width: 0; }
   .case-item .tag {
     display: inline-block;
-    background: var(--bg-elevated);
+    background: #fff;
     color: var(--text-base);
     padding: 3px 8px;
     border-radius: 6px;
@@ -520,7 +496,7 @@
   .case-item .pct {
     font-size: 22px;
     font-weight: 800;
-    color: var(--primary-text);
+    color: var(--primary);
     letter-spacing: -0.8px;
     line-height: 1;
   }
@@ -535,14 +511,12 @@
     margin-top: 16px;
     text-align: center;
     font-size: 14px;
-    font-weight: 700;
-    color: var(--primary-text);
+    font-weight: 600;
+    color: var(--primary);
     padding: 14px;
     background: var(--primary-light);
-    border: 1px solid rgba(201,169,92,0.3);
     border-radius: 12px;
   }
-  .verify-link:hover { background: rgba(201,169,92,0.22); }
 
   /* ===== Handwritten ===== */
   .hw-grid {
@@ -551,24 +525,19 @@
     gap: 10px;
   }
   .hw-card {
-    background: var(--bg-card);
-    border: 1px solid #3A2F1E;
+    background: #FFFBF0;
+    border: 1px solid #FFF2D1;
     border-radius: 14px;
     overflow: hidden;
     display: block;
     color: var(--text-strong);
-    transition: border-color 0.15s, transform 0.15s;
-  }
-  .hw-card:hover {
-    border-color: var(--primary);
-    transform: translateY(-2px);
   }
   .hw-card .img {
     width: 100%;
     aspect-ratio: 4/2.5;
     background-size: cover;
     background-position: center;
-    background-color: #2A2218;
+    background-color: #FFF2D1;
   }
   .hw-card .tit {
     padding: 12px 14px 14px;
@@ -725,8 +694,7 @@
     gap: 10px;
     margin-bottom: 24px;
     padding: 14px 16px;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
+    background: var(--bg-soft);
     border-radius: 12px;
   }
   .yt-channel-line .icon {
@@ -748,8 +716,8 @@
 
   /* ===== Lawyer ===== */
   .lawyer-card {
-    background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-soft) 100%);
-    border: 1px solid var(--border);
+    background: linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 100%);
+    border: 1px solid var(--border-soft);
     border-radius: 24px;
     padding: 32px 24px;
     text-align: center;
@@ -766,8 +734,8 @@
   }
   .lawyer-card .role {
     font-size: 12px;
-    color: var(--primary-text);
-    font-weight: 800;
+    color: var(--primary);
+    font-weight: 700;
     letter-spacing: 0.5px;
     text-transform: uppercase;
   }
@@ -785,8 +753,8 @@
     margin-top: 8px;
   }
   .credential-item {
-    background: var(--bg-elevated);
-    border: 1px solid var(--border);
+    background: #fff;
+    border: 1px solid var(--border-soft);
     border-radius: 12px;
     padding: 14px 12px;
     text-align: left;
@@ -807,8 +775,8 @@
     text-align: left;
     margin-top: 18px;
     padding: 18px;
-    background: var(--bg-elevated);
-    border: 1px solid var(--border);
+    background: #fff;
+    border: 1px solid var(--border-soft);
     border-radius: 14px;
   }
   .credentials-full li {
@@ -841,12 +809,11 @@
     line-height: 1.55;
   }
   .form-box {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
+    background: #fff;
     border-radius: 20px;
     padding: 24px 20px;
     text-align: left;
-    box-shadow: 0 12px 36px rgba(0,0,0,0.4);
+    box-shadow: 0 12px 36px rgba(0,0,0,0.15);
   }
   .form-box .field {
     margin-bottom: 12px;
@@ -859,11 +826,11 @@
     margin-bottom: 6px;
     letter-spacing: -0.2px;
   }
-  .form-box label .req { color: var(--primary-text); margin-left: 2px; font-weight: 800; }
+  .form-box label .req { color: var(--primary); margin-left: 2px; }
   .form-box input,
   .form-box textarea {
     width: 100%;
-    background: var(--bg-elevated);
+    background: var(--bg-soft);
     border: 1.5px solid transparent;
     padding: 14px 16px;
     border-radius: 12px;
@@ -880,7 +847,7 @@
   .form-box input:focus,
   .form-box textarea:focus {
     border-color: var(--primary);
-    background: #2E2E36;
+    background: #fff;
   }
   .form-box textarea {
     min-height: 84px;
@@ -905,18 +872,18 @@
     padding: 0;
     accent-color: var(--primary);
     flex-shrink: 0;
-    background: var(--bg-elevated);
+    background: var(--bg-soft);
   }
   .form-box .consent a {
-    color: var(--primary-text);
-    font-weight: 700;
+    color: var(--primary);
+    font-weight: 600;
     text-decoration: underline;
   }
   .form-box button {
     width: 100%;
     padding: 17px;
     background: var(--primary);
-    color: #1A1308;
+    color: #fff;
     border: none;
     border-radius: 14px;
     font-weight: 800;
@@ -924,9 +891,8 @@
     cursor: pointer;
     font-family: inherit;
     transition: background 0.15s, transform 0.15s;
-    letter-spacing: -0.3px;
   }
-  .form-box button:hover { background: var(--primary-text); }
+  .form-box button:hover { background: var(--primary-dark); }
   .form-box button:active { transform: scale(0.98); }
 
   /* Channel divider */
@@ -1003,17 +969,16 @@
 
   /* ===== Footer ===== */
   footer {
-    background: #050507;
-    color: rgba(255,255,255,0.65);
+    background: var(--text-strong);
+    color: rgba(255,255,255,0.7);
     padding: 40px 24px 60px;
     font-size: 12px;
     line-height: 1.7;
-    border-top: 1px solid var(--border);
   }
   footer h5 {
-    color: var(--primary-text);
+    color: #fff;
     font-size: 13px;
-    font-weight: 800;
+    font-weight: 700;
     margin-bottom: 10px;
     letter-spacing: -0.2px;
   }
@@ -1403,7 +1368,7 @@
     <h2>지금, 첫걸음을<br />시작하세요.</h2>
     <p class="lead">30초만 입력하시면 변호사가 직접 회신드립니다.</p>
 
-    <form class="form-box" id="lead-form">
+    <form class="form-box" onsubmit="event.preventDefault(); if(!this.consent.checked){alert('개인정보 수집·이용 동의가 필요합니다.');return;} alert('상담 신청이 접수되었습니다. 곧 연락드리겠습니다.');">
       <div class="field">
         <label for="lead-name">성함 <span class="req">*</span></label>
         <input id="lead-name" type="text" name="name" placeholder="홍길동" autocomplete="name" required />
@@ -1417,13 +1382,10 @@
         <textarea id="lead-memo" name="memo" placeholder="예) 총 채무 1억 5천, 카드사 6곳"></textarea>
       </div>
       <label class="consent">
-        <input type="checkbox" name="consent" value="yes" required />
-        <span>상담 진행을 위한 <a href="#" onclick="event.preventDefault();alert('개인정보 수집·이용 약관 보기');">개인정보 수집·이용</a>에 동의합니다 <span style="color:var(--primary-text);font-weight:800;">(필수)</span></span>
+        <input type="checkbox" name="consent" required />
+        <span>상담 진행을 위한 <a href="#" onclick="event.preventDefault();alert('개인정보 수집·이용 약관 보기');">개인정보 수집·이용</a>에 동의합니다 <span style="color:var(--primary);font-weight:700;">(필수)</span></span>
       </label>
-      <!-- honeypot for bots (hidden) -->
-      <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" aria-hidden="true" />
-      <button type="submit" id="lead-submit">상담 신청하기</button>
-      <div id="lead-status" style="display:none; margin-top:14px; padding:14px; border-radius:12px; font-size:13px; line-height:1.6; text-align:center;"></div>
+      <button type="submit">상담 신청하기</button>
     </form>
 
     <div class="cta-divider">또는 다른 방법으로</div>
@@ -1467,126 +1429,6 @@
   </footer>
 
 </div>
-<script>
-  /* ===== 상담 폼 → Google Sheets 연동 =====
-   * 1) 본인 Apps Script Web App URL을 아래 GSCRIPT_URL에 붙여넣으세요
-   *    예) https://script.google.com/macros/s/AKfycb..../exec
-   * 2) 시트 1번 컬럼: 타임스탬프, 2: 이름, 3: 연락처, 4: 채무상황, 5: 동의, 6: 출처URL, 7: UserAgent
-   * 3) URL 미설정 시 alert만 뜸 (개발용 fallback)
-   */
-  const GSCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyh5tunh1e2cZeL8Rzid5HKYoGB5nexjhOrmuaR0lk3a6pIzEKdyio1eoYQ6pFN2MlzzA/exec';
-
-  (function() {
-    const form = document.getElementById('lead-form');
-    const btn = document.getElementById('lead-submit');
-    const status = document.getElementById('lead-status');
-    if (!form) return;
-
-    // 연락처 자동 하이픈 010-XXXX-XXXX
-    const telInput = document.getElementById('lead-tel');
-    if (telInput) {
-      telInput.addEventListener('input', function(e) {
-        let v = e.target.value.replace(/[^0-9]/g, '').slice(0, 11);
-        if (v.length >= 7)      v = v.slice(0,3) + '-' + v.slice(3,7) + '-' + v.slice(7);
-        else if (v.length >= 4) v = v.slice(0,3) + '-' + v.slice(3);
-        e.target.value = v;
-      });
-    }
-
-    function showStatus(type, msg) {
-      status.style.display = 'block';
-      status.innerHTML = msg;
-      if (type === 'success') {
-        status.style.background = 'rgba(111,160,96,0.15)';
-        status.style.color = '#A4D496';
-        status.style.border = '1px solid rgba(111,160,96,0.3)';
-      } else if (type === 'error') {
-        status.style.background = 'rgba(184,85,71,0.15)';
-        status.style.color = '#E8A39A';
-        status.style.border = '1px solid rgba(184,85,71,0.3)';
-      } else {
-        status.style.background = 'rgba(201,169,92,0.12)';
-        status.style.color = 'var(--text-base)';
-        status.style.border = '1px solid rgba(201,169,92,0.2)';
-      }
-    }
-
-    form.addEventListener('submit', async function(e) {
-      e.preventDefault();
-
-      // 동의 체크
-      if (!form.consent.checked) {
-        showStatus('error', '⚠️ 개인정보 수집·이용 동의가 필요합니다.');
-        return;
-      }
-
-      // 허니팟 (봇 체크)
-      if (form.website && form.website.value) {
-        showStatus('success', '✓ 상담 신청이 접수되었습니다.');
-        return;
-      }
-
-      // 버튼 로딩 상태
-      btn.disabled = true;
-      const originalText = btn.textContent;
-      btn.textContent = '전송 중...';
-      btn.style.opacity = '0.6';
-      btn.style.cursor = 'wait';
-
-      // Fallback: URL 미설정 시
-      if (GSCRIPT_URL === 'PASTE_YOUR_APPS_SCRIPT_URL_HERE') {
-        setTimeout(function() {
-          showStatus('success',
-            '⚠️ <strong>개발 모드</strong>: 실제 시트 연결 전입니다.<br />' +
-            'Apps Script URL을 landing.html의 GSCRIPT_URL에 입력하세요.');
-          btn.disabled = false;
-          btn.textContent = originalText;
-          btn.style.opacity = '';
-          btn.style.cursor = '';
-        }, 600);
-        return;
-      }
-
-      // 실제 전송
-      try {
-        const data = new FormData(form);
-        data.append('source', window.location.href);
-        data.append('ua', navigator.userAgent);
-
-        await fetch(GSCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',  // Apps Script는 CORS 미지원 → no-cors로 전송만 함
-          body: data,
-        });
-
-        // no-cors는 응답 못 읽음 → 낙관적 성공 처리
-        form.reset();
-        showStatus('success',
-          '✓ <strong>상담 신청이 접수되었습니다.</strong><br />' +
-          '담당 변호사가 24시간 내 연락드립니다.');
-        btn.textContent = '접수 완료';
-        btn.style.background = 'rgba(111,160,96,0.5)';
-
-        // 5초 뒤 버튼 복원
-        setTimeout(function() {
-          btn.disabled = false;
-          btn.textContent = originalText;
-          btn.style.opacity = '';
-          btn.style.cursor = '';
-          btn.style.background = '';
-        }, 5000);
-      } catch (err) {
-        showStatus('error',
-          '❌ 전송에 실패했습니다.<br />' +
-          '잠시 후 다시 시도하시거나 <a href="tel:02-6101-3100" style="color:inherit;text-decoration:underline;">02-6101-3100</a>으로 전화 주세요.');
-        btn.disabled = false;
-        btn.textContent = originalText;
-        btn.style.opacity = '';
-        btn.style.cursor = '';
-      }
-    });
-  })();
-</script>
-
 </body>
 </html>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
