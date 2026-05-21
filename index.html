@@ -3,1365 +3,1126 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>회생의기적 - 빚탕감 3심 대법원 승소 사례</title>
+<title>회생의기적 — 빚, 정리할 수 있습니다</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
+  /* ===== Design Tokens ===== */
+  :root {
+    --primary: #3182F6;
+    --primary-dark: #1B64DA;
+    --primary-light: #E8F1FE;
+    --bg: #FFFFFF;
+    --bg-soft: #F9FAFB;
+    --bg-card: #FFFFFF;
+    --text-strong: #191F28;
+    --text-base: #4E5968;
+    --text-weak: #8B95A1;
+    --border: #E5E8EB;
+    --border-soft: #F2F4F6;
+    --success: #00C896;
+    --warning: #FF9800;
+    --danger: #FF5847;
+    --shadow-card: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06);
+    --shadow-elevated: 0 4px 12px rgba(0,0,0,0.08), 0 20px 40px rgba(0,0,0,0.08);
+  }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
-    font-family: 'Noto Sans KR', sans-serif;
-    color: #1a1a1a;
-    background: #f6f6f6;
-    line-height: 1.6;
+    font-family: 'Pretendard', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    color: var(--text-strong);
+    background: var(--bg-soft);
+    line-height: 1.5;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    word-break: keep-all;
   }
-  .container { max-width: 720px; margin: 0 auto; background: #ffffff; }
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--bg);
+    min-height: 100vh;
+  }
+  a { color: inherit; text-decoration: none; }
 
   /* ===== Top Nav ===== */
   .topnav {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 18px 28px; border-bottom: 1px solid #eee;
-    position: sticky; top: 0; background: #fff; z-index: 50;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid var(--border-soft);
   }
-  .logo { font-weight: 900; font-size: 18px; letter-spacing: -0.5px; color: #111; }
-  .logo .dot { color: #c8102e; }
-  .nav-links { display: flex; gap: 18px; font-size: 13px; color: #555; }
-  .nav-links a { color: #555; text-decoration: none; }
-  .nav-links a:hover { color: #c8102e; }
+  .logo {
+    font-weight: 800;
+    font-size: 17px;
+    letter-spacing: -0.5px;
+    color: var(--text-strong);
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+  .logo .brand { color: var(--primary); }
+  .logo .sub { font-size: 11px; font-weight: 500; color: var(--text-weak); }
+  .nav-cta {
+    background: var(--text-strong);
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+  }
 
   /* ===== Hero ===== */
   .hero {
-    padding: 56px 28px 40px;
-    text-align: center;
-  }
-  .hero h1 {
-    font-size: 26px; font-weight: 900; line-height: 1.4;
-    letter-spacing: -1px; margin-bottom: 18px;
-  }
-  .hero h1 .accent { color: #c8102e; }
-  .hero .sub {
-    color: #666; font-size: 14px; margin-bottom: 24px;
-    line-height: 1.8;
-  }
-  .hero .sub strong { color: #1a1a1a; font-weight: 700; }
-  .hero-ctas { display: flex; gap: 10px; justify-content: center; margin-bottom: 36px; }
-  .btn {
-    display: inline-block;
-    padding: 12px 26px;
-    border-radius: 999px;
-    font-weight: 700; font-size: 14px;
-    text-decoration: none;
-    transition: transform .15s ease, box-shadow .15s ease;
-  }
-  .btn-primary { background: #c8102e; color: #fff; }
-  .btn-secondary { background: #1a1a1a; color: #fff; }
-  .btn-cafe { background: #03c75a; color: #fff; }
-  .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,0,0,.12); }
-
-  .hero-card {
-    background: #f1f1f1;
-    border-radius: 16px;
-    padding: 28px 22px;
-    display: flex; align-items: center; gap: 22px;
+    padding: 80px 24px 60px;
+    background: linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 100%);
     text-align: left;
   }
-  .hero-card .photo {
-    width: 180px; height: 230px; border-radius: 12px;
-    background: #1a1a1a url('profile.png') no-repeat;
-    background-size: 175%;
-    background-position: 53% 18%;
-    flex-shrink: 0;
-    box-shadow: 0 10px 26px rgba(0,0,0,.22);
-    position: relative;
-  }
-  .hero-card .photo::after {
-    content: '대표변호사';
-    position: absolute; left: 10px; bottom: 10px;
-    background: rgba(0,0,0,.55); color: #fff;
-    padding: 4px 10px; border-radius: 999px;
-    font-size: 10px; font-weight: 700;
-    letter-spacing: -.2px;
-  }
-  .hero-card .quote {
-    font-size: 14px; color: #333; line-height: 1.7;
-  }
-  .hero-card .quote .name {
-    margin-top: 14px; font-weight: 700; color: #1a1a1a; font-size: 13px;
-  }
-
-  /* ===== Section: Intro line ===== */
-  .intro {
-    text-align: center;
-    padding: 64px 28px 28px;
-  }
-  .intro h2 {
-    font-size: 22px; font-weight: 900; line-height: 1.5; letter-spacing: -0.8px;
-  }
-  .intro h2 .light { font-weight: 400; color: #555; }
-  .intro h2 .accent { color: #c8102e; }
-  .intro p.note {
-    margin-top: 14px; font-size: 12px; color: #c8102e;
-  }
-
-  /* ===== Case showcase ===== */
-  .case {
-    padding: 36px 28px 16px;
-    display: flex; flex-direction: column; align-items: center; gap: 14px;
-  }
-  .case-section-label {
-    width: 100%;
-    text-align: center;
-    margin: 18px 0 4px;
-  }
-  .case-section-label .chip {
+  .hero .pre {
     display: inline-block;
-    padding: 5px 14px; border-radius: 999px;
-    background: #1a1a1a; color: #fff; font-size: 11px; font-weight: 700;
-    letter-spacing: -.2px;
-  }
-  .case-section-label.alt .chip { background: #c8102e; }
-  .case-section-label h4 {
-    margin-top: 10px;
-    font-size: 16px; font-weight: 900; letter-spacing: -.5px;
-  }
-  .case-section-label p {
-    margin-top: 6px;
-    font-size: 12px; color: #777; line-height: 1.7;
-  }
-  .divider-thin {
-    width: 80%; height: 1px; background: #eee; margin: 24px auto;
-  }
-  .doc {
-    width: 280px;
-    background: #fafafa;
-    border: 1px solid #e3e3e3;
-    border-radius: 10px;
-    padding: 22px 18px;
-    position: relative;
-    box-shadow: 0 4px 14px rgba(0,0,0,.06);
-  }
-  .doc .ribbon {
-    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
-    background: #c8102e; color: #fff; padding: 6px 16px; font-size: 12px;
-    font-weight: 700; border-radius: 999px;
-    letter-spacing: -.3px;
-  }
-  .doc .doc-title {
-    text-align: center; font-weight: 700; font-size: 16px;
-    border-bottom: 1px solid #ddd; padding-bottom: 8px; margin: 10px 0 14px;
-  }
-  .doc .doc-lines {
-    font-size: 11px; color: #777; line-height: 2.0;
-  }
-  .doc .doc-lines div {
-    border-bottom: 1px dashed #e0e0e0;
-    height: 18px;
-  }
-  .doc .stamp {
-    position: absolute; right: -10px; bottom: 30px;
-    width: 96px; height: 96px; border-radius: 50%;
-    border: 3px solid #c8102e; color: #c8102e;
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 900; font-size: 13px; text-align: center;
-    transform: rotate(-12deg);
-    background: rgba(255,255,255,.85);
-    line-height: 1.2;
-  }
-
-  .highlight-doc {
-    width: 280px; background: #fff; border: 1px solid #e3e3e3;
-    border-radius: 10px; padding: 22px 18px; text-align: center;
-    box-shadow: 0 4px 14px rgba(0,0,0,.06);
-  }
-  .highlight-doc .small { font-size: 11px; color: #888; }
-  .highlight-doc .big-amount {
-    margin: 14px 0; padding: 14px;
-    border: 2px solid #c8102e; border-radius: 8px;
-    color: #c8102e; font-weight: 900; font-size: 18px;
-    line-height: 1.4;
-  }
-  .highlight-doc .judge-note {
-    text-align: left; font-size: 11px; color: #555;
-    border: 1px dashed #ccc; padding: 10px; border-radius: 6px;
-    margin-top: 10px; background: #fafafa; line-height: 1.7;
-  }
-  .judge-note .label { color: #c8102e; font-weight: 700; }
-
-  .case-meta {
-    display: flex; gap: 18px; padding: 8px 28px 40px; text-align: center;
-  }
-  .case-meta .item { flex: 1; font-size: 11px; color: #666; line-height: 1.6; }
-  .case-meta .item .top { color: #c8102e; font-weight: 700; margin-bottom: 4px; }
-
-  /* ===== LawTalk cases ===== */
-  .lawtalk-section {
-    background: #fff;
-    padding: 50px 0 36px;
-    margin-top: 26px;
-    border-top: 1px solid #f0f0f0;
-    border-bottom: 1px solid #f0f0f0;
-  }
-  .lawtalk-title { text-align: center; padding: 0 28px 22px; }
-  .lt-badge {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: #f4f0ff;
-    border: 1px solid #d9c9ff;
-    padding: 8px 14px 8px 8px;
+    background: var(--primary-light);
+    color: var(--primary);
+    padding: 6px 12px;
     border-radius: 999px;
-    margin-bottom: 14px;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 20px;
   }
-  .lt-logo {
-    width: 26px; height: 26px; border-radius: 50%;
-    background: #6e47ff; color: #fff;
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 900; font-size: 14px; font-family: serif;
+  .hero h1 {
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: -1.6px;
+    color: var(--text-strong);
+    margin-bottom: 16px;
   }
-  .lt-badge .lt-name { font-size: 12px; font-weight: 800; color: #2a1a6e; line-height: 1.3; }
-  .lt-badge .lt-meta { font-size: 10px; color: #6a5a9a; line-height: 1.3; }
-  .lawtalk-title h3 {
-    font-size: 22px; font-weight: 900;
-    letter-spacing: -.6px; line-height: 1.4;
+  .hero h1 .accent { color: var(--primary); }
+  .hero .sub {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--text-base);
+    margin-bottom: 32px;
   }
-  .lawtalk-title p {
-    margin-top: 10px; font-size: 13px;
-    color: #666; line-height: 1.7;
-  }
-
-  .lt-sample-note {
-    margin: 10px 28px 18px;
-    padding: 10px 14px;
-    background: #fff8e6;
-    border-left: 3px solid #f0b800;
-    font-size: 11px; color: #7a5a00;
-    border-radius: 4px;
-    line-height: 1.7;
-  }
-
-  .lt-cases-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    padding: 0 28px 18px;
-  }
-  .lt-card {
-    background: #fafafa;
-    border: 1px solid #ececec;
-    border-radius: 12px;
-    padding: 16px 14px;
-    display: flex; flex-direction: column;
+  .hero-cta {
+    display: flex;
     gap: 8px;
+    margin-bottom: 48px;
   }
-  .lt-tag {
-    display: inline-block;
-    background: #1a1a1a; color: #fff;
-    padding: 3px 9px; border-radius: 4px;
-    font-size: 10px; font-weight: 700;
-    align-self: flex-start;
-    letter-spacing: -.2px;
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 24px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 700;
+    transition: all 0.15s ease;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
   }
-  .lt-amount {
-    font-size: 20px; font-weight: 900;
-    color: #c8102e; letter-spacing: -.8px;
-    line-height: 1.2;
-  }
-  .lt-amount .small {
-    font-size: 11px; font-weight: 700; color: #1a1a1a;
-    margin-right: 4px;
-  }
-  .lt-summary {
-    font-size: 12px; color: #444;
-    line-height: 1.65;
+  .btn-primary {
+    background: var(--primary);
+    color: #fff;
     flex: 1;
   }
-  .lt-result {
-    background: #fff; border: 1px solid #e8e8e8;
-    border-radius: 6px;
-    padding: 8px 10px;
-    font-size: 11px; color: #1a1a1a;
-    line-height: 1.5;
+  .btn-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
   }
-  .lt-result strong { color: #c8102e; }
-  .lt-orig-link {
-    margin-top: 4px;
-    font-size: 11px; color: #6e47ff;
-    text-decoration: none;
-    font-weight: 700;
-    display: inline-flex; align-items: center; gap: 3px;
+  .btn-ghost {
+    background: var(--bg-soft);
+    color: var(--text-strong);
   }
-  .lt-orig-link:hover { text-decoration: underline; }
+  .btn-ghost:hover {
+    background: var(--border-soft);
+  }
 
-  .lt-bottom-cta {
-    text-align: center;
-    padding: 6px 28px 4px;
-  }
-  .lt-bottom-cta a {
-    display: inline-block;
-    padding: 12px 28px;
-    border: 2px solid #6e47ff;
-    color: #6e47ff;
-    border-radius: 999px;
-    font-weight: 800; font-size: 13px;
-    text-decoration: none;
+  .hero-lawyer {
     background: #fff;
+    border: 1px solid var(--border-soft);
+    border-radius: 20px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
   }
-  .lt-bottom-cta a:hover { background: #6e47ff; color: #fff; }
+  .hero-lawyer .photo {
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    background: var(--text-strong) url('profile.png') no-repeat;
+    background-size: 170%;
+    background-position: 53% 22%;
+    flex-shrink: 0;
+  }
+  .hero-lawyer .info .role {
+    font-size: 12px;
+    color: var(--primary);
+    font-weight: 700;
+    letter-spacing: -0.2px;
+  }
+  .hero-lawyer .info .name {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text-strong);
+    margin: 2px 0 6px;
+    letter-spacing: -0.5px;
+  }
+  .hero-lawyer .info .quote {
+    font-size: 13px;
+    color: var(--text-base);
+    line-height: 1.55;
+  }
 
-  @media (max-width: 520px) {
-    .lt-cases-grid { grid-template-columns: 1fr; }
+  /* ===== Section base ===== */
+  section.block {
+    padding: 80px 24px;
+    border-top: 8px solid var(--bg-soft);
   }
-
-  /* ===== Handwritten reviews ===== */
-  .handwritten-section {
-    background: #fff8ee;
-    padding: 50px 0 40px;
-    margin-top: 26px;
-    border-top: 1px solid #f0e6d6;
-    border-bottom: 1px solid #f0e6d6;
+  section.block.flush {
+    border-top: none;
+    padding-top: 56px;
   }
-  .hw-title { text-align: center; padding: 0 28px 22px; }
-  .hw-chip {
-    display: inline-block;
-    background: #1a1a1a; color: #f5d76e;
-    padding: 5px 14px; border-radius: 999px;
-    font-size: 11px; font-weight: 800;
+  .section-head {
+    margin-bottom: 32px;
+  }
+  .section-head .eyebrow {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 8px;
+    letter-spacing: -0.2px;
+  }
+  .section-head h2 {
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1.3;
+    letter-spacing: -1px;
+    color: var(--text-strong);
     margin-bottom: 12px;
-    letter-spacing: -.2px;
   }
-  .hw-title h3 {
-    font-size: 22px; font-weight: 900;
-    letter-spacing: -.6px; line-height: 1.4;
+  .section-head p {
+    font-size: 15px;
+    color: var(--text-base);
+    line-height: 1.55;
   }
-  .hw-title h3 .gold { color: #c9a300; }
-  .hw-title p {
-    margin-top: 10px; font-size: 13px;
-    color: #6a5530; line-height: 1.7;
+
+  /* ===== Trust metrics ===== */
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
   }
+  .metric-card {
+    background: var(--bg-soft);
+    border-radius: 16px;
+    padding: 22px 20px;
+  }
+  .metric-card .num {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -1.2px;
+    line-height: 1.05;
+    color: var(--text-strong);
+  }
+  .metric-card .num .unit {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-base);
+    margin-left: 2px;
+  }
+  .metric-card .label {
+    font-size: 13px;
+    color: var(--text-base);
+    margin-top: 8px;
+    line-height: 1.4;
+    font-weight: 500;
+  }
+  .metric-card.primary {
+    background: var(--primary);
+    color: #fff;
+  }
+  .metric-card.primary .num,
+  .metric-card.primary .num .unit,
+  .metric-card.primary .label {
+    color: #fff;
+  }
+  .metric-card.primary .label { opacity: 0.85; }
+
+  /* ===== Featured case ===== */
+  .featured-case {
+    background: linear-gradient(135deg, #191F28 0%, #2E3540 100%);
+    color: #fff;
+    border-radius: 24px;
+    padding: 32px 24px;
+    margin-top: 8px;
+  }
+  .featured-case .pill {
+    display: inline-block;
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+    padding: 5px 11px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+  .featured-case h3 {
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.45;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 20px;
+  }
+  .featured-case .big-num {
+    font-size: 56px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -3px;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+  .featured-case .big-num .pct {
+    color: #4DABF7;
+    font-size: 56px;
+  }
+  .featured-case .desc {
+    font-size: 15px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.55;
+    margin-top: 12px;
+  }
+  .featured-case .meta-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+  }
+  .featured-case .meta-row .m { text-align: center; }
+  .featured-case .meta-row .m .v {
+    font-size: 15px;
+    font-weight: 800;
+    color: #fff;
+  }
+  .featured-case .meta-row .m .k {
+    font-size: 11px;
+    color: rgba(255,255,255,0.55);
+    margin-top: 4px;
+  }
+
+  /* ===== Case list (LawTalk) ===== */
+  .case-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .case-item {
+    background: var(--bg-soft);
+    border-radius: 14px;
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    transition: all 0.15s;
+  }
+  .case-item:hover {
+    background: var(--primary-light);
+  }
+  .case-item .left { flex: 1; min-width: 0; }
+  .case-item .tag {
+    display: inline-block;
+    background: #fff;
+    color: var(--text-base);
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .case-item .title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-strong);
+    line-height: 1.45;
+  }
+  .case-item .right {
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .case-item .pct {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--primary);
+    letter-spacing: -0.8px;
+    line-height: 1;
+  }
+  .case-item .pct-label {
+    font-size: 11px;
+    color: var(--text-weak);
+    margin-top: 4px;
+    font-weight: 500;
+  }
+  .verify-link {
+    display: block;
+    margin-top: 16px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary);
+    padding: 14px;
+    background: var(--primary-light);
+    border-radius: 12px;
+  }
+
+  /* ===== Handwritten ===== */
   .hw-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    padding: 0 28px 22px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
   }
   .hw-card {
-    background: #fff;
-    border: 1px solid #efe4ce;
-    border-radius: 10px;
-    overflow: hidden;
-    text-decoration: none;
-    color: inherit;
-    display: flex; flex-direction: column;
-    transition: transform .15s, box-shadow .15s;
-  }
-  .hw-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 24px rgba(0,0,0,.1);
-  }
-  .hw-img {
-    width: 100%; aspect-ratio: 414/200;
-    background-size: cover; background-position: center;
-    background-color: #f5efe0;
-  }
-  .hw-tit {
-    padding: 10px 12px 12px;
-    font-size: 12px; font-weight: 700;
-    line-height: 1.5;
-    color: #2a2a2a;
-    min-height: 56px;
-    display: flex; align-items: center;
-  }
-  .hw-cta { text-align: center; padding: 8px 28px 0; }
-  .hw-cta a {
-    display: inline-block;
-    padding: 12px 28px;
-    background: #1a1a1a; color: #f5d76e;
-    border-radius: 999px;
-    text-decoration: none; font-weight: 800; font-size: 13px;
-  }
-  .hw-cta a:hover { background: #c9a300; color: #fff; }
-  .hw-footnote {
-    text-align: center; padding: 18px 28px 0;
-    font-size: 11px; color: #8a7548; line-height: 1.7;
-  }
-  @media (max-width: 520px) {
-    .hw-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  /* ===== KakaoTalk thank-you (deprecated, kept for safety) ===== */
-  .kakao-section {
-    background: #f7f7f9;
-    padding: 50px 0 40px;
-    margin-top: 30px;
-  }
-  .kakao-title { text-align: center; padding: 0 28px 22px; }
-  .kakao-title .chip-yellow {
-    display: inline-block;
-    background: #fae100;
-    color: #3c1e1e;
-    padding: 5px 14px;
-    border-radius: 999px;
-    font-size: 11px;
-    font-weight: 800;
-    margin-bottom: 12px;
-    letter-spacing: -.2px;
-  }
-  .kakao-title h3 {
-    font-size: 22px;
-    font-weight: 900;
-    letter-spacing: -.6px;
-    line-height: 1.4;
-  }
-  .kakao-title h3 .kk { color: #d8a900; }
-  .kakao-title p {
-    margin-top: 10px;
-    font-size: 13px;
-    color: #666;
-    line-height: 1.7;
-  }
-
-  .kakao-scroll {
-    display: flex;
-    gap: 14px;
-    overflow-x: auto;
-    padding: 6px 28px 18px;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-  }
-  .kakao-scroll::-webkit-scrollbar { height: 6px; }
-  .kakao-scroll::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
-  .kakao-scroll::-webkit-scrollbar-track { background: transparent; }
-
-  .kakao-card {
-    flex: 0 0 270px;
-    scroll-snap-align: start;
-    background: #abc1d1;
+    background: #FFFBF0;
+    border: 1px solid #FFF2D1;
     border-radius: 14px;
     overflow: hidden;
-    box-shadow: 0 8px 22px rgba(0,0,0,.12);
+    display: block;
+    color: var(--text-strong);
   }
-  .kakao-header {
-    background: #fff;
-    padding: 11px 14px;
-    display: flex; align-items: center; justify-content: space-between;
-    font-size: 14px;
-    font-weight: 700;
-    color: #222;
-    border-bottom: 1px solid #eee;
+  .hw-card .img {
+    width: 100%;
+    aspect-ratio: 4/2.5;
+    background-size: cover;
+    background-position: center;
+    background-color: #FFF2D1;
   }
-  .kakao-header .kk-icon {
-    font-size: 16px; color: #888; font-weight: 400;
-  }
-  .kakao-chat {
-    padding: 14px 12px 18px;
-    min-height: 280px;
-    background: #abc1d1;
-    font-size: 12px;
-  }
-  .msg-row {
-    display: flex;
-    gap: 6px;
-    margin-bottom: 8px;
-    align-items: flex-end;
-  }
-  .msg-row.right { justify-content: flex-end; }
-  .kk-profile {
-    width: 32px; height: 32px;
-    border-radius: 8px;
-    background: #5a5a5a;
-    color: #fff;
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 700;
+  .hw-card .tit {
+    padding: 12px 14px 14px;
     font-size: 13px;
+    font-weight: 600;
+    line-height: 1.5;
+    min-height: 60px;
+  }
+
+  /* ===== Cafe reviews ===== */
+  .cafe-card {
+    background: linear-gradient(135deg, #03C75A 0%, #02A44A 100%);
+    color: #fff;
+    border-radius: 24px;
+    padding: 32px 24px;
+  }
+  .cafe-card .top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .cafe-card .top .badge {
+    background: #fff;
+    color: #03C75A;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 13px;
+  }
+  .cafe-card .top .name { font-weight: 700; font-size: 14px; }
+  .cafe-card h3 {
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 1.3;
+    letter-spacing: -1px;
+    margin-bottom: 8px;
+  }
+  .cafe-card .h-num {
+    color: #FFEC3D;
+    font-size: 28px;
+  }
+  .cafe-card .desc {
+    font-size: 14px;
+    color: rgba(255,255,255,0.9);
+    line-height: 1.55;
+    margin-bottom: 20px;
+  }
+  .cafe-list {
+    background: rgba(255,255,255,0.12);
+    border-radius: 14px;
+    padding: 4px;
+  }
+  .cafe-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 12px;
+    font-size: 13px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .cafe-row:last-child { border-bottom: none; }
+  .cafe-row .tag {
+    background: rgba(255,255,255,0.18);
+    color: #fff;
+    padding: 3px 7px;
+    border-radius: 5px;
+    font-size: 11px;
+    font-weight: 700;
     flex-shrink: 0;
   }
-  .kk-profile.spacer { background: transparent; }
-  .kk-name {
-    font-size: 11px;
-    color: #1a1a1a;
-    margin-bottom: 3px;
-    padding-left: 2px;
-    font-weight: 500;
-  }
-  .kk-bubble {
-    background: #fff;
-    padding: 7px 10px;
-    border-radius: 2px 12px 12px 12px;
-    max-width: 165px;
-    line-height: 1.55;
-    font-size: 12px;
-    color: #1a1a1a;
-    word-break: keep-all;
-  }
-  .kk-bubble.me {
-    background: #fae100;
-    border-radius: 12px 2px 12px 12px;
-  }
-  .kk-time {
-    font-size: 10px;
-    color: #f5f5f5;
+  .cafe-row .title {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
     white-space: nowrap;
   }
-  .kk-swipe-hint {
-    text-align: center; font-size: 11px; color: #aaa;
-    padding: 6px 0 8px;
-  }
-  .kakao-note {
-    text-align: center;
+  .cafe-row .author {
     font-size: 11px;
-    color: #888;
-    line-height: 1.7;
-    padding: 6px 28px 0;
-  }
-
-  /* ===== Trust metrics strip (4 channels) ===== */
-  .trust-strip {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
-    margin: 0 22px 30px;
-    padding: 14px 10px;
-    background: #1a1a1a;
-    border-radius: 14px;
-    color: #fff;
-  }
-  .trust-item {
-    text-align: center;
-    padding: 8px 4px;
-    border-right: 1px solid rgba(255,255,255,.12);
-  }
-  .trust-item:last-child { border-right: none; }
-  .trust-item .num {
-    font-size: 18px; font-weight: 900;
-    letter-spacing: -.5px;
-    line-height: 1.1;
-    color: #fff;
-  }
-  .trust-item .num .small { font-size: 11px; font-weight: 700; color: #aaa; margin-left: 2px; }
-  .trust-item .label {
-    font-size: 10px; color: #bbb;
-    margin-top: 4px;
-    line-height: 1.3;
-    letter-spacing: -.2px;
-  }
-  .trust-item .yt { color: #ff3b30; }
-  .trust-item .gr { color: #03c75a; }
-  .trust-item .pp { color: #b39bff; }
-  .trust-item .rd { color: #ff7d7d; }
-  @media (max-width: 520px) {
-    .trust-strip { grid-template-columns: repeat(2, 1fr); }
-    .trust-item:nth-child(2) { border-right: none; }
-  }
-
-  /* ===== Naver Cafe reviews ===== */
-  .reviews-wrap {
-    margin: 40px 20px 24px;
-    background: linear-gradient(135deg, #03c75a 0%, #02a44a 100%);
-    border-radius: 18px;
-    padding: 28px 22px;
-    color: #fff;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(3, 199, 90, 0.25);
-  }
-  .reviews-wrap .badge-top {
-    display: inline-block;
-    background: rgba(255,255,255,0.2);
-    border: 1px solid rgba(255,255,255,0.35);
-    padding: 5px 14px; border-radius: 999px;
-    font-size: 11px; font-weight: 700;
-    margin-bottom: 14px;
-    letter-spacing: -.2px;
-  }
-  .reviews-wrap h3 {
-    font-size: 22px; font-weight: 900; line-height: 1.4;
-    letter-spacing: -.7px;
-  }
-  .reviews-wrap h3 .count { font-size: 30px; color: #fff219; }
-  .reviews-wrap .sub {
-    margin: 12px 0 22px; font-size: 13px;
-    color: rgba(255,255,255,0.92); line-height: 1.7;
-  }
-  .reviews-list {
-    background: #fff; border-radius: 12px;
-    padding: 8px; text-align: left;
-    color: #333;
-  }
-  .review-row {
-    display: flex; align-items: center; gap: 10px;
-    padding: 10px 8px; border-bottom: 1px solid #f0f0f0;
-    font-size: 12px;
-  }
-  .review-row:last-child { border-bottom: none; }
-  .review-row .tag {
+    color: rgba(255,255,255,0.6);
     flex-shrink: 0;
-    background: #e7faf0; color: #02a44a;
-    padding: 3px 8px; border-radius: 4px;
-    font-size: 10px; font-weight: 700;
   }
-  .review-row .title {
-    flex: 1;
-    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-    color: #333;
-  }
-  .review-row .meta {
-    color: #888; font-size: 10px; flex-shrink: 0;
-    background: #f5f5f5; padding: 2px 6px; border-radius: 3px;
-    font-weight: 500;
-  }
-  .cafe-cta {
-    display: inline-block; margin-top: 18px;
-    padding: 12px 24px; border-radius: 999px;
-    background: #fff; color: #02a44a;
-    font-weight: 800; font-size: 13px;
-    text-decoration: none;
-  }
-  .cafe-cta:hover { background: #fff219; color: #02a44a; }
-  .reviews-footnote {
-    margin-top: 12px;
-    font-size: 11px; color: rgba(255,255,255,0.85);
-    line-height: 1.6;
-  }
-
-  /* ===== Stats cards ===== */
-  .stats {
-    display: flex; gap: 14px; padding: 24px 28px 40px;
-  }
-  .stat-card {
-    flex: 1; background: #fff;
-    border: 1px solid #e8e8e8; border-radius: 14px;
-    padding: 22px 18px; text-align: center;
-    box-shadow: 0 4px 14px rgba(0,0,0,.04);
-  }
-  .stat-card .top-label { font-size: 11px; color: #666; line-height: 1.6; }
-  .stat-card .mini {
-    margin: 10px auto; width: 90px; height: 60px;
-    background: repeating-linear-gradient(0deg,#f0f0f0,#f0f0f0 4px,#fafafa 4px,#fafafa 8px);
-    border-radius: 4px;
-  }
-  .stat-card .badge {
-    display: inline-block; margin-top: 8px;
-    padding: 8px 14px; border-radius: 999px;
-    background: #c8102e; color: #fff; font-weight: 800; font-size: 12px;
-  }
-
-  .section-foot-note {
-    text-align: center; font-size: 11px; color: #999; padding: 0 28px 32px;
-    line-height: 1.8;
-  }
-
-  /* ===== Numbered list ===== */
-  .points {
-    margin: 24px 28px; padding: 22px 22px;
-    border: 1px solid #ddd; border-radius: 10px;
-    background: #fcfcfc;
-  }
-  .points ol { list-style: none; counter-reset: pt; }
-  .points li {
-    counter-increment: pt;
-    position: relative;
-    padding: 8px 0 8px 32px;
-    font-size: 13px;
-    color: #333;
-    line-height: 1.7;
-  }
-  .points li::before {
-    content: counter(pt);
-    position: absolute; left: 0; top: 10px;
-    width: 22px; height: 22px; border-radius: 50%;
-    background: #1a1a1a; color: #fff;
-    font-size: 11px; font-weight: 700;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .points-cta { text-align: center; padding: 14px 0 6px; }
-  .points-cta a {
-    display: inline-block; padding: 12px 32px;
-    border: 1px solid #1a1a1a; border-radius: 999px;
-    color: #1a1a1a; font-size: 13px; font-weight: 700;
-    text-decoration: none;
-  }
-  .points-cta a:hover { background: #1a1a1a; color: #fff; }
-
-  /* ===== Lawyer team ===== */
-  .team-title { text-align: center; padding: 50px 28px 24px; }
-  .team-title h3 { font-size: 18px; font-weight: 900; letter-spacing: -0.6px; }
-  .team-title p { color: #888; font-size: 13px; margin-top: 8px; }
-
-  .team {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 14px; padding: 0 28px 40px;
-  }
-  .lawyer {
-    background: #fff; border: 1px solid #ececec; border-radius: 12px;
-    padding: 16px; text-align: center;
-  }
-  .lawyer .ph {
-    width: 100%; aspect-ratio: 3/4; border-radius: 8px;
-    background: #1a1a1a center top / cover no-repeat;
-    margin-bottom: 12px;
-  }
-  .lawyer .ph.rep {
-    background-image: url('profile.png');
-    background-size: 170%;
-    background-position: 53% 18%;
-  }
-  .lawyer .ph.placeholder {
-    background: linear-gradient(135deg, #2a2a2a, #5a5a5a);
-    display: flex; align-items: center; justify-content: center;
-    color: #fff; font-size: 12px;
-  }
-  .lawyer .role { font-size: 11px; color: #c8102e; font-weight: 700; margin-top: 8px; }
-  .lawyer .name { font-size: 14px; font-weight: 700; margin: 4px 0; }
-  .lawyer .desc { font-size: 11px; color: #777; line-height: 1.6; }
-
-  /* ===== YouTube videos section ===== */
-  .yt-section {
+  .cafe-card .cta {
+    display: block;
+    margin-top: 18px;
     background: #fff;
-    padding: 50px 0 40px;
-    border-top: 1px solid #f0f0f0;
-    border-bottom: 1px solid #f0f0f0;
+    color: #03C75A;
+    text-align: center;
+    padding: 14px;
+    border-radius: 12px;
+    font-weight: 800;
+    font-size: 14px;
   }
-  .yt-title { text-align: center; padding: 0 28px 22px; }
-  .yt-channel-badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: #fff5f5; border: 1px solid #ffd5d5;
-    padding: 7px 14px 7px 8px;
-    border-radius: 999px;
-    margin-bottom: 14px;
-  }
-  .yt-logo-mini {
-    width: 26px; height: 18px; border-radius: 4px;
-    background: #ff0033; color: #fff;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 11px; font-weight: 900;
-    letter-spacing: -.3px;
-  }
-  .yt-channel-badge .yt-ch-name { font-size: 12px; font-weight: 800; color: #1a1a1a; }
-  .yt-channel-badge .yt-ch-sub { font-size: 10px; color: #ff0033; font-weight: 700; }
-  .yt-title h3 {
-    font-size: 22px; font-weight: 900;
-    letter-spacing: -.6px; line-height: 1.4;
-  }
-  .yt-title h3 .red { color: #ff0033; }
-  .yt-title p {
-    margin-top: 10px; font-size: 13px;
-    color: #666; line-height: 1.7;
-  }
+
+  /* ===== YouTube ===== */
   .yt-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    padding: 0 28px 22px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
   }
   .yt-card {
-    background: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    text-decoration: none;
-    color: inherit;
-    display: flex; flex-direction: column;
-    transition: transform .15s, box-shadow .15s;
-    border: 1px solid #ececec;
+    display: block;
+    color: var(--text-strong);
   }
-  .yt-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 24px rgba(0,0,0,.12);
-  }
-  .yt-thumb {
-    width: 100%; aspect-ratio: 16/9;
-    background-size: cover; background-position: center;
-    position: relative;
+  .yt-card .thumb {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background-size: cover;
+    background-position: center;
     background-color: #000;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
   }
-  .yt-thumb::before {
-    content: '';
-    position: absolute; left: 50%; top: 50%;
-    transform: translate(-50%, -50%);
-    width: 44px; height: 44px;
-    border-radius: 50%;
-    background: rgba(255,0,51,.92);
-    box-shadow: 0 4px 14px rgba(0,0,0,.3);
+  .yt-card .thumb::after {
+    content: '▶';
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 10px;
   }
-  .yt-thumb::after {
-    content: '';
-    position: absolute; left: 50%; top: 50%;
-    transform: translate(-37%, -50%);
-    border-left: 14px solid #fff;
-    border-top: 9px solid transparent;
-    border-bottom: 9px solid transparent;
+  .yt-card .dur {
+    position: absolute;
+    right: 6px;
+    bottom: 6px;
+    background: rgba(0,0,0,0.85);
+    color: #fff;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 700;
   }
-  .yt-thumb .dur {
-    position: absolute; right: 6px; bottom: 6px;
-    background: rgba(0,0,0,.82); color: #fff;
-    padding: 2px 6px; border-radius: 3px;
-    font-size: 10px; font-weight: 700;
-    letter-spacing: -.2px;
-  }
-  .yt-tit {
-    padding: 10px 12px 12px;
-    font-size: 12px; font-weight: 700;
-    line-height: 1.5;
-    color: #1a1a1a;
-    min-height: 60px;
+  .yt-card .tit {
+    padding: 10px 4px 0;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.45;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-  .yt-cta { text-align: center; padding: 8px 28px 0; }
-  .yt-cta a {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 12px 24px;
-    background: #ff0033; color: #fff;
-    border-radius: 999px;
-    text-decoration: none; font-weight: 800; font-size: 13px;
+  .yt-channel-line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+    padding: 14px 16px;
+    background: var(--bg-soft);
+    border-radius: 12px;
   }
-  .yt-cta a:hover { background: #cc0029; }
-  @media (max-width: 520px) {
-    .yt-grid { grid-template-columns: repeat(2, 1fr); }
-    .yt-tit { min-height: 54px; -webkit-line-clamp: 2; }
+  .yt-channel-line .icon {
+    width: 32px;
+    height: 22px;
+    background: #FF0033;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 900;
   }
+  .yt-channel-line .text { flex: 1; }
+  .yt-channel-line .name { font-size: 14px; font-weight: 700; color: var(--text-strong); }
+  .yt-channel-line .meta { font-size: 12px; color: var(--text-weak); margin-top: 2px; }
+  .yt-channel-line .arrow { font-size: 16px; color: var(--text-weak); }
 
-  /* ===== Certificates (deprecated, hidden) ===== */
-  .certs {
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 10px; padding: 30px 28px;
-    background: #fafafa;
-    border-top: 1px solid #eee; border-bottom: 1px solid #eee;
+  /* ===== Lawyer ===== */
+  .lawyer-card {
+    background: linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 100%);
+    border: 1px solid var(--border-soft);
+    border-radius: 24px;
+    padding: 32px 24px;
+    text-align: center;
   }
-  .cert {
-    aspect-ratio: 3/4;
-    background: #fff;
-    border: 1px solid #ddd; border-radius: 6px;
-    padding: 8px;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    font-size: 10px; color: #888; text-align: center;
-    line-height: 1.5;
+  .lawyer-card .photo-large {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: var(--text-strong) url('profile.png') no-repeat;
+    background-size: 175%;
+    background-position: 53% 18%;
+    margin: 0 auto 20px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
   }
-  .cert .ribbon-y { color: #c8a800; font-weight: 700; font-size: 11px; margin-bottom: 6px; }
-
-  /* ===== Contact form ===== */
-  .quickform { padding: 36px 28px; }
-  .quickform h4 { font-size: 16px; font-weight: 900; margin-bottom: 6px; }
-  .quickform p { font-size: 12px; color: #888; margin-bottom: 16px; }
-  .quickform .row { display: flex; gap: 8px; margin-bottom: 8px; }
-  .quickform input, .quickform textarea {
-    flex: 1; padding: 12px 14px; border-radius: 8px;
-    border: 1px solid #ddd; font-size: 13px; font-family: inherit;
-    outline: none;
+  .lawyer-card .role {
+    font-size: 12px;
+    color: var(--primary);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
   }
-  .quickform input:focus, .quickform textarea:focus { border-color: #c8102e; }
-  .quickform textarea { width: 100%; min-height: 90px; resize: vertical; }
-  .quickform button {
-    width: 100%; padding: 14px; border-radius: 8px;
-    background: #1a1a1a; color: #fff; border: none;
-    font-weight: 700; font-size: 14px; cursor: pointer;
+  .lawyer-card .name {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--text-strong);
+    margin: 4px 0 20px;
+    letter-spacing: -0.8px;
+  }
+  .credentials {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
     margin-top: 8px;
   }
-  .quickform button:hover { background: #c8102e; }
+  .credential-item {
+    background: #fff;
+    border: 1px solid var(--border-soft);
+    border-radius: 12px;
+    padding: 14px 12px;
+    text-align: left;
+  }
+  .credential-item .label {
+    font-size: 11px;
+    color: var(--text-weak);
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+  .credential-item .val {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-strong);
+    line-height: 1.4;
+  }
+  .credentials-full {
+    text-align: left;
+    margin-top: 18px;
+    padding: 18px;
+    background: #fff;
+    border: 1px solid var(--border-soft);
+    border-radius: 14px;
+  }
+  .credentials-full li {
+    list-style: none;
+    font-size: 13px;
+    color: var(--text-base);
+    padding: 6px 0;
+    line-height: 1.55;
+  }
+  .credentials-full li strong { color: var(--text-strong); font-weight: 700; }
+
+  /* ===== Final CTA ===== */
+  .final-cta {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: #fff;
+    padding: 60px 24px;
+    text-align: center;
+  }
+  .final-cta h2 {
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 1.3;
+    letter-spacing: -1.2px;
+    margin-bottom: 12px;
+  }
+  .final-cta p {
+    font-size: 15px;
+    opacity: 0.9;
+    margin-bottom: 28px;
+    line-height: 1.55;
+  }
+  .form-box {
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+    padding: 20px;
+  }
+  .form-box .row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .form-box input, .form-box textarea {
+    flex: 1;
+    background: rgba(255,255,255,0.9);
+    border: none;
+    padding: 14px 16px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--text-strong);
+    outline: none;
+  }
+  .form-box input::placeholder, .form-box textarea::placeholder { color: var(--text-weak); }
+  .form-box textarea {
+    width: 100%;
+    min-height: 80px;
+    resize: vertical;
+  }
+  .form-box button {
+    width: 100%;
+    margin-top: 8px;
+    padding: 16px;
+    background: #fff;
+    color: var(--primary);
+    border: none;
+    border-radius: 12px;
+    font-weight: 800;
+    font-size: 15px;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .form-box button:hover { background: var(--bg-soft); }
+  .final-cta .phone {
+    margin-top: 24px;
+    font-size: 14px;
+    opacity: 0.85;
+  }
+  .final-cta .phone strong { font-size: 20px; font-weight: 800; opacity: 1; }
 
   /* ===== Footer ===== */
   footer {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 20px; padding: 30px 28px 50px;
-    background: #f0f0f0; font-size: 11px; color: #666; line-height: 1.8;
+    background: var(--text-strong);
+    color: rgba(255,255,255,0.7);
+    padding: 40px 24px 60px;
+    font-size: 12px;
+    line-height: 1.7;
   }
-  footer h5 { font-size: 12px; color: #1a1a1a; font-weight: 900; margin-bottom: 8px; letter-spacing: -.3px; }
+  footer h5 {
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: -0.2px;
+  }
+  footer .row { margin-bottom: 24px; }
+  footer a { color: rgba(255,255,255,0.85); }
+  footer .brand-note {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+  }
 
-  /* ===== Responsive ===== */
-  @media (max-width: 520px) {
-    .hero h1 { font-size: 22px; }
-    .hero-card { flex-direction: column; text-align: center; padding: 24px 18px; }
-    .hero-card .photo { width: 200px; height: 260px; }
-    .stats { flex-direction: column; }
-    .team { grid-template-columns: repeat(2, 1fr); }
-    .certs { grid-template-columns: repeat(2, 1fr); }
-    .doc, .highlight-doc { width: 100%; }
+  /* ===== Tablet/Desktop ===== */
+  @media (min-width: 600px) {
+    .container { max-width: 600px; box-shadow: 0 0 60px rgba(0,0,0,0.04); }
+    .hero h1 { font-size: 48px; letter-spacing: -2px; }
+    .section-head h2 { font-size: 32px; }
+    .featured-case .big-num { font-size: 64px; }
+    .featured-case .big-num .pct { font-size: 64px; }
+  }
+  @media (min-width: 900px) {
+    .metrics { grid-template-columns: repeat(4, 1fr); }
+    .yt-grid { grid-template-columns: repeat(4, 1fr); }
+    .hw-grid { grid-template-columns: repeat(3, 1fr); }
   }
 </style>
 </head>
 <body>
-  <div class="container">
+<div class="container">
 
-    <!-- Top nav -->
-    <nav class="topnav">
-      <div class="logo">
-        회생의<span class="dot">기적</span>
-        <span style="font-weight:500; font-size:12px; color:#888;">|&nbsp; 빚탕감 전문</span>
-        <div style="font-weight:400; font-size:10px; color:#aaa; margin-top:2px; letter-spacing:0;">운영 : 블랙스톤 법률사무소</div>
-      </div>
-      <div class="nav-links">
-        <a href="#cases">성공사례</a>
-        <a href="#team">변호사</a>
-        <a href="#contact">상담문의</a>
-      </div>
-    </nav>
+  <!-- Nav -->
+  <nav class="topnav">
+    <div class="logo">
+      회생의<span class="brand">기적</span>
+      <span class="sub">빚탕감 전문</span>
+    </div>
+    <a class="nav-cta" href="#contact">상담하기</a>
+  </nav>
 
-    <!-- Hero -->
-    <section class="hero">
-      <h1>
-        말로는 누구나 가능하다고 합니다.<br />
-        <span class="accent">회생의기적</span>은<br />
-        결정문으로 증명합니다.
-      </h1>
-      <p class="sub">
-        기각된 사건, 이의가 걸린 사건, 압류가 진행 중인 사건까지 —<br />
-        다른 곳이 멈춘 자리에서 우리는 다시 시작합니다.<br />
-        <span style="color:#03c75a; font-weight:700;">성공 사례 2,211건 · 유튜브 25,450명 · 카페 후기 316건 · 로톡 사례 923건. 모두 검증 가능합니다.</span>
-      </p>
-      <div class="hero-ctas">
-        <a class="btn btn-primary" href="#contact">상담하기</a>
-        <a class="btn btn-cafe" href="https://cafe.naver.com/f-e/cafes/30974285/articles/6549?boardtype=L&userDisplay=50&menuid=14&referrerAllArticles=false&page=1" target="_blank" rel="noopener">네이버 카페 후기</a>
-        <a class="btn btn-secondary" href="#cases">성공사례</a>
-      </div>
-      <div class="hero-card">
-        <div class="photo" aria-label="대표변호사 이승진"></div>
-        <div class="quote">
-          "지금 이 순간에도 추심 전화에<br />
-          심장이 뛰는 분들이 있습니다.<br />
-          그 전화를 멈추는 게, 제 일입니다."
-          <div class="name">— 대표변호사 이승진</div>
-        </div>
-      </div>
-    </section>
+  <!-- Hero -->
+  <section class="hero">
+    <span class="pre">개인회생·파산 전문</span>
+    <h1>
+      빚, <span class="accent">정리할 수 있습니다.</span><br />
+      말이 아닌 결정문으로<br />
+      증명합니다.
+    </h1>
+    <p class="sub">
+      다른 곳이 멈춘 자리에서<br />
+      회생의기적은 다시 시작합니다.
+    </p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#contact">무료 상담 신청</a>
+      <a class="btn btn-ghost" href="#cases">결과 보기</a>
+    </div>
 
-    <!-- Trust metrics strip -->
-    <section class="trust-strip">
-      <div class="trust-item">
-        <div class="num rd">2,211<span class="small">건+</span></div>
-        <div class="label">누적 성공 사례<br /><span style="opacity:.7;">(2026.5 기준)</span></div>
+    <div class="hero-lawyer">
+      <div class="photo" aria-label="대표변호사 이승진"></div>
+      <div class="info">
+        <div class="role">대표 변호사</div>
+        <div class="name">이승진</div>
+        <div class="quote">"추심 전화에 심장 뛰는 그 순간,<br />그 전화를 멈추는 게 제 일입니다."</div>
       </div>
-      <div class="trust-item">
-        <div class="num yt">25,450<span class="small">명</span></div>
-        <div class="label">유튜브 구독자<br />"회생의기적"</div>
+    </div>
+  </section>
+
+  <!-- Trust metrics -->
+  <section class="block flush">
+    <div class="section-head">
+      <div class="eyebrow">검증 가능한 신뢰</div>
+      <h2>숫자로 증명합니다.</h2>
+      <p>모두 외부 플랫폼에서 직접 확인할 수 있는 수치입니다.</p>
+    </div>
+
+    <div class="metrics">
+      <div class="metric-card primary">
+        <div class="num">2,211<span class="unit">건+</span></div>
+        <div class="label">누적 성공 사례<br />(2026.5 기준)</div>
       </div>
-      <div class="trust-item">
-        <div class="num gr">316<span class="small">건</span></div>
+      <div class="metric-card">
+        <div class="num">25,450<span class="unit">명</span></div>
+        <div class="label">유튜브 "회생의기적"<br />구독자</div>
+      </div>
+      <div class="metric-card">
+        <div class="num">316<span class="unit">건</span></div>
         <div class="label">네이버 카페<br />실제 후기</div>
       </div>
-      <div class="trust-item">
-        <div class="num pp">923<span class="small">건</span></div>
+      <div class="metric-card">
+        <div class="num">923<span class="unit">건</span></div>
         <div class="label">로톡 등록<br />법률사례</div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Intro line -->
-    <section class="intro" id="cases">
-      <h2>
-        <span class="light">검증 안 되는 자랑은 적지 않습니다.</span><br />
-        <span class="accent">직접 확인 가능한 결과만 보여드립니다.</span>
-      </h2>
-      <p class="note">* 아래 형사 판결문은 변호인의 법리 실력을 보여드리는 자료이며,<br />빚탕감 서비스와는 별개의 사건임을 알려드립니다.</p>
-    </section>
+  <!-- Featured case -->
+  <section class="block" id="cases">
+    <div class="section-head">
+      <div class="eyebrow">대표 성공 사례</div>
+      <h2>97%의 빚이 사라졌습니다.</h2>
+      <p>실제 의뢰인의 개인회생 인가 결정문 기준.</p>
+    </div>
 
-    <!-- Case showcase -->
-    <section class="case">
+    <div class="featured-case">
+      <span class="pill">개인회생 인가된 변제계획안</span>
+      <h3>약 7억원의 빚 중<br /><strong style="color:#fff;">6억 8천만원</strong>이 탕감되었습니다.</h3>
+      <div class="big-num">97<span class="pct">%</span></div>
+      <div class="desc">변호사가 직접 설계한 변제계획안으로 인가 결정. 의뢰 당시 절망에 가까운 상황이었지만 끝까지 매달려 최대 탕감을 만들었습니다.</div>
 
-      <!-- Part 1: Credential -->
-      <div class="case-section-label">
-        <span class="chip">CHAPTER 1 · 법리 실력의 흔적</span>
-        <h4>대법원에서 결과를 뒤집어 본 변호사</h4>
-        <p>빚탕감 사건은 아니지만,<br />
-        대법원까지 가서 원심을 뒤집은 변호인의 법리 실력을 보여드립니다.</p>
+      <div class="meta-row">
+        <div class="m"><div class="v">약 7억원</div><div class="k">의뢰 당시 채무</div></div>
+        <div class="m"><div class="v">변호사 직접</div><div class="k">변제계획안 설계</div></div>
+        <div class="m"><div class="v">97% 탕감</div><div class="k">최종 결과</div></div>
       </div>
+    </div>
+  </section>
 
-      <!-- Judgment document mock (criminal case = credential) -->
-      <div class="doc">
-        <div class="ribbon">3심 대법원 승소!</div>
-        <div class="doc-title">판&nbsp;&nbsp;결</div>
-        <div class="doc-lines">
-          <div></div><div></div><div></div><div></div><div></div><div></div>
+  <!-- LawTalk cases -->
+  <section class="block">
+    <div class="section-head">
+      <div class="eyebrow">로톡 공식 등록</div>
+      <h2>이런 결과들을<br />꾸준히 만들어왔습니다.</h2>
+      <p>변호사 본인이 로톡에 등록한 실제 사건. 클릭 시 정식 사례 페이지로 이동합니다.</p>
+    </div>
+
+    <div class="case-list">
+      <a class="case-item" href="https://www.lawtalk.co.kr/posts/119484" target="_blank" rel="noopener">
+        <div class="left">
+          <span class="tag">회생/파산</span>
+          <div class="title">코인 투자 손실 → 돌려막기·카드깡 누적</div>
         </div>
-        <div class="stamp">대법원<br />파기자판</div>
-      </div>
-
-      <p style="font-size:11px; color:#999; text-align:center; margin-top:6px; line-height:1.7;">
-        ※ 형사 사건 대법원 파기자판 사례 (의뢰인 동의하에 일부 게시).<br />
-        이 사건은 빚탕감과 무관하며, 변호인의 법리 실력을 보여주는 자료입니다.
-      </p>
-
-      <div class="divider-thin"></div>
-
-      <!-- Part 2: Actual service result -->
-      <div class="case-section-label alt">
-        <span class="chip">CHAPTER 2 · 빚탕감 결정문</span>
-        <h4>그 실력이 빚탕감에 닿으면</h4>
-        <p>아래는 실제 의뢰인의 회생 결정문입니다.<br />
-        숫자와 결정문이 결과를 말해줍니다.</p>
-      </div>
-
-      <!-- Result amount card (actual debt forgiveness) -->
-      <div class="highlight-doc">
-        <div class="small">— 개인회생 인가 결정문 —</div>
-        <div class="big-amount">
-          탕감 빚<br />
-          약 4억 8천만원
+        <div class="right">
+          <div class="pct">90.62%</div>
+          <div class="pct-label">탕감률</div>
         </div>
-        <div class="judge-note">
-          <span class="label">[결정 요지]</span><br />
-          채무자에 대한 회생계획을 인가한다.<br />
-          잔여 채무 전액에 대하여 면책을 결정한다.
+      </a>
+      <a class="case-item" href="https://www.lawtalk.co.kr/posts/118715" target="_blank" rel="noopener">
+        <div class="left">
+          <span class="tag">회생/파산</span>
+          <div class="title">코로나 폐업 + 가족 건강 악화</div>
         </div>
-      </div>
-
-      <div class="case-meta">
-        <div class="item"><div class="top">의뢰 당시</div>총 빚<br />4억 8천만원</div>
-        <div class="item"><div class="top">진행 과정</div>회생계획안<br />변호사 직접 설계</div>
-        <div class="item"><div class="top">최종 결과</div>빚 전액<br />탕감 확정</div>
-      </div>
-    </section>
-
-    <!-- LawTalk Registered Cases -->
-    <section class="lawtalk-section">
-      <div class="lawtalk-title">
-        <div class="lt-badge">
-          <div class="lt-logo">L</div>
-          <div>
-            <div class="lt-name">로톡 인증 변호사 · 이승진</div>
-            <div class="lt-meta">법률사례 923건 · 해결사례 355건 등록</div>
-          </div>
+        <div class="right">
+          <div class="pct">87.17%</div>
+          <div class="pct-label">탕감률</div>
         </div>
-        <h3>로톡에 공식 등록된 <span style="color:#c8102e;">빚탕감 해결사례</span></h3>
-        <p>아래 사례는 모두 변호사 본인이 <strong>로톡(LawTalk)</strong>에 등록한 실제 사건입니다.<br />
-        각 카드의 "로톡 원본" 링크를 누르면 정식 등록된 사례 페이지로 이동합니다.</p>
-      </div>
-
-      <div class="lt-cases-grid">
-
-        <div class="lt-card" id="case-1">
-          <span class="lt-tag">회생/파산</span>
-          <div class="lt-amount"><span class="small">탕감률</span>90.62%</div>
-          <div class="lt-summary">
-            📌 코인 투자금 대부분을 손실하여 개인회생 신청.<br />
-            주변에서 돈을 빌려 코인에 투자했지만 대부분을 잃고, 돌려막기와 카드깡으로 채무가 불어난 의뢰인.
-          </div>
-          <div class="lt-result"><strong>결과:</strong> 개인회생 인가 — 채무 90.62% 탕감</div>
-          <a class="lt-orig-link" href="https://www.lawtalk.co.kr/posts/119484" target="_blank" rel="noopener">로톡 원본 →</a>
+      </a>
+      <a class="case-item" href="https://www.lawtalk.co.kr/posts/157419" target="_blank" rel="noopener">
+        <div class="left">
+          <span class="tag">회생/파산</span>
+          <div class="title">부동산 중개업 거래 급감, 채무 누적</div>
         </div>
-
-        <div class="lt-card" id="case-2">
-          <span class="lt-tag">회생/파산</span>
-          <div class="lt-amount"><span class="small">탕감률</span>87.17%</div>
-          <div class="lt-summary">
-            📌 반복되는 사업 실패로 개인회생 신청.<br />
-            코로나로 폐업한 데다 가족들의 건강까지 악화된 상황. 끝까지 매달려 인가 결정.
-          </div>
-          <div class="lt-result"><strong>결과:</strong> 개인회생 인가 — 채무 87.17% 탕감</div>
-          <a class="lt-orig-link" href="https://www.lawtalk.co.kr/posts/118715" target="_blank" rel="noopener">로톡 원본 →</a>
+        <div class="right">
+          <div class="pct">85.7%</div>
+          <div class="pct-label">탕감률</div>
         </div>
-
-        <div class="lt-card" id="case-3">
-          <span class="lt-tag">회생/파산</span>
-          <div class="lt-amount"><span class="small">탕감률</span>85.7%</div>
-          <div class="lt-summary">
-            부동산업 실패와 코로나 여파로 개인회생 신청.<br />
-            공인중개사로 일하다 거래 급감, 채무가 누적된 의뢰인의 회생 사례.
-          </div>
-          <div class="lt-result"><strong>결과:</strong> 개인회생 인가 — 채무 85.7% 탕감</div>
-          <a class="lt-orig-link" href="https://www.lawtalk.co.kr/posts/157419" target="_blank" rel="noopener">로톡 원본 →</a>
+      </a>
+      <a class="case-item" href="https://www.lawtalk.co.kr/posts/156664" target="_blank" rel="noopener">
+        <div class="left">
+          <span class="tag">회생/파산</span>
+          <div class="title">생활비 부족, 카드·대출 누적</div>
         </div>
-
-        <div class="lt-card" id="case-4">
-          <span class="lt-tag">회생/파산</span>
-          <div class="lt-amount"><span class="small">탕감률</span>83.3%</div>
-          <div class="lt-summary">
-            생활비 부족에 따른 채무 증대로 회생 신청.<br />
-            어려운 가정환경 속 카드 사용·대출이 누적된 의뢰인의 인가 사례.
-          </div>
-          <div class="lt-result"><strong>결과:</strong> 개인회생 인가 — 채무 83.3% 탕감</div>
-          <a class="lt-orig-link" href="https://www.lawtalk.co.kr/posts/156664" target="_blank" rel="noopener">로톡 원본 →</a>
+        <div class="right">
+          <div class="pct">83.3%</div>
+          <div class="pct-label">탕감률</div>
         </div>
-
-        <div class="lt-card" id="case-5">
-          <span class="lt-tag">회생/파산</span>
-          <div class="lt-amount"><span class="small">탕감률</span>81.2%</div>
-          <div class="lt-summary">
-            반복적 도박으로 인한 채무 증가, 회생 신청.<br />
-            경제적 회복을 시도하다 도박이 반복되며 채무가 늘어난 의뢰인. 회생 절차 끝까지 동행.
-          </div>
-          <div class="lt-result"><strong>결과:</strong> 개인회생 인가 — 채무 81.2% 탕감</div>
-          <a class="lt-orig-link" href="https://www.lawtalk.co.kr/posts/157120" target="_blank" rel="noopener">로톡 원본 →</a>
+      </a>
+      <a class="case-item" href="https://www.lawtalk.co.kr/posts/105447" target="_blank" rel="noopener">
+        <div class="left">
+          <span class="tag">회생/파산</span>
+          <div class="title">빚보증 + 보이스피싱 피해</div>
         </div>
-
-        <div class="lt-card" id="case-6">
-          <span class="lt-tag">회생/파산</span>
-          <div class="lt-amount"><span class="small">탕감률</span>80%</div>
-          <div class="lt-summary">
-            📌 빚보증·보이스피싱 피해로 개인회생 신청.<br />
-            동료 부탁의 대출 보증 + 건강 악화 + 보이스피싱 사기 피해가 겹친 의뢰인의 회생 사례.
-          </div>
-          <div class="lt-result"><strong>결과:</strong> 개인회생 인가 — 채무 80% 탕감</div>
-          <a class="lt-orig-link" href="https://www.lawtalk.co.kr/posts/105447" target="_blank" rel="noopener">로톡 원본 →</a>
+        <div class="right">
+          <div class="pct">80%</div>
+          <div class="pct-label">탕감률</div>
         </div>
+      </a>
+    </div>
 
+    <a class="verify-link" href="https://www.lawtalk.co.kr/directory/profile/5455-%EC%9D%B4%EC%8A%B9%EC%A7%84/case/solution" target="_blank" rel="noopener">
+      로톡에서 전체 923건 보기 →
+    </a>
+  </section>
+
+  <!-- Handwritten reviews -->
+  <section class="block">
+    <div class="section-head">
+      <div class="eyebrow">손편지로 받은 진심</div>
+      <h2>의뢰인이 직접 쓴<br />자필후기.</h2>
+      <p>위조 불가능한, 업체가 손댈 수 없는 진심의 흔적.</p>
+    </div>
+
+    <div class="hw-grid">
+      <a class="hw-card" href="https://www.blackstonelaw.co.kr/main/review_view.html?wr_id=10" target="_blank" rel="noopener">
+        <div class="img" style="background-image:url('https://www.blackstonelaw.co.kr/data/editor/2312/thumb-04166e424760c4193693252cc506c3c6_1701940064_1966_414x200.png');"></div>
+        <div class="tit">다시 한번 가장이 될 수 있는 기회를 주셨습니다</div>
+      </a>
+      <a class="hw-card" href="https://www.blackstonelaw.co.kr/main/review_view.html?wr_id=13" target="_blank" rel="noopener">
+        <div class="img" style="background-image:url('https://www.blackstonelaw.co.kr/data/editor/2312/thumb-04166e424760c4193693252cc506c3c6_1701940435_2859_414x200.png');"></div>
+        <div class="tit">전세사기 피해자도 살아갈 기회가 생기네요</div>
+      </a>
+      <a class="hw-card" href="https://www.blackstonelaw.co.kr/main/review_view.html?wr_id=12" target="_blank" rel="noopener">
+        <div class="img" style="background-image:url('https://www.blackstonelaw.co.kr/data/editor/2312/thumb-04166e424760c4193693252cc506c3c6_1701940310_5158_414x200.png');"></div>
+        <div class="tit">학원 운영 채무를 해결할 수 있어서 기분이 좋습니다</div>
+      </a>
+      <a class="hw-card" href="https://www.blackstonelaw.co.kr/main/review_view.html?wr_id=7" target="_blank" rel="noopener">
+        <div class="img" style="background-image:url('https://www.blackstonelaw.co.kr/data/editor/2312/thumb-04166e424760c4193693252cc506c3c6_1701939768_6471_414x200.jpg');"></div>
+        <div class="tit">막대한 병원비 채무 해결하게 해 주셔서 감사합니다</div>
+      </a>
+    </div>
+
+    <a class="verify-link" href="https://www.blackstonelaw.co.kr/main/review.html" target="_blank" rel="noopener">
+      자필후기 모두 보기 →
+    </a>
+  </section>
+
+  <!-- Naver Cafe -->
+  <section class="block">
+    <div class="cafe-card">
+      <div class="top">
+        <div class="badge">N</div>
+        <div class="name">♥️ 블랙스톤 후기 ♥️</div>
       </div>
+      <h3>네이버 카페에 <span class="h-num">316건</span>의<br />실제 의뢰인 후기.</h3>
+      <p class="desc">개시결정 / 인가결정 단계별로 분류. 본인인증 회원만 작성 가능 — 업체가 손댈 수 없습니다.</p>
 
-      <div class="lt-bottom-cta">
-        <a href="https://www.lawtalk.co.kr/directory/profile/5455-%EC%9D%B4%EC%8A%B9%EC%A7%84/case/solution" target="_blank" rel="noopener">
-          로톡 공식 프로필에서 전체 사례 보기 →
-        </a>
-      </div>
-    </section>
-
-    <!-- Handwritten Thank-You Letters -->
-    <section class="handwritten-section">
-      <div class="hw-title">
-        <span class="hw-chip">✍ 손편지로 받은 진심</span>
-        <h3>의뢰인이 <span class="gold">손으로 직접</span> 쓴 자필후기</h3>
-        <p>위조 불가능한, 업체가 손댈 수 없는 진심의 흔적.<br />
-        빚탕감 후 의뢰인이 직접 사무실로 보내주신 손편지를 그대로 공개합니다.</p>
-      </div>
-
-      <div class="hw-grid">
-        <a class="hw-card" href="https://www.blackstonelaw.co.kr/main/review_view.html?wr_id=10" target="_blank" rel="noopener">
-          <div class="hw-img" style="background-image:url('https://www.blackstonelaw.co.kr/data/editor/2312/thumb-04166e424760c4193693252cc506c3c6_1701940064_1966_414x200.png');"></div>
-          <div class="hw-tit">다시 한번 가장이 될 수 있는 기회를 주셨습니다</div>
-        </a>
-        <a class="hw-card" href="https://www.blackstonelaw.co.kr/main/review_view.html?wr_id=13" target="_blank" rel="noopener">
-          <div class="hw-img" style="background-image:url('https://www.blackstonelaw.co.kr/data/editor/2312/thumb-04166e424760c4193693252cc506c3c6_1701940435_2859_414x200.png');"></div>
-          <div class="hw-tit">전세사기 피해자도 살아갈 기회가 생기네요</div>
-        </a>
-        <a class="hw-card" href="https://www.blackstonelaw.co.kr/main/review_view.html?wr_id=12" target="_blank" rel="noopener">
-          <div class="hw-img" style="background-image:url('https://www.blackstonelaw.co.kr/data/editor/2312/thumb-04166e424760c4193693252cc506c3c6_1701940310_5158_414x200.png');"></div>
-          <div class="hw-tit">학원 운영 채무를 해결할 수 있어서 기분이 좋습니다</div>
-        </a>
-        <a class="hw-card" href="https://www.blackstonelaw.co.kr/main/review_view.html?wr_id=7" target="_blank" rel="noopener">
-          <div class="hw-img" style="background-image:url('https://www.blackstonelaw.co.kr/data/editor/2312/thumb-04166e424760c4193693252cc506c3c6_1701939768_6471_414x200.jpg');"></div>
-          <div class="hw-tit">막대한 병원비 채무 해결하게 해 주셔서 감사합니다</div>
-        </a>
-        <a class="hw-card" href="https://www.blackstonelaw.co.kr/main/review_view.html?wr_id=6" target="_blank" rel="noopener">
-          <div class="hw-img" style="background-image:url('https://www.blackstonelaw.co.kr/data/editor/2312/thumb-04166e424760c4193693252cc506c3c6_1701939673_6949_414x200.jpg');"></div>
-          <div class="hw-tit">주식 리딩방 사기 당한 후 다시 살아갈 기회를 주셨습니다</div>
-        </a>
-        <a class="hw-card" href="https://www.blackstonelaw.co.kr/main/review.html?page=3" target="_blank" rel="noopener">
-          <div class="hw-img" style="background-image:url('https://www.blackstonelaw.co.kr/data/editor/2308/thumb-95527bcb986b69f2a67e30191fda0722_1693446640_6853_414x200.jpg');"></div>
-          <div class="hw-tit">블랙스톤 덕분에 새 삶을 선물 받을 수 있었습니다</div>
-        </a>
-      </div>
-
-      <div class="hw-cta">
-        <a href="https://www.blackstonelaw.co.kr/main/review.html" target="_blank" rel="noopener">
-          ✍ 사무실에 간직된 자필후기 모두 보기 →
-        </a>
-      </div>
-
-      <p class="hw-footnote">
-        ※ 모든 손편지는 의뢰인 본인이 직접 작성·서명한 원본입니다.<br />
-        원본은 블랙스톤 법률사무소 사무실에 보관되어 있으며, 방문 시 확인하실 수 있습니다.
-      </p>
-    </section>
-
-    <!-- Naver Cafe Real Reviews -->
-    <section class="reviews-wrap">
-      <span class="badge-top">★ 우리만의 결정적 차별점 ★</span>
-      <h3>
-        ♥️ 블랙스톤 후기 ♥️<br />
-        네이버 카페에 <span class="count">316건</span>
-      </h3>
-      <p class="sub">
-        업체가 손댈 수 없는 <strong style="color:#fff219;">실제 의뢰인 후기</strong>를<br />
-        <strong>개시결정 / 인가결정</strong> 단계별로 분류해 공개합니다.<br />
-        조작 못 하는 카페에서 직접 확인하세요.
-      </p>
-
-      <div class="reviews-list">
-        <div class="review-row">
+      <div class="cafe-list">
+        <div class="cafe-row">
           <span class="tag">인가결정</span>
           <span class="title">드디어 인가 결정이 났습니다.</span>
-          <span class="meta">경기연풍</span>
+          <span class="author">경기연풍</span>
         </div>
-        <div class="review-row">
+        <div class="cafe-row">
           <span class="tag">개시결정</span>
           <span class="title">개인회생은 블랙스톤에서</span>
-          <span class="meta">밴츠</span>
+          <span class="author">밴츠</span>
         </div>
-        <div class="review-row">
+        <div class="cafe-row">
           <span class="tag">인가결정</span>
-          <span class="title">이제 주어진 상환 금액을 성실히 내면 끝납니다.</span>
-          <span class="meta">코묻은돈</span>
+          <span class="title">이제 성실히 내면 끝납니다.</span>
+          <span class="author">코묻은돈</span>
         </div>
-        <div class="review-row">
+        <div class="cafe-row">
           <span class="tag">개시결정</span>
-          <span class="title">첫 상담부터 든든하고 신뢰가 갔던 블랙스톤 개시결정 후기남겨요:)</span>
-          <span class="meta">인생두방</span>
-        </div>
-        <div class="review-row">
-          <span class="tag">개시결정</span>
-          <span class="title">개시결정 후 채권자 집회 기다리고 있어요!</span>
-          <span class="meta">호야</span>
+          <span class="title">개시결정 후 채권자 집회 기다리고 있어요</span>
+          <span class="author">호야</span>
         </div>
       </div>
 
-      <p style="margin: 12px 0 6px; font-size: 11px; color: rgba(255,255,255,0.88); line-height: 1.7;">
-        ⓘ <strong style="color:#fff;">개시결정</strong> = 회생 절차가 공식 시작되어 즉시 추심·압류 정지<br />
-        <strong style="color:#fff;">인가결정</strong> = 변제계획 확정 → 변제 완료 시 잔여 빚 면책
-      </p>
-
-      <a class="cafe-cta" href="https://cafe.naver.com/f-e/cafes/30974285/articles/6549?boardtype=L&userDisplay=50&menuid=14&referrerAllArticles=false&page=1" target="_blank" rel="noopener">
-        ◆ 개인회생 고민 중이라면, 이 후기 꼭 읽어보세요 →
+      <a class="cta" href="https://cafe.naver.com/f-e/cafes/30974285/articles/6549?boardtype=L&userDisplay=50&menuid=14&referrerAllArticles=false&page=1" target="_blank" rel="noopener">
+        카페에서 전체 후기 보기 →
       </a>
+    </div>
+  </section>
 
-      <p class="reviews-footnote">
-        ※ 모든 후기는 <strong>네이버 본인인증을 거친 회원이 직접 작성</strong>한 글입니다.<br />
-        업체가 손댈 수 없는 카페 후기이며, 조작·각본 없음.<br />
-        <span style="opacity:.8;">(2026년 5월 기준 316건, 계속 누적 중)</span>
-      </p>
-    </section>
-
-    <p class="section-foot-note">
-      ※ 본 페이지의 사례는 실제 결정문에 근거하며,<br />
-      개별 사건의 결과는 사실관계와 증거에 따라 달라질 수 있습니다.
-    </p>
-
-    <!-- Key points -->
-    <div class="points">
-      <ol>
-        <li>모든 사례는 실제 결정문 근거. 광고용 가공 사례 없음.</li>
-        <li>개시결정 → 인가결정 → 면책까지 한 변호사가 끝까지.</li>
-        <li>두 번 기각된 사건도 재신청·재항고로 다시 도전.</li>
-        <li>변제계획안·재산목록 작성, 변호사가 직접 검토.</li>
-      </ol>
-      <div class="points-cta">
-        <a href="#contact">무료상담 신청</a>
-      </div>
+  <!-- YouTube -->
+  <section class="block">
+    <div class="section-head">
+      <div class="eyebrow">유튜브 의뢰인 인터뷰</div>
+      <h2>의뢰인이 카메라 앞에서<br />직접 이야기합니다.</h2>
+      <p>꾸미지 않은 본인 얼굴과 목소리로 사건을 회고한 실제 인터뷰.</p>
     </div>
 
-    <!-- Team — Single Lawyer + Support System -->
-    <div class="team-title" id="team">
-      <h3>회생의기적을 만드는 변호사</h3>
-      <p>처음 상담부터 면책 결정까지 — 한 변호사가 끝까지 책임집니다</p>
+    <a class="yt-channel-line" href="https://www.youtube.com/@%EA%B0%9C%EC%9D%B8%ED%9A%8C%EC%83%9D" target="_blank" rel="noopener">
+      <div class="icon">▶</div>
+      <div class="text">
+        <div class="name">회생의기적 · 대표변호사 이승진</div>
+        <div class="meta">구독자 25,450명 · 찾아가는 의뢰인 시리즈</div>
+      </div>
+      <div class="arrow">›</div>
+    </a>
+
+    <div class="yt-grid">
+      <a class="yt-card" href="https://www.youtube.com/watch?v=GMJ5lgSizKA" target="_blank" rel="noopener">
+        <div class="thumb" style="background-image:url('https://img.youtube.com/vi/GMJ5lgSizKA/hqdefault.jpg');">
+          <span class="dur">8:52</span>
+        </div>
+        <div class="tit">부부빚 95% 이상 탕감! 유튜브 최초 개인회생 의뢰인</div>
+      </a>
+      <a class="yt-card" href="https://www.youtube.com/watch?v=B9B86r6ms8A" target="_blank" rel="noopener">
+        <div class="thumb" style="background-image:url('https://img.youtube.com/vi/B9B86r6ms8A/hqdefault.jpg');">
+          <span class="dur">10:16</span>
+        </div>
+        <div class="tit">역대급 후기: 딸 넷, 사기, 암투병, 쓰리잡의 국가유공자</div>
+      </a>
+      <a class="yt-card" href="https://www.youtube.com/watch?v=lppePMb1D0A" target="_blank" rel="noopener">
+        <div class="thumb" style="background-image:url('https://img.youtube.com/vi/lppePMb1D0A/hqdefault.jpg');">
+          <span class="dur">7:40</span>
+        </div>
+        <div class="tit">신청만 3번째, 개인회생 사무실들의 민낯</div>
+      </a>
+      <a class="yt-card" href="https://www.youtube.com/watch?v=aM-TY8XuQYM" target="_blank" rel="noopener">
+        <div class="thumb" style="background-image:url('https://img.youtube.com/vi/aM-TY8XuQYM/hqdefault.jpg');">
+          <span class="dur">12:40</span>
+        </div>
+        <div class="tit">서울대 출신 엘리트, 개인회생으로 제2의 인생을</div>
+      </a>
     </div>
-    <section style="padding: 0 28px 30px;">
-      <div style="background:#fff; border:1px solid #ececec; border-radius:14px; padding:24px; display:flex; gap:22px; align-items:center; box-shadow:0 4px 14px rgba(0,0,0,.05);">
-        <div style="width:130px; height:170px; flex-shrink:0; border-radius:10px; background:#1a1a1a url('profile.png') no-repeat; background-size:175%; background-position:53% 18%; box-shadow:0 8px 20px rgba(0,0,0,.18);"></div>
-        <div style="flex:1;">
-          <div style="font-size:11px; color:#c8102e; font-weight:800; letter-spacing:-.2px;">대표 변호사</div>
-          <div style="font-size:22px; font-weight:900; letter-spacing:-.6px; margin:4px 0 10px;">이승진</div>
-          <ul style="list-style:none; padding:0; margin:0; font-size:12px; color:#444; line-height:1.85;">
-            <li>· <strong>서울대학교 공과대학 전기컴퓨터공학부</strong> 우등졸업</li>
-            <li>· <strong>서울대학교 총동창회 이사</strong> (현)</li>
-            <li>· <strong>대한변호사협회 인증 도산 변호사</strong></li>
-            <li style="border-top:1px dashed #eee; margin-top:6px; padding-top:6px;">· 누적 회생·파산 성공사례 <strong>2,211건</strong></li>
-            <li>· 로톡 인증 변호사 · 등록 사례 <strong>923건</strong></li>
-            <li>· 유튜브 "회생의기적" 구독자 <strong>25,450명</strong></li>
-            <li>· 자필후기·카페 후기 보유</li>
-          </ul>
+  </section>
+
+  <!-- Lawyer -->
+  <section class="block">
+    <div class="section-head" style="text-align: center;">
+      <div class="eyebrow">한 사람의 변호사가 끝까지</div>
+      <h2>회생의기적을 만드는 변호사.</h2>
+    </div>
+
+    <div class="lawyer-card">
+      <div class="photo-large"></div>
+      <div class="role">대표 변호사</div>
+      <div class="name">이승진</div>
+
+      <div class="credentials">
+        <div class="credential-item">
+          <div class="label">학력</div>
+          <div class="val">서울대학교 공과대학<br />전기컴퓨터공학부 우등졸업</div>
+        </div>
+        <div class="credential-item">
+          <div class="label">자격</div>
+          <div class="val">대한변호사협회<br />인증 도산 변호사</div>
+        </div>
+        <div class="credential-item">
+          <div class="label">현직</div>
+          <div class="val">서울대학교<br />총동창회 이사</div>
+        </div>
+        <div class="credential-item">
+          <div class="label">실적</div>
+          <div class="val">성공 사례<br />2,211건+</div>
         </div>
       </div>
 
-      <div style="margin-top: 18px; background:#1a1a1a; color:#fff; border-radius:14px; padding:22px;">
-        <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
-          <span style="background:#c8102e; color:#fff; padding:4px 10px; border-radius:999px; font-size:10px; font-weight:800;">SYSTEM</span>
-          <span style="font-size:14px; font-weight:800;">혼자가 아닙니다 — 심층관리 시스템</span>
-        </div>
-        <p style="font-size:12px; color:#ccc; line-height:1.75; margin:0 0 12px;">
-          변호사 한 명이 끝까지 책임지되, <strong style="color:#fff;">전담 사건 매니저 · 서류 작성 지원팀 · 채권자 응대 시스템</strong>이 사건 진행 전 과정을 지원합니다.<br />
-          "한 변호사가 모든 의뢰인 사건을 어떻게 다 챙기지?"라는 우려를 잠재우는 블랙스톤의 운영 구조입니다.
-        </p>
-        <a href="https://www.blackstonelaw.co.kr/main/system.html" target="_blank" rel="noopener" style="display:inline-block; color:#fff; font-size:12px; font-weight:700; text-decoration:none; padding:8px 16px; border:1px solid rgba(255,255,255,.3); border-radius:999px;">
-          심층관리 시스템 자세히 보기 →
-        </a>
+      <div class="credentials-full">
+        <li>· <strong>로톡 인증 변호사</strong> · 등록 사례 923건</li>
+        <li>· <strong>유튜브 "회생의기적"</strong> 구독자 25,450명</li>
+        <li>· <strong>네이버 카페 후기</strong> 316건 누적</li>
+        <li>· <strong>자필후기 14통</strong> 사무실 보관</li>
       </div>
 
-      <div style="margin-top: 14px; padding: 14px 16px; background:#fffcef; border-left:3px solid #f0b800; border-radius:6px; font-size:12px; color:#5a4a00; line-height:1.7;">
-        💡 <strong>왜 변호사 1명이 더 나은가</strong> — 처음부터 끝까지 같은 변호사가 사건을 봅니다. 사건이 여러 변호사 사이를 넘나들지 않으니, "담당이 누구지?" 불안할 일 없고, 디테일이 끊김 없이 이어집니다.
+      <div style="margin-top: 18px; padding: 14px 16px; background: #FFF8E1; border-radius: 12px; text-align: left; font-size: 12px; color: #6F4F00; line-height: 1.6;">
+        💡 <strong>변호사 1명이 처음부터 끝까지.</strong> 사건이 여러 변호사 사이를 넘나들지 않습니다.
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- YouTube — 찾아가는 [의뢰인] 시리즈 -->
-    <section class="yt-section">
-      <div class="yt-title">
-        <div class="yt-channel-badge">
-          <div class="yt-logo-mini">▶</div>
-          <div>
-            <div class="yt-ch-name">회생의기적 · 대표변호사 이승진</div>
-            <div class="yt-ch-sub">구독자 25,450명 · 찾아가는 의뢰인 시리즈</div>
-          </div>
-        </div>
-        <h3>의뢰인이 <span class="red">직접 카메라 앞에 선</span> 인터뷰</h3>
-        <p>꾸민 후기가 아니라, 사건이 끝난 의뢰인이 본인 얼굴과 목소리로<br />
-        직접 이야기한 영상입니다. 클릭 한 번으로 진짜 사례를 확인하세요.</p>
-      </div>
+  <!-- Final CTA -->
+  <section class="final-cta" id="contact">
+    <h2>지금, 첫걸음을<br />시작하세요.</h2>
+    <p>30초만 입력하시면 변호사가 직접 회신드립니다.</p>
 
-      <div class="yt-grid">
-        <a class="yt-card" href="https://www.youtube.com/watch?v=GMJ5lgSizKA" target="_blank" rel="noopener">
-          <div class="yt-thumb" style="background-image:url('https://img.youtube.com/vi/GMJ5lgSizKA/hqdefault.jpg');">
-            <span class="dur">8:52</span>
-          </div>
-          <div class="yt-tit">부부빚 95% 이상 탕감! 유튜브 최초 개인회생 의뢰인 만나보았습니다</div>
-        </a>
-        <a class="yt-card" href="https://www.youtube.com/watch?v=B9B86r6ms8A" target="_blank" rel="noopener">
-          <div class="yt-thumb" style="background-image:url('https://img.youtube.com/vi/B9B86r6ms8A/hqdefault.jpg');">
-            <span class="dur">10:16</span>
-          </div>
-          <div class="yt-tit">역대급 개인회생 후기 : 딸 넷, 사기, 암투병, 쓰리잡의 국가유공자</div>
-        </a>
-        <a class="yt-card" href="https://www.youtube.com/watch?v=lppePMb1D0A" target="_blank" rel="noopener">
-          <div class="yt-thumb" style="background-image:url('https://img.youtube.com/vi/lppePMb1D0A/hqdefault.jpg');">
-            <span class="dur">7:40</span>
-          </div>
-          <div class="yt-tit">신청만 3번째, 개인회생 사무실들의 민낯</div>
-        </a>
-        <a class="yt-card" href="https://www.youtube.com/watch?v=aM-TY8XuQYM" target="_blank" rel="noopener">
-          <div class="yt-thumb" style="background-image:url('https://img.youtube.com/vi/aM-TY8XuQYM/hqdefault.jpg');">
-            <span class="dur">12:40</span>
-          </div>
-          <div class="yt-tit">서울대 출신 엘리트, 개인회생으로 제 2의 인생을 얻었습니다</div>
-        </a>
-        <a class="yt-card" href="https://www.youtube.com/watch?v=lfhqIWmd61Q" target="_blank" rel="noopener">
-          <div class="yt-thumb" style="background-image:url('https://img.youtube.com/vi/lfhqIWmd61Q/hqdefault.jpg');">
-            <span class="dur">6:46</span>
-          </div>
-          <div class="yt-tit">과거 유튜브 첫 인터뷰, 인가결정! 코인 개인회생 탕감률 91%</div>
-        </a>
-        <a class="yt-card" href="https://www.youtube.com/watch?v=UK94qIoQTic" target="_blank" rel="noopener">
-          <div class="yt-thumb" style="background-image:url('https://img.youtube.com/vi/UK94qIoQTic/hqdefault.jpg');">
-            <span class="dur">10:08</span>
-          </div>
-          <div class="yt-tit">유복하게 자란 대기업 사원이 왜? 개인회생 의뢰인 인터뷰</div>
-        </a>
-      </div>
-
-      <div class="yt-cta">
-        <a href="https://www.youtube.com/@%EA%B0%9C%EC%9D%B8%ED%9A%8C%EC%83%9D" target="_blank" rel="noopener">
-          ▶ 회생의기적 채널 전체 영상 보기
-        </a>
-      </div>
-    </section>
-
-    <!-- Quick form -->
-    <section class="quickform" id="contact">
-      <h4>빠른 상담 문의</h4>
-      <p>입력 즉시 담당 변호사가 직접 회신드립니다.</p>
+    <div class="form-box">
       <div class="row">
         <input type="text" placeholder="성함" />
         <input type="tel" placeholder="연락처" />
       </div>
-      <textarea placeholder="현재 채무 상황을 간단히 적어주세요. (예: 총 채무 1억 5천, 카드사 6곳)"></textarea>
+      <textarea placeholder="현재 채무 상황을 간단히 적어주세요 (선택)"></textarea>
       <button onclick="alert('상담 신청이 접수되었습니다. 곧 연락드리겠습니다.')">상담 신청하기</button>
-    </section>
+    </div>
 
-    <!-- Footer -->
-    <footer>
-      <div>
-        <h5>CONTACT</h5>
-        법인명 · 블랙스톤 법률사무소<br />
-        브랜드 · 회생의기적 (빚탕감 전문)<br />
-        대표 · 이승진 변호사<br />
-        사업자등록번호 · 414-33-00357
-      </div>
-      <div>
-        <h5>INFORMATION</h5>
-        TEL · <a href="tel:02-6101-3100" style="color:inherit;text-decoration:none;">02-6101-3100</a> (24시 상담)<br />
-        EMAIL · <a href="mailto:revive.blackstone@gmail.com" style="color:inherit;text-decoration:none;">revive.blackstone@gmail.com</a><br />
-        ADDRESS · 서울특별시 서초구 서초대로 254, 8층<br />
-        <span style="color:#999;">(서초동, 오퓨런스빌딩)</span>
-      </div>
-      <div style="grid-column: 1 / -1; padding-top: 14px; border-top: 1px solid #ddd; color: #999; font-size: 10px;">
-        ※ "회생의기적"은 블랙스톤 법률사무소가 운영하는 빚탕감 전문 브랜드입니다.
-      </div>
-    </footer>
+    <div class="phone">
+      또는 전화로 바로 상담<br />
+      <strong>02-6101-3100</strong> (24시)
+    </div>
+  </section>
 
-  </div>
+  <!-- Footer -->
+  <footer>
+    <div class="row">
+      <h5>CONTACT</h5>
+      법인명 · 블랙스톤 법률사무소<br />
+      브랜드 · 회생의기적 (빚탕감 전문)<br />
+      대표 · 이승진 변호사<br />
+      사업자등록번호 · 414-33-00357
+    </div>
+    <div class="row">
+      <h5>INFORMATION</h5>
+      TEL · <a href="tel:02-6101-3100">02-6101-3100</a> (24시 상담)<br />
+      EMAIL · <a href="mailto:revive.blackstone@gmail.com">revive.blackstone@gmail.com</a><br />
+      ADDRESS · 서울특별시 서초구 서초대로 254, 8층<br />
+      (서초동, 오퓨런스빌딩)
+    </div>
+    <div class="brand-note">
+      "회생의기적"은 블랙스톤 법률사무소가 운영하는 빚탕감 전문 브랜드입니다.
+    </div>
+  </footer>
+
+</div>
 </body>
 </html>
