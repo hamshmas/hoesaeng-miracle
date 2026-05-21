@@ -1403,7 +1403,7 @@
     <h2>지금, 첫걸음을<br />시작하세요.</h2>
     <p class="lead">30초만 입력하시면 변호사가 직접 회신드립니다.</p>
 
-    <form class="form-box" onsubmit="event.preventDefault(); if(!this.consent.checked){alert('개인정보 수집·이용 동의가 필요합니다.');return;} alert('상담 신청이 접수되었습니다. 곧 연락드리겠습니다.');">
+    <form class="form-box" id="lead-form">
       <div class="field">
         <label for="lead-name">성함 <span class="req">*</span></label>
         <input id="lead-name" type="text" name="name" placeholder="홍길동" autocomplete="name" required />
@@ -1417,10 +1417,13 @@
         <textarea id="lead-memo" name="memo" placeholder="예) 총 채무 1억 5천, 카드사 6곳"></textarea>
       </div>
       <label class="consent">
-        <input type="checkbox" name="consent" required />
-        <span>상담 진행을 위한 <a href="#" onclick="event.preventDefault();alert('개인정보 수집·이용 약관 보기');">개인정보 수집·이용</a>에 동의합니다 <span style="color:var(--primary);font-weight:700;">(필수)</span></span>
+        <input type="checkbox" name="consent" value="yes" required />
+        <span>상담 진행을 위한 <a href="#" onclick="event.preventDefault();alert('개인정보 수집·이용 약관 보기');">개인정보 수집·이용</a>에 동의합니다 <span style="color:var(--primary-text);font-weight:800;">(필수)</span></span>
       </label>
-      <button type="submit">상담 신청하기</button>
+      <!-- honeypot for bots (hidden) -->
+      <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" aria-hidden="true" />
+      <button type="submit" id="lead-submit">상담 신청하기</button>
+      <div id="lead-status" style="display:none; margin-top:14px; padding:14px; border-radius:12px; font-size:13px; line-height:1.6; text-align:center;"></div>
     </form>
 
     <div class="cta-divider">또는 다른 방법으로</div>
@@ -1464,5 +1467,126 @@
   </footer>
 
 </div>
+<script>
+  /* ===== 상담 폼 → Google Sheets 연동 =====
+   * 1) 본인 Apps Script Web App URL을 아래 GSCRIPT_URL에 붙여넣으세요
+   *    예) https://script.google.com/macros/s/AKfycb..../exec
+   * 2) 시트 1번 컬럼: 타임스탬프, 2: 이름, 3: 연락처, 4: 채무상황, 5: 동의, 6: 출처URL, 7: UserAgent
+   * 3) URL 미설정 시 alert만 뜸 (개발용 fallback)
+   */
+  const GSCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyh5tunh1e2cZeL8Rzid5HKYoGB5nexjhOrmuaR0lk3a6pIzEKdyio1eoYQ6pFN2MlzzA/exec';
+
+  (function() {
+    const form = document.getElementById('lead-form');
+    const btn = document.getElementById('lead-submit');
+    const status = document.getElementById('lead-status');
+    if (!form) return;
+
+    // 연락처 자동 하이픈 010-XXXX-XXXX
+    const telInput = document.getElementById('lead-tel');
+    if (telInput) {
+      telInput.addEventListener('input', function(e) {
+        let v = e.target.value.replace(/[^0-9]/g, '').slice(0, 11);
+        if (v.length >= 7)      v = v.slice(0,3) + '-' + v.slice(3,7) + '-' + v.slice(7);
+        else if (v.length >= 4) v = v.slice(0,3) + '-' + v.slice(3);
+        e.target.value = v;
+      });
+    }
+
+    function showStatus(type, msg) {
+      status.style.display = 'block';
+      status.innerHTML = msg;
+      if (type === 'success') {
+        status.style.background = 'rgba(111,160,96,0.15)';
+        status.style.color = '#A4D496';
+        status.style.border = '1px solid rgba(111,160,96,0.3)';
+      } else if (type === 'error') {
+        status.style.background = 'rgba(184,85,71,0.15)';
+        status.style.color = '#E8A39A';
+        status.style.border = '1px solid rgba(184,85,71,0.3)';
+      } else {
+        status.style.background = 'rgba(201,169,92,0.12)';
+        status.style.color = 'var(--text-base)';
+        status.style.border = '1px solid rgba(201,169,92,0.2)';
+      }
+    }
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      // 동의 체크
+      if (!form.consent.checked) {
+        showStatus('error', '⚠️ 개인정보 수집·이용 동의가 필요합니다.');
+        return;
+      }
+
+      // 허니팟 (봇 체크)
+      if (form.website && form.website.value) {
+        showStatus('success', '✓ 상담 신청이 접수되었습니다.');
+        return;
+      }
+
+      // 버튼 로딩 상태
+      btn.disabled = true;
+      const originalText = btn.textContent;
+      btn.textContent = '전송 중...';
+      btn.style.opacity = '0.6';
+      btn.style.cursor = 'wait';
+
+      // Fallback: URL 미설정 시
+      if (GSCRIPT_URL === 'PASTE_YOUR_APPS_SCRIPT_URL_HERE') {
+        setTimeout(function() {
+          showStatus('success',
+            '⚠️ <strong>개발 모드</strong>: 실제 시트 연결 전입니다.<br />' +
+            'Apps Script URL을 landing.html의 GSCRIPT_URL에 입력하세요.');
+          btn.disabled = false;
+          btn.textContent = originalText;
+          btn.style.opacity = '';
+          btn.style.cursor = '';
+        }, 600);
+        return;
+      }
+
+      // 실제 전송
+      try {
+        const data = new FormData(form);
+        data.append('source', window.location.href);
+        data.append('ua', navigator.userAgent);
+
+        await fetch(GSCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',  // Apps Script는 CORS 미지원 → no-cors로 전송만 함
+          body: data,
+        });
+
+        // no-cors는 응답 못 읽음 → 낙관적 성공 처리
+        form.reset();
+        showStatus('success',
+          '✓ <strong>상담 신청이 접수되었습니다.</strong><br />' +
+          '담당 변호사가 24시간 내 연락드립니다.');
+        btn.textContent = '접수 완료';
+        btn.style.background = 'rgba(111,160,96,0.5)';
+
+        // 5초 뒤 버튼 복원
+        setTimeout(function() {
+          btn.disabled = false;
+          btn.textContent = originalText;
+          btn.style.opacity = '';
+          btn.style.cursor = '';
+          btn.style.background = '';
+        }, 5000);
+      } catch (err) {
+        showStatus('error',
+          '❌ 전송에 실패했습니다.<br />' +
+          '잠시 후 다시 시도하시거나 <a href="tel:02-6101-3100" style="color:inherit;text-decoration:underline;">02-6101-3100</a>으로 전화 주세요.');
+        btn.disabled = false;
+        btn.textContent = originalText;
+        btn.style.opacity = '';
+        btn.style.cursor = '';
+      }
+    });
+  })();
+</script>
+
 </body>
 </html>
