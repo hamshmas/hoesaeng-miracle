@@ -866,13 +866,37 @@
     user-select: none;
   }
   .form-box .consent input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-    margin: 1px 0 0 0;
+    width: 20px;
+    height: 20px;
+    margin: 0;
     padding: 0;
-    accent-color: var(--primary);
     flex-shrink: 0;
-    background: var(--bg-soft);
+    -webkit-appearance: none;
+    appearance: none;
+    background: #fff;
+    border: 2px solid #8B95A1;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.15s ease;
+  }
+  .form-box .consent input[type="checkbox"]:hover {
+    border-color: var(--primary);
+  }
+  .form-box .consent input[type="checkbox"]:checked {
+    background: var(--primary);
+    border-color: var(--primary);
+  }
+  .form-box .consent input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 1px;
+    width: 6px;
+    height: 11px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
   }
   .form-box .consent a {
     color: var(--primary);
