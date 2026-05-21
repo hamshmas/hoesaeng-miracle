@@ -11,22 +11,26 @@
 <style>
   /* ===== Design Tokens ===== */
   :root {
-    --primary: #3182F6;
-    --primary-dark: #1B64DA;
-    --primary-light: #E8F1FE;
-    --bg: #FFFFFF;
-    --bg-soft: #F9FAFB;
-    --bg-card: #FFFFFF;
-    --text-strong: #191F28;
-    --text-base: #4E5968;
-    --text-weak: #8B95A1;
-    --border: #E5E8EB;
-    --border-soft: #F2F4F6;
-    --success: #00C896;
-    --warning: #FF9800;
-    --danger: #FF5847;
-    --shadow-card: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06);
-    --shadow-elevated: 0 4px 12px rgba(0,0,0,0.08), 0 20px 40px rgba(0,0,0,0.08);
+    /* Primary: Champagne Gold (lighter variant for dark bg readability) */
+    --primary: #C9A95C;
+    --primary-dark: #A88847;
+    --primary-light: rgba(201,169,92,0.15);
+    --primary-text: #E0BE74;  /* bright gold for text on dark — AA contrast */
+    /* Black system */
+    --bg: #0F0F12;
+    --bg-soft: #18181D;
+    --bg-card: #1F1F25;
+    --bg-elevated: #25252C;
+    --text-strong: #FAFAFA;
+    --text-base: #B8B8C0;
+    --text-weak: #6B6B73;
+    --border: #2A2A32;
+    --border-soft: #1F1F25;
+    --success: #6FA060;
+    --warning: #C68A2E;
+    --danger: #B85547;
+    --shadow-card: 0 1px 3px rgba(0,0,0,0.4), 0 10px 28px rgba(0,0,0,0.5);
+    --shadow-elevated: 0 6px 14px rgba(0,0,0,0.5), 0 24px 48px rgba(0,0,0,0.6);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -35,10 +39,11 @@
     font-family: 'Pretendard', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
     color: var(--text-strong);
     background: var(--bg-soft);
-    line-height: 1.5;
+    line-height: 1.55;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     word-break: keep-all;
+    font-size: 15px;
   }
   .container {
     max-width: 600px;
@@ -54,13 +59,13 @@
     justify-content: space-between;
     align-items: center;
     padding: 16px 24px;
-    background: rgba(255,255,255,0.92);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: rgba(15,15,18,0.85);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
     position: sticky;
     top: 0;
     z-index: 100;
-    border-bottom: 1px solid var(--border-soft);
+    border-bottom: 1px solid var(--border);
   }
   .logo {
     font-weight: 800;
@@ -69,34 +74,55 @@
     color: var(--text-strong);
     display: flex;
     align-items: baseline;
-    gap: 6px;
+    gap: 8px;
   }
-  .logo .brand { color: var(--primary); }
-  .logo .sub { font-size: 11px; font-weight: 500; color: var(--text-weak); }
+  .logo .name { display: inline-block; }
+  .logo .name .brand { color: var(--primary); }
+  .logo .sub {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-weak);
+    padding-left: 8px;
+    border-left: 1px solid var(--border);
+  }
   .nav-cta {
-    background: var(--text-strong);
-    color: #fff;
+    background: var(--primary);
+    color: #1A1308;
     padding: 8px 14px;
     border-radius: 8px;
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 700;
   }
+  .nav-cta:hover { background: var(--primary-text); }
 
   /* ===== Hero ===== */
   .hero {
     padding: 80px 24px 60px;
-    background: linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 100%);
+    background: linear-gradient(180deg, var(--bg) 0%, #0A0A0E 100%);
     text-align: left;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -120px;
+    width: 360px;
+    height: 360px;
+    background: radial-gradient(circle, rgba(201,169,92,0.12) 0%, transparent 65%);
+    pointer-events: none;
   }
   .hero .pre {
     display: inline-block;
     background: var(--primary-light);
-    color: var(--primary);
+    color: var(--primary-text);
     padding: 6px 12px;
     border-radius: 999px;
     font-size: 13px;
-    font-weight: 700;
+    font-weight: 800;
     margin-bottom: 20px;
+    letter-spacing: -0.2px;
   }
   .hero h1 {
     font-size: 40px;
@@ -106,7 +132,7 @@
     color: var(--text-strong);
     margin-bottom: 16px;
   }
-  .hero h1 .accent { color: var(--primary); }
+  .hero h1 .accent { color: var(--primary-text); }
   .hero .sub {
     font-size: 17px;
     line-height: 1.6;
@@ -133,24 +159,26 @@
   }
   .btn-primary {
     background: var(--primary);
-    color: #fff;
+    color: #1A1308;
     flex: 1;
+    font-weight: 800;
   }
   .btn-primary:hover {
-    background: var(--primary-dark);
+    background: var(--primary-text);
     transform: translateY(-1px);
   }
   .btn-ghost {
-    background: var(--bg-soft);
+    background: var(--bg-elevated);
     color: var(--text-strong);
+    border: 1px solid var(--border);
   }
   .btn-ghost:hover {
-    background: var(--border-soft);
+    background: var(--border);
   }
 
   .hero-lawyer {
-    background: #fff;
-    border: 1px solid var(--border-soft);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
     border-radius: 20px;
     padding: 24px;
     display: flex;
@@ -168,8 +196,8 @@
   }
   .hero-lawyer .info .role {
     font-size: 12px;
-    color: var(--primary);
-    font-weight: 700;
+    color: var(--primary-text);
+    font-weight: 800;
     letter-spacing: -0.2px;
   }
   .hero-lawyer .info .name {
@@ -188,7 +216,7 @@
   /* ===== Section base ===== */
   section.block {
     padding: 80px 24px;
-    border-top: 8px solid var(--bg-soft);
+    border-top: 8px solid #0A0A0E;
   }
   section.block.flush {
     border-top: none;
@@ -199,8 +227,8 @@
   }
   .section-head .eyebrow {
     font-size: 13px;
-    font-weight: 700;
-    color: var(--primary);
+    font-weight: 800;
+    color: var(--primary-text);
     margin-bottom: 8px;
     letter-spacing: -0.2px;
   }
@@ -225,7 +253,8 @@
     gap: 8px;
   }
   .metric-card {
-    background: var(--bg-soft);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
     border-radius: 16px;
     padding: 22px 20px;
   }
@@ -262,7 +291,7 @@
 
   /* ===== Featured case ===== */
   .featured-case {
-    background: linear-gradient(135deg, #191F28 0%, #2E3540 100%);
+    background: linear-gradient(135deg, #2A2520 0%, #3D362C 100%);
     color: #fff;
     border-radius: 24px;
     padding: 32px 24px;
@@ -294,7 +323,7 @@
     margin-bottom: 4px;
   }
   .featured-case .big-num .pct {
-    color: #4DABF7;
+    color: #E8C766;
     font-size: 56px;
   }
   .featured-case .desc {
@@ -325,7 +354,7 @@
 
   /* ===== AI Calculator CTA ===== */
   .ai-calc {
-    background: linear-gradient(135deg, #4F46E5 0%, #3182F6 60%, #06B6D4 100%);
+    background: linear-gradient(135deg, #2A2520 0%, #7A6532 45%, #B5985A 100%);
     border-radius: 24px;
     padding: 36px 28px;
     color: #fff;
@@ -368,7 +397,7 @@
     margin-bottom: 10px;
   }
   .ai-calc h3 .accent {
-    color: #FFEC3D;
+    color: #FFE9A8;
   }
   .ai-calc .ai-sub {
     font-size: 15px;
@@ -415,7 +444,7 @@
     align-items: center;
     justify-content: space-between;
     background: #fff;
-    color: var(--primary);
+    color: var(--primary-text);
     padding: 18px 22px;
     border-radius: 14px;
     font-weight: 800;
@@ -423,13 +452,14 @@
     text-decoration: none;
     transition: transform 0.15s, box-shadow 0.15s;
     box-shadow: 0 8px 22px rgba(0,0,0,0.18);
+    letter-spacing: -0.3px;
   }
   .ai-calc-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 12px 28px rgba(0,0,0,0.24);
   }
   .ai-calc-btn .arrow {
-    background: var(--primary);
+    background: var(--primary-dark);
     color: #fff;
     width: 28px;
     height: 28px;
@@ -453,22 +483,23 @@
     gap: 8px;
   }
   .case-item {
-    background: var(--bg-soft);
+    background: var(--bg-card);
     border-radius: 14px;
     padding: 18px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    transition: all 0.15s;
   }
   .case-item:hover {
-    background: var(--primary-light);
+    background: var(--bg-elevated);
+    border-color: var(--primary);
   }
+  .case-item { border: 1px solid transparent; transition: background 0.15s, border-color 0.15s; }
   .case-item .left { flex: 1; min-width: 0; }
   .case-item .tag {
     display: inline-block;
-    background: #fff;
+    background: var(--bg-elevated);
     color: var(--text-base);
     padding: 3px 8px;
     border-radius: 6px;
@@ -489,7 +520,7 @@
   .case-item .pct {
     font-size: 22px;
     font-weight: 800;
-    color: var(--primary);
+    color: var(--primary-text);
     letter-spacing: -0.8px;
     line-height: 1;
   }
@@ -504,12 +535,14 @@
     margin-top: 16px;
     text-align: center;
     font-size: 14px;
-    font-weight: 600;
-    color: var(--primary);
+    font-weight: 700;
+    color: var(--primary-text);
     padding: 14px;
     background: var(--primary-light);
+    border: 1px solid rgba(201,169,92,0.3);
     border-radius: 12px;
   }
+  .verify-link:hover { background: rgba(201,169,92,0.22); }
 
   /* ===== Handwritten ===== */
   .hw-grid {
@@ -518,19 +551,24 @@
     gap: 10px;
   }
   .hw-card {
-    background: #FFFBF0;
-    border: 1px solid #FFF2D1;
+    background: var(--bg-card);
+    border: 1px solid #3A2F1E;
     border-radius: 14px;
     overflow: hidden;
     display: block;
     color: var(--text-strong);
+    transition: border-color 0.15s, transform 0.15s;
+  }
+  .hw-card:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
   }
   .hw-card .img {
     width: 100%;
     aspect-ratio: 4/2.5;
     background-size: cover;
     background-position: center;
-    background-color: #FFF2D1;
+    background-color: #2A2218;
   }
   .hw-card .tit {
     padding: 12px 14px 14px;
@@ -687,7 +725,8 @@
     gap: 10px;
     margin-bottom: 24px;
     padding: 14px 16px;
-    background: var(--bg-soft);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
     border-radius: 12px;
   }
   .yt-channel-line .icon {
@@ -709,8 +748,8 @@
 
   /* ===== Lawyer ===== */
   .lawyer-card {
-    background: linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 100%);
-    border: 1px solid var(--border-soft);
+    background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-soft) 100%);
+    border: 1px solid var(--border);
     border-radius: 24px;
     padding: 32px 24px;
     text-align: center;
@@ -727,8 +766,8 @@
   }
   .lawyer-card .role {
     font-size: 12px;
-    color: var(--primary);
-    font-weight: 700;
+    color: var(--primary-text);
+    font-weight: 800;
     letter-spacing: 0.5px;
     text-transform: uppercase;
   }
@@ -746,8 +785,8 @@
     margin-top: 8px;
   }
   .credential-item {
-    background: #fff;
-    border: 1px solid var(--border-soft);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
     border-radius: 12px;
     padding: 14px 12px;
     text-align: left;
@@ -768,8 +807,8 @@
     text-align: left;
     margin-top: 18px;
     padding: 18px;
-    background: #fff;
-    border: 1px solid var(--border-soft);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
     border-radius: 14px;
   }
   .credentials-full li {
@@ -802,11 +841,12 @@
     line-height: 1.55;
   }
   .form-box {
-    background: #fff;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
     border-radius: 20px;
     padding: 24px 20px;
     text-align: left;
-    box-shadow: 0 12px 36px rgba(0,0,0,0.15);
+    box-shadow: 0 12px 36px rgba(0,0,0,0.4);
   }
   .form-box .field {
     margin-bottom: 12px;
@@ -819,11 +859,11 @@
     margin-bottom: 6px;
     letter-spacing: -0.2px;
   }
-  .form-box label .req { color: var(--primary); margin-left: 2px; }
+  .form-box label .req { color: var(--primary-text); margin-left: 2px; font-weight: 800; }
   .form-box input,
   .form-box textarea {
     width: 100%;
-    background: var(--bg-soft);
+    background: var(--bg-elevated);
     border: 1.5px solid transparent;
     padding: 14px 16px;
     border-radius: 12px;
@@ -840,7 +880,7 @@
   .form-box input:focus,
   .form-box textarea:focus {
     border-color: var(--primary);
-    background: #fff;
+    background: #2E2E36;
   }
   .form-box textarea {
     min-height: 84px;
@@ -865,18 +905,18 @@
     padding: 0;
     accent-color: var(--primary);
     flex-shrink: 0;
-    background: var(--bg-soft);
+    background: var(--bg-elevated);
   }
   .form-box .consent a {
-    color: var(--primary);
-    font-weight: 600;
+    color: var(--primary-text);
+    font-weight: 700;
     text-decoration: underline;
   }
   .form-box button {
     width: 100%;
     padding: 17px;
     background: var(--primary);
-    color: #fff;
+    color: #1A1308;
     border: none;
     border-radius: 14px;
     font-weight: 800;
@@ -884,8 +924,9 @@
     cursor: pointer;
     font-family: inherit;
     transition: background 0.15s, transform 0.15s;
+    letter-spacing: -0.3px;
   }
-  .form-box button:hover { background: var(--primary-dark); }
+  .form-box button:hover { background: var(--primary-text); }
   .form-box button:active { transform: scale(0.98); }
 
   /* Channel divider */
@@ -962,16 +1003,17 @@
 
   /* ===== Footer ===== */
   footer {
-    background: var(--text-strong);
-    color: rgba(255,255,255,0.7);
+    background: #050507;
+    color: rgba(255,255,255,0.65);
     padding: 40px 24px 60px;
     font-size: 12px;
     line-height: 1.7;
+    border-top: 1px solid var(--border);
   }
   footer h5 {
-    color: #fff;
+    color: var(--primary-text);
     font-size: 13px;
-    font-weight: 700;
+    font-weight: 800;
     margin-bottom: 10px;
     letter-spacing: -0.2px;
   }
@@ -1006,7 +1048,7 @@
   <!-- Nav -->
   <nav class="topnav">
     <div class="logo">
-      회생의<span class="brand">기적</span>
+      <span class="name">회생의<span class="brand">기적</span></span>
       <span class="sub">빚탕감 전문</span>
     </div>
     <a class="nav-cta" href="#contact">상담하기</a>
