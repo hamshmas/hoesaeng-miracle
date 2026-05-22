@@ -249,6 +249,16 @@
     background: var(--bg-soft);
     border-radius: 16px;
     padding: 22px 20px;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  .metric-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .metric-card { opacity: 1; transform: none; transition: none; }
   }
   .metric-card .num {
     font-size: 32px;
@@ -280,6 +290,81 @@
     color: #fff;
   }
   .metric-card.primary .label { opacity: 0.85; }
+
+  /* ===== Real court document image + highlight overlay ===== */
+  .proof-doc-wrap {
+    position: relative;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 22px 0 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.22);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .proof-doc-img {
+    width: 100%;
+    display: block;
+  }
+  /* 5.82% 위치 위에 노란 형광펜 오버레이 */
+  .proof-doc-marker {
+    position: absolute;
+    left: 8%;
+    width: 22%;
+    top: 68.5%;
+    height: 2.8%;
+    background: rgba(255,224,102, 0.7);
+    border-radius: 2px;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+  }
+  /* 94.18% 도장 — 크게 강조 */
+  .proof-doc-stamp {
+    position: absolute;
+    right: 3%;
+    top: 56%;
+    background: #C8102E;
+    color: #fff;
+    padding: 18px 22px;
+    border-radius: 18px;
+    font-size: 13px;
+    font-weight: 800;
+    transform: rotate(-9deg);
+    box-shadow:
+      0 0 0 3px rgba(255,255,255,0.5) inset,
+      0 0 0 5px rgba(200,16,46,0.95) inset,
+      0 14px 32px rgba(200,16,46,0.55),
+      0 4px 10px rgba(0,0,0,0.2);
+    pointer-events: none;
+    line-height: 1.05;
+    text-align: center;
+    letter-spacing: -0.5px;
+    min-width: 130px;
+  }
+  .proof-doc-stamp strong {
+    display: block;
+    font-size: 36px;
+    line-height: 1;
+    margin-bottom: 4px;
+    letter-spacing: -1.5px;
+  }
+  @media (max-width: 480px) {
+    .proof-doc-stamp {
+      padding: 14px 18px;
+      min-width: 110px;
+      font-size: 11px;
+    }
+    .proof-doc-stamp strong {
+      font-size: 28px;
+    }
+  }
+  .proof-doc-label {
+    margin-top: 12px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.75);
+    text-align: center;
+    line-height: 1.55;
+  }
+  .proof-doc-label strong { color: #fff; }
 
   /* ===== Featured case ===== */
   .featured-case {
@@ -1094,19 +1179,19 @@
 
     <div class="metrics">
       <div class="metric-card primary">
-        <div class="num">2,211<span class="unit">건+</span></div>
+        <div class="num"><span class="count" data-count="2211">2,211</span><span class="unit">건+</span></div>
         <div class="label">누적 성공 사례<br />(2026.5 기준)</div>
       </div>
       <div class="metric-card">
-        <div class="num">25,450<span class="unit">명</span></div>
+        <div class="num"><span class="count" data-count="25450">25,450</span><span class="unit">명</span></div>
         <div class="label">유튜브 "회생의기적"<br />구독자</div>
       </div>
       <div class="metric-card">
-        <div class="num">352<span class="unit">건</span></div>
+        <div class="num"><span class="count" data-count="352">352</span><span class="unit">건</span></div>
         <div class="label">네이버 카페<br />실제 후기</div>
       </div>
       <div class="metric-card">
-        <div class="num">923<span class="unit">건</span></div>
+        <div class="num"><span class="count" data-count="923">923</span><span class="unit">건</span></div>
         <div class="label">로톡 등록<br />법률사례</div>
       </div>
     </div>
@@ -1116,20 +1201,33 @@
   <section class="block" id="cases">
     <div class="section-head">
       <div class="eyebrow">대표 성공 사례</div>
-      <h2>97%의 빚이 사라졌습니다.</h2>
+      <h2>94%의 빚이 사라졌습니다.</h2>
       <p>실제 의뢰인의 개인회생 인가 결정문 기준.</p>
     </div>
 
     <div class="featured-case">
       <span class="pill">개인회생 인가된 변제계획안</span>
-      <h3>약 7억원의 빚 중<br /><strong style="color:#fff;">6억 8천만원</strong>이 탕감되었습니다.</h3>
-      <div class="big-num">97<span class="pct">%</span></div>
+      <h3>약 3억 3천만원의 빚 중<br /><strong style="color:#fff;">3억 1천만원</strong>이 탕감되었습니다.</h3>
+      <div class="big-num">94.18<span class="pct">%</span></div>
       <div class="desc">변호사가 직접 설계한 변제계획안으로 인가 결정. 의뢰 당시 절망에 가까운 상황이었지만 끝까지 매달려 최대 탕감을 만들었습니다.</div>
 
+      <!-- 실제 법원 변제예정액표 (스캔 이미지 + 강조 오버레이) -->
+      <div class="proof-doc-wrap">
+        <img src="repayment-plan.jpg" alt="개인회생채권 변제예정액표 — 법원 인가 결정" class="proof-doc-img" />
+        <div class="proof-doc-marker" aria-hidden="true"></div>
+        <div class="proof-doc-stamp" aria-hidden="true">
+          <strong>94.18%</strong>탕감 확정
+        </div>
+      </div>
+      <p class="proof-doc-label">
+        ▲ <strong>법원이 인가한 실제 변제예정액표</strong>의 일부.<br />
+        제3항 변제율 「<strong style="color:#FFE066;">원금의 5.82% 상당액</strong>」 = <strong>94.18% 탕감 확정</strong>
+      </p>
+
       <div class="meta-row">
-        <div class="m"><div class="v">약 7억원</div><div class="k">의뢰 당시 채무</div></div>
+        <div class="m"><div class="v">약 3.3억원</div><div class="k">의뢰 당시 채무</div></div>
         <div class="m"><div class="v">변호사 직접</div><div class="k">변제계획안 설계</div></div>
-        <div class="m"><div class="v">97% 탕감</div><div class="k">최종 결과</div></div>
+        <div class="m"><div class="v">94.18% 탕감</div><div class="k">최종 결과</div></div>
       </div>
     </div>
   </section>
@@ -1139,7 +1237,7 @@
     <div class="ai-calc">
       <span class="ai-chip">AI 탕감액 계산기</span>
       <h3>내 빚, <span class="accent">얼마나</span><br />탕감될 수 있을까?</h3>
-      <p class="ai-sub">방금 본 97% 사례, 나도 가능할까?<br />AI가 1분 만에 예상 탕감액을 알려드립니다.</p>
+      <p class="ai-sub">방금 본 94% 탕감 사례, 나도 가능할까?<br />AI가 1분 만에 예상 탕감액을 알려드립니다.</p>
 
       <div class="steps">
         <div class="ai-step">
@@ -1555,6 +1653,60 @@
         btn.style.cursor = '';
       }
     });
+  })();
+</script>
+
+<script>
+  /* ===== Trust metrics — count-up + stagger fade-in ===== */
+  (function() {
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll('.metric-card').forEach(c => c.classList.add('visible'));
+      return;
+    }
+
+    const cards = document.querySelectorAll('.metric-card');
+    if (!cards.length || !('IntersectionObserver' in window)) {
+      cards.forEach(c => c.classList.add('visible'));
+      return;
+    }
+
+    function easeOutQuart(t) { return 1 - Math.pow(1 - t, 4); }
+
+    function animateCount(el, target, duration) {
+      const startTime = performance.now();
+      function step(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const value = Math.floor(easeOutQuart(progress) * target);
+        el.textContent = value.toLocaleString('ko-KR');
+        if (progress < 1) requestAnimationFrame(step);
+        else el.textContent = target.toLocaleString('ko-KR');
+      }
+      el.textContent = '0';
+      requestAnimationFrame(step);
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.dataset.animated) {
+          entry.target.dataset.animated = 'true';
+          const cardArr = Array.from(cards);
+          const idx = cardArr.indexOf(entry.target);
+          const delay = idx * 140;
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+            const countEl = entry.target.querySelector('.count');
+            if (countEl) {
+              const target = parseInt(countEl.dataset.count, 10);
+              animateCount(countEl, target, 1600);
+            }
+          }, delay);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.25 });
+
+    cards.forEach(c => observer.observe(c));
   })();
 </script>
 
