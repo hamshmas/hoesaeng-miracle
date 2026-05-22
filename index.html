@@ -1650,6 +1650,9 @@
 </div>
 <script>
   const GSCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyh5tunh1e2cZeL8Rzid5HKYoGB5nexjhOrmuaR0lk3a6pIzEKdyio1eoYQ6pFN2MlzzA/exec';
+  const LEAD_SUBMIT_KEY = 'hoesaeng_lead_submitted_at';
+  const LEAD_BLOCK_HOURS = 24;
+  const PAGE_LOAD_TS = Date.now();
   (function() {
     const form = document.getElementById('lead-form');
     const btn = document.getElementById('lead-submit');
@@ -1685,6 +1688,19 @@
       e.preventDefault();
       if (!form.consent.checked) { showStatus('error', '⚠️ 개인정보 수집·이용 동의가 필요합니다.'); return; }
       if (form.website && form.website.value) { showStatus('success', '✓ 상담 신청이 접수되었습니다.'); return; }
+      // 동일 기기 중복 제출 차단
+      try {
+        const last = parseInt(localStorage.getItem(LEAD_SUBMIT_KEY) || '0', 10);
+        if (last && (Date.now() - last) < LEAD_BLOCK_HOURS * 3600 * 1000) {
+          showStatus('success', '✓ 이미 상담 신청이 접수되었습니다.<br />담당 변호사가 곧 연락드립니다.');
+          return;
+        }
+      } catch (_) {}
+      // 초고속 제출(봇 의심) 차단
+      if (Date.now() - PAGE_LOAD_TS < 3000) {
+        showStatus('error', '잠시 후 다시 시도해주세요.');
+        return;
+      }
       btn.disabled = true;
       const originalText = btn.textContent;
       btn.textContent = '전송 중...';
@@ -1705,6 +1721,7 @@
         data.append('source', window.location.href);
         data.append('ua', navigator.userAgent);
         await fetch(GSCRIPT_URL, { method: 'POST', mode: 'no-cors', body: data });
+        try { localStorage.setItem(LEAD_SUBMIT_KEY, String(Date.now())); } catch (_) {}
         // Naver Wcs 전환 발사
         try {
           if (window.wcs) {
