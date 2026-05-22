@@ -1654,6 +1654,11 @@
   const LEAD_BLOCK_HOURS = 24;
   const LEAD_MAX_PER_WINDOW = 2;
   const PAGE_LOAD_TS = Date.now();
+  let VISITOR_IP = '';
+  fetch('https://api.ipify.org?format=json')
+    .then(function(r) { return r.json(); })
+    .then(function(d) { VISITOR_IP = d.ip || ''; })
+    .catch(function() {});
   (function() {
     const form = document.getElementById('lead-form');
     const btn = document.getElementById('lead-submit');
@@ -1723,6 +1728,7 @@
         const data = new FormData(form);
         data.append('source', window.location.href);
         data.append('ua', navigator.userAgent);
+        data.append('ip', VISITOR_IP);
         await fetch(GSCRIPT_URL, { method: 'POST', mode: 'no-cors', body: data });
         try {
           const raw = localStorage.getItem(LEAD_SUBMIT_KEY);
