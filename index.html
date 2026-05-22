@@ -347,15 +347,90 @@
     margin-bottom: 4px;
     letter-spacing: -1.5px;
   }
-  @media (max-width: 480px) {
+  @media (max-width: 520px) {
     .proof-doc-stamp {
-      padding: 14px 18px;
-      min-width: 110px;
-      font-size: 11px;
+      padding: 11px 14px;
+      min-width: 90px;
+      font-size: 10px;
+      box-shadow:
+        0 0 0 2px rgba(255,255,255,0.5) inset,
+        0 0 0 4px rgba(200,16,46,0.95) inset,
+        0 10px 24px rgba(200,16,46,0.5);
     }
     .proof-doc-stamp strong {
-      font-size: 28px;
+      font-size: 22px;
+      letter-spacing: -1px;
     }
+  }
+
+  /* Mobile: featured-case 좌우 여백 줄여 이미지 더 크게 */
+  @media (max-width: 520px) {
+    .featured-case { padding: 28px 14px; }
+    .proof-doc-wrap { margin: 18px -4px 12px; }
+  }
+
+  /* Tap-to-zoom 모달 */
+  .doc-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.92);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    cursor: zoom-out;
+  }
+  .doc-modal.active { display: flex; }
+  .doc-modal img {
+    max-width: 100%;
+    max-height: 95vh;
+    width: auto;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  }
+  .doc-modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 22px;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+  }
+  .doc-modal-hint {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.7);
+    font-size: 12px;
+    pointer-events: none;
+  }
+  .proof-doc-img {
+    cursor: zoom-in;
+    transition: opacity 0.15s;
+  }
+  .proof-doc-img:hover { opacity: 0.92; }
+  .proof-doc-wrap::after {
+    content: '🔍 탭하여 크게 보기';
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 600;
+    pointer-events: none;
+    backdrop-filter: blur(4px);
   }
   .proof-doc-label {
     margin-top: 12px;
@@ -1212,12 +1287,18 @@
       <div class="desc">변호사가 직접 설계한 변제계획안으로 인가 결정. 의뢰 당시 절망에 가까운 상황이었지만 끝까지 매달려 최대 탕감을 만들었습니다.</div>
 
       <!-- 실제 법원 변제예정액표 (스캔 이미지 + 강조 오버레이) -->
-      <div class="proof-doc-wrap">
-        <img src="repayment-plan.jpg" alt="개인회생채권 변제예정액표 — 법원 인가 결정" class="proof-doc-img" />
+      <div class="proof-doc-wrap" id="proofDoc">
+        <img src="repayment-plan.jpg" alt="개인회생채권 변제예정액표 — 법원 인가 결정" class="proof-doc-img" id="proofDocImg" />
         <div class="proof-doc-marker" aria-hidden="true"></div>
         <div class="proof-doc-stamp" aria-hidden="true">
           <strong>94.18%</strong>탕감 확정
         </div>
+      </div>
+      <!-- Lightbox 모달 -->
+      <div class="doc-modal" id="docModal" role="dialog" aria-label="변제예정액표 확대 보기">
+        <button class="doc-modal-close" id="docModalClose" aria-label="닫기">✕</button>
+        <img src="repayment-plan.jpg" alt="개인회생채권 변제예정액표 확대" />
+        <div class="doc-modal-hint">탭하여 닫기</div>
       </div>
       <p class="proof-doc-label">
         ▲ <strong>법원이 인가한 실제 변제예정액표</strong>의 일부.<br />
@@ -1529,9 +1610,9 @@
     <div class="cta-divider">또는 다른 방법으로</div>
 
     <div class="channel-row">
-      <a class="channel-btn" href="tel:02-6101-3100">
+      <a class="channel-btn" href="tel:1670-7708">
         <span class="ic">📞</span>
-        <div style="text-align:left;">전화 상담<span class="sub">02-6101-3100</span></div>
+        <div style="text-align:left;">전화 상담<span class="sub">1670-7708</span></div>
       </a>
       <a class="channel-btn kakao" href="https://pf.kakao.com/_Exnxnkxj/chat" target="_blank" rel="noopener">
         <span class="ic">💬</span>
@@ -1556,7 +1637,7 @@
     </div>
     <div class="row">
       <h5>INFORMATION</h5>
-      TEL · <a href="tel:02-6101-3100">02-6101-3100</a> (24시 상담)<br />
+      TEL · <a href="tel:1670-7708">1670-7708</a> (24시 상담)<br />
       EMAIL · <a href="mailto:revive.blackstone@gmail.com">revive.blackstone@gmail.com</a><br />
       ADDRESS · 서울특별시 서초구 서초대로 254, 8층<br />
       (서초동, 오퓨런스빌딩)
@@ -1646,7 +1727,7 @@
           btn.style.background = '';
         }, 5000);
       } catch (err) {
-        showStatus('error', '❌ 전송 실패. <a href="tel:02-6101-3100" style="color:inherit;text-decoration:underline;">02-6101-3100</a>으로 전화 주세요.');
+        showStatus('error', '❌ 전송 실패. <a href="tel:1670-7708" style="color:inherit;text-decoration:underline;">1670-7708</a>으로 전화 주세요.');
         btn.disabled = false;
         btn.textContent = originalText;
         btn.style.opacity = '';
@@ -1657,6 +1738,30 @@
 </script>
 
 <script>
+  /* ===== 변제예정액표 Lightbox ===== */
+  (function() {
+    const img = document.getElementById('proofDocImg');
+    const modal = document.getElementById('docModal');
+    const closeBtn = document.getElementById('docModalClose');
+    if (!img || !modal) return;
+    function open() {
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function close() {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    img.addEventListener('click', open);
+    closeBtn.addEventListener('click', close);
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) close();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') close();
+    });
+  })();
+
   /* ===== Trust metrics — count-up + stagger fade-in ===== */
   (function() {
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
