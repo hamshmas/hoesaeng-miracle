@@ -1791,6 +1791,46 @@
       }
     });
   })();
+
+  /* ===== 스크롤 단계별 트래킹 (GA4) ===== */
+  (function() {
+    const milestones = [25, 50, 75, 100];
+    const fired = {};
+    let ticking = false;
+
+    function check() {
+      ticking = false;
+      const doc = document.documentElement;
+      const scrollTop = window.scrollY || doc.scrollTop || 0;
+      const viewH = window.innerHeight || doc.clientHeight;
+      const pageH = doc.scrollHeight;
+      if (pageH <= viewH) return;
+      const percent = Math.min(100, ((scrollTop + viewH) / pageH) * 100);
+      for (let i = 0; i < milestones.length; i++) {
+        const m = milestones[i];
+        if (!fired[m] && percent >= m) {
+          fired[m] = true;
+          if (typeof gtag === 'function') {
+            gtag('event', 'scroll_depth', {
+              event_category: 'engagement',
+              event_label: m + '%',
+              value: m,
+              percent_scrolled: m
+            });
+          }
+        }
+      }
+    }
+
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(check);
+      }
+    }, { passive: true });
+
+    window.addEventListener('load', check);
+  })();
 </script>
 
 <script>
