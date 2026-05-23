@@ -269,14 +269,14 @@
     .metric-card { opacity: 1; transform: none; transition: none; }
   }
   .metric-card .num {
-    font-size: 44px;
+    font-size: clamp(28px, 7.5vw, 44px);
     font-weight: 900;
-    letter-spacing: -1.6px;
+    letter-spacing: -1.4px;
     line-height: 1.05;
     color: var(--text-strong);
   }
   .metric-card .num .unit {
-    font-size: 18px;
+    font-size: clamp(14px, 3vw, 18px);
     font-weight: 700;
     color: var(--text-base);
     margin-left: 2px;
@@ -1230,7 +1230,8 @@
     <span class="pre">개인회생·파산 전문</span>
     <h1>
       빚, <span class="accent">정리할 수 있습니다.</span><br />
-      <span class="highlight">352건의 후기</span>가<br />
+      <span class="highlight">2,211건의 성공</span>,<br />
+      <span class="highlight">25,450명의 구독자</span>가<br />
       증명합니다.
     </h1>
     <p class="sub">
