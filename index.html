@@ -269,14 +269,17 @@
     .metric-card { opacity: 1; transform: none; transition: none; }
   }
   .metric-card .num {
-    font-size: clamp(28px, 6.5vw, 36px);
+    font-size: clamp(22px, 5.5vw, 30px);
     font-weight: 900;
-    letter-spacing: -1.2px;
+    letter-spacing: -0.8px;
     line-height: 1.05;
     color: var(--text-strong);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .metric-card .num .unit {
-    font-size: clamp(14px, 2.6vw, 16px);
+    font-size: clamp(12px, 2.2vw, 14px);
     font-weight: 700;
     color: var(--text-base);
     margin-left: 2px;
@@ -901,18 +904,26 @@
     background: linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 100%);
     border: 1px solid var(--border-soft);
     border-radius: 24px;
-    padding: 32px 24px;
+    padding: 0 0 32px;
     text-align: center;
+    overflow: hidden;
   }
   .lawyer-card .photo-large {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
+    width: 100%;
+    height: 380px;
+    border-radius: 24px 24px 0 0;
     background: var(--text-strong) url('profile.png') no-repeat;
-    background-size: 175%;
-    background-position: 53% 18%;
-    margin: 0 auto 20px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    background-size: cover;
+    background-position: center 22%;
+    margin: 0 0 28px;
+    box-shadow: none;
+  }
+  .lawyer-card .role,
+  .lawyer-card .name,
+  .lawyer-card .credentials,
+  .lawyer-card .credentials-full {
+    padding-left: 24px;
+    padding-right: 24px;
   }
   .lawyer-card .role {
     font-size: 12px;
@@ -1291,7 +1302,7 @@
         <li>· <strong>자필후기 14통</strong> 사무실 보관</li>
       </div>
 
-      <div style="margin-top: 18px; padding: 14px 16px; background: #FFF8E1; border-radius: 12px; text-align: left; font-size: 12px; color: #6F4F00; line-height: 1.6;">
+      <div style="margin: 18px 24px 0; padding: 14px 16px; background: #FFF8E1; border-radius: 12px; text-align: left; font-size: 12px; color: #6F4F00; line-height: 1.6;">
         💡 <strong>변호사 1명이 처음부터 끝까지.</strong> 사건이 여러 변호사 사이를 넘나들지 않습니다.
       </div>
     </div>
