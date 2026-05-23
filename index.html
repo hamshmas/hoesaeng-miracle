@@ -1689,20 +1689,33 @@
 </div>
 
 <script>
-  /* ===== Sticky CTA show/hide ===== */
+  /* ===== Sticky CTA show/hide (위 스크롤 시 노출) ===== */
   (function() {
     const cta = document.getElementById('stickyCta');
     const contact = document.getElementById('contact');
     if (!cta || !contact) return;
+    let lastY = window.scrollY;
+    let ticking = false;
+    const THRESHOLD = 6;
     function update() {
+      ticking = false;
+      const y = window.scrollY;
+      const dy = y - lastY;
+      if (Math.abs(dy) < THRESHOLD) return;
       const rect = contact.getBoundingClientRect();
       const inView = rect.top < window.innerHeight && rect.bottom > 0;
-      const scrolled = window.scrollY > 360;
-      cta.classList.toggle('show', scrolled && !inView);
+      const scrolledEnough = y > 360;
+      const goingUp = dy < 0;
+      cta.classList.toggle('show', scrolledEnough && goingUp && !inView);
+      lastY = y;
     }
-    window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
-    update();
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    }, { passive: true });
+    window.addEventListener('resize', function() { lastY = window.scrollY; });
   })();
 </script>
 <script>
