@@ -1765,6 +1765,10 @@
               event_category: 'form',
               event_label: 'lead_form_submit'
             });
+            gtag('event', 'qualify_lead', {
+              event_category: 'form',
+              event_label: 'lead_form_submit'
+            });
           }
         } catch (_) {}
         form.reset();
