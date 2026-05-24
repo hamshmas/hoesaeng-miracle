@@ -1825,11 +1825,9 @@
           if (typeof gtag === 'function') {
             gtag('event', 'generate_lead', {
               event_category: 'form',
-              event_label: 'lead_form_submit'
-            });
-            gtag('event', 'qualify_lead', {
-              event_category: 'form',
-              event_label: 'lead_form_submit'
+              event_label: 'lead_form_submit',
+              currency: 'KRW',
+              value: 50000
             });
           }
         } catch (_) {}
