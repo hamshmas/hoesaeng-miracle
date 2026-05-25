@@ -332,7 +332,7 @@ function BV2Lawtalk() {
   const m = useIsMobile();
   return (
     <BV2Section bg="paper">
-      <BV2Header num="04" eyebrow="로톡 공식 등록 · 925건" title="이런 결과들을 꾸준히 만들어왔습니다."
+      <BV2Header num="04" eyebrow="로톡 공식 등록 · 360건" title="이런 결과들을 꾸준히 만들어왔습니다."
         sub="변호사 본인이 로톡에 등록한 실제 사건. 클릭 시 정식 사례 페이지로 이동합니다." />
 
       <div style={{
@@ -366,7 +366,7 @@ function BV2Lawtalk() {
 
       <div style={{ marginTop: m ? 24 : 32, textAlign: 'center' }}>
         <a href={BV2_CONTENT.lawtalkUrl} target="_blank" rel="noopener" style={{ textDecoration: 'none' }}>
-          <BV2BtnSecondary>로톡에서 전체 925건 보기 →</BV2BtnSecondary>
+          <BV2BtnSecondary>로톡에서 전체 360건 보기 →</BV2BtnSecondary>
         </a>
       </div>
     </BV2Section>

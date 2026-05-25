@@ -10,7 +10,7 @@ const BV2_CONTENT = {
   kakaoUrl: 'https://pf.kakao.com/_Exnxnkxj/chat',
   youtubeChannelUrl: 'https://www.youtube.com/@%EA%B0%9C%EC%9D%B8%ED%9A%8C%EC%83%9D',
   cafeUrl: 'https://cafe.naver.com/blstlaw/6549',
-  lawtalkUrl: 'https://www.lawtalk.co.kr/directory/profile/5455-%EC%9D%B4%EC%8A%B9%EC%A7%84/case/counselling',
+  lawtalkUrl: 'https://www.lawtalk.co.kr/directory/profile/5455-%EC%9D%B4%EC%8A%B9%EC%A7%84/case/solution?page=1&category=%EB%AA%A8%EB%93%A0%EB%B6%84%EC%95%BC',
 
   hero: {
     badge: '대한변호사협회 인증 도산 변호사',
@@ -31,7 +31,7 @@ const BV2_CONTENT = {
       { k: '자격', v: '대한변호사협회 인증 도산 변호사' },
       { k: '현직', v: '서울대학교 총동창회 이사' },
       { k: '실적', v: '회생/파산 누적 2,211건+' },
-      { k: '미디어', v: '유튜브 "회생의기적" 25,450명 · 로톡 등록 925건' },
+      { k: '미디어', v: '유튜브 "회생의기적" 25,450명 · 로톡 등록 360건' },
     ],
   },
 
@@ -39,7 +39,7 @@ const BV2_CONTENT = {
     { n: '2,211', suf: '건+', l: '누적 성공 사례', sub: '2026.5 기준', src: 'blackstonelaw.co.kr' },
     { n: '25,450', suf: '명', l: '유튜브 "회생의기적"', sub: '구독자', src: 'youtube.com/@개인회생' },
     { n: '352', suf: '건', l: '네이버 카페', sub: '실제 의뢰인 후기', src: 'cafe.naver.com' },
-    { n: '925', suf: '건', l: '로톡 등록', sub: '법률사례', src: 'lawtalk.co.kr' },
+    { n: '360', suf: '건', l: '로톡 등록', sub: '법률사례', src: 'lawtalk.co.kr' },
   ],
 
   nationwide: {
