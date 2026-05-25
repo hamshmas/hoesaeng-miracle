@@ -1741,7 +1741,7 @@
     <div class="mid-cta">
       <p>이분들도 처음엔 막막했습니다.<br />지금 상황부터 들어보겠습니다.</p>
       <div class="row">
-        <a class="primary" href="#contact">💬 변호사 직접 회신 받기</a>
+        <a class="primary" href="#contact">💬 비슷한 사례 상담받기</a>
         <a class="tel" href="tel:1670-7708">📞 1670-7708</a>
       </div>
     </div>
@@ -1930,7 +1930,7 @@
       <div class="mid-cta">
         <p>예상 변제금이 나왔다면,<br />변호사 검토로 정확도를 높이세요.</p>
         <div class="row">
-          <a class="primary" href="#contact">💬 변호사 직접 회신 받기</a>
+          <a class="primary" href="#contact">💬 계산 결과 변호사 검토받기</a>
           <a class="tel" href="tel:1670-7708">📞 1670-7708</a>
         </div>
       </div>
@@ -2015,25 +2015,19 @@
 </div>
 
 <script>
-  /* ===== Sticky CTA show/hide (위 스크롤 시 노출) ===== */
+  /* ===== Sticky CTA show/hide (항상 노출, 히어로·폼 영역 제외) ===== */
   (function() {
     const cta = document.getElementById('stickyCta');
     const contact = document.getElementById('contact');
     if (!cta || !contact) return;
-    let lastY = window.scrollY;
     let ticking = false;
-    const THRESHOLD = 6;
     function update() {
       ticking = false;
       const y = window.scrollY;
-      const dy = y - lastY;
-      if (Math.abs(dy) < THRESHOLD) return;
       const rect = contact.getBoundingClientRect();
       const inView = rect.top < window.innerHeight && rect.bottom > 0;
       const scrolledEnough = y > 360;
-      const goingUp = dy < 0;
-      cta.classList.toggle('show', scrolledEnough && goingUp && !inView);
-      lastY = y;
+      cta.classList.toggle('show', scrolledEnough && !inView);
     }
     window.addEventListener('scroll', function() {
       if (!ticking) {
@@ -2041,7 +2035,7 @@
         requestAnimationFrame(update);
       }
     }, { passive: true });
-    window.addEventListener('resize', function() { lastY = window.scrollY; });
+    update();
   })();
 </script>
 <script>
