@@ -130,20 +130,20 @@
   }
   .hero-quote {
     margin-top: 28px;
-    padding: 16px 18px;
-    background: var(--bg-soft);
-    border-left: 3px solid var(--primary);
-    border-radius: 4px 12px 12px 4px;
-    font-size: 14px;
-    line-height: 1.65;
-    color: var(--text-base);
+    padding: 2px 0 2px 14px;
+    background: transparent;
+    border-left: 2px solid var(--border);
+    border-radius: 0;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-weak);
   }
   .hero-quote .signer {
     display: block;
-    margin-top: 6px;
-    font-size: 12px;
+    margin-top: 4px;
+    font-size: 11px;
     font-weight: 700;
-    color: var(--text-strong);
+    color: var(--text-base);
   }
   .results-link {
     display: inline-flex;
@@ -277,9 +277,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 52px;
+    height: 56px;
     border-radius: 14px;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 800;
     letter-spacing: -0.3px;
     white-space: nowrap;
@@ -374,14 +374,14 @@
   .nav-tel {
     display: inline-flex;
     align-items: center;
-    gap: 4px;
+    gap: 6px;
+    background: var(--primary-light);
+    color: var(--primary-dark);
     font-size: 13px;
     font-weight: 800;
-    color: var(--primary);
     letter-spacing: -0.3px;
-  }
-  @media (max-width: 599px) {
-    .nav-tel { display: none; }
+    padding: 8px 12px;
+    border-radius: 999px;
   }
   /* ===== Hero phone strip ===== */
   .hero-tel {
@@ -413,11 +413,12 @@
   /* ===== Mid-page CTA ===== */
   .mid-cta {
     margin-top: 32px;
-    padding: 24px 22px;
-    background: linear-gradient(135deg, var(--primary-light) 0%, #FFFFFF 100%);
+    padding: 26px 22px;
+    background: linear-gradient(135deg, #F3F8FF 0%, #FFFFFF 100%);
     border: 1px solid var(--border-soft);
     border-radius: 20px;
     text-align: center;
+    box-shadow: 0 2px 12px rgba(49,130,246,0.06);
   }
   .mid-cta > p {
     font-size: 15px;
@@ -482,6 +483,10 @@
     background: var(--bg-soft);
     transform: translateY(-1px);
   }
+  .situation-card:active {
+    transform: scale(0.98);
+    background: var(--primary-light);
+  }
   .situation-card .ic {
     font-size: 22px;
     line-height: 1;
@@ -507,6 +512,18 @@
     font-weight: 700;
     color: var(--primary);
     letter-spacing: -0.2px;
+  }
+  /* ===== Mobile compaction overrides ===== */
+  @media (max-width: 599px) {
+    .hero { padding: 56px 22px 40px; }
+    section.block { padding: 56px 22px; }
+    section.block.flush { padding-top: 40px; }
+    .logo .sub { display: none; }
+    .nav-cta { display: none; }
+    .topnav { padding: 12px 18px; }
+    .form-box input,
+    .form-box textarea { padding: 16px 16px; }
+    .form-box textarea { min-height: 96px; }
   }
   .section-head {
     margin-bottom: 32px;
@@ -1469,9 +1486,6 @@
   <!-- Hero -->
   <section class="hero">
     <span class="pre">대한변호사협회 인증 도산 변호사</span>
-    <a class="hero-tel" href="tel:1670-7708">
-      📞 <strong>1670-7708</strong> <span class="badge-24h">24시 상담</span>
-    </a>
     <h1>
       빚, <span class="accent">정리할 수 있습니다.</span><br />
       변호사 본인이 끝까지.
@@ -1487,7 +1501,6 @@
       <a class="btn-sub" href="tel:1670-7708">📞 1670-7708 전화상담</a>
       <a class="btn-sub kakao" href="https://pf.kakao.com/_Exnxnkxj/chat" target="_blank" rel="noopener">💬 카카오톡 상담</a>
     </div>
-    <a class="results-link" href="#cases">결과는 아래에서 ↓</a>
     <p class="hero-quote">
       "광고가 아니라, 결과로 말씀드립니다."
       <span class="signer">— 대표 변호사 이승진</span>
@@ -2036,6 +2049,16 @@
       }
     }, { passive: true });
     update();
+    // iOS Safari 가변 하단 URL바가 sticky를 덮지 않게 보상
+    if (window.visualViewport) {
+      const adjustBottom = () => {
+        const offset = window.innerHeight - window.visualViewport.height;
+        cta.style.bottom = (offset > 0 ? offset : 0) + 'px';
+      };
+      window.visualViewport.addEventListener('resize', adjustBottom);
+      window.visualViewport.addEventListener('scroll', adjustBottom);
+      adjustBottom();
+    }
   })();
 </script>
 <script>
