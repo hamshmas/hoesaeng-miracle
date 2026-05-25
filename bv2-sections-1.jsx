@@ -253,7 +253,7 @@ function BV2Nationwide() {
           </div>
           <div style={{
             display: 'grid',
-            gridTemplateColumns: m ? '1fr' : 'repeat(4, 1fr)',
+            gridTemplateColumns: m ? '1fr' : 'repeat(3, 1fr)',
             gap: m ? 8 : 12,
           }}>
             {c.steps.map((s, i) => (
