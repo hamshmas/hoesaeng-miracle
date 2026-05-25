@@ -8,17 +8,10 @@ function BV2CaseStudy() {
   const c = BV2_CONTENT.case;
   return (
     <BV2Section bg="paper">
-      <div style={{ fontSize: 12, fontWeight: 700, color: BV2.green, letterSpacing: 2, textTransform: 'uppercase', marginBottom: 14 }}>
-        04 — {c.eyebrow}
-      </div>
-      <h2 style={{
-        margin: 0, fontSize: m ? 36 : 64, fontWeight: 800,
-        letterSpacing: m ? -1.5 : -2.4, lineHeight: 1.02,
-      }}>{c.title}</h2>
-      <div style={{ marginTop: 12, fontSize: m ? 14 : 16, color: BV2.ink3 }}>{c.sub}</div>
+      <BV2Header num="04" eyebrow={c.eyebrow} title={c.title} sub={c.sub} />
 
       <div style={{
-        marginTop: m ? 36 : 56,
+        marginTop: 0,
         display: 'grid',
         gridTemplateColumns: m ? '1fr' : '1fr 1.2fr',
         gap: m ? 16 : 32, alignItems: 'stretch',
@@ -96,7 +89,7 @@ function BV2CaseStudy() {
           />
           <div style={{
             marginTop: 16, display: 'grid', gridTemplateColumns: 'auto 1fr', gap: 14,
-            padding: '14px 0', borderBottom: `1px solid ${BV2.ink}10`,
+            padding: '14px 0', borderBottom: `1px solid ${BV2.ink}12`,
           }}>
             <BV2Mono ch="i" size={20} bg={BV2.green} color={BV2.paper} />
             <div style={{ fontSize: m ? 13 : 14, color: BV2.ink2, lineHeight: 1.55 }}>
@@ -137,21 +130,11 @@ function BV2Honest() {
   const c = BV2_CONTENT.honest;
   return (
     <BV2Section bg="paperAlt">
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 24 }}>
-        <BV2Mono ch="!" size={20} bg={BV2.oxblood} color={BV2.paper} />
-        <span style={{ fontSize: 12, fontWeight: 700, color: BV2.oxblood, letterSpacing: 2, textTransform: 'uppercase' }}>
-          05 — {c.eyebrow}
-        </span>
-      </div>
-      <h2 style={{
-        margin: 0, fontSize: m ? 36 : 64, fontWeight: 800,
-        letterSpacing: m ? -1.5 : -2.4, lineHeight: 1.02,
-      }}>
-        {c.title[0]}<br/>{c.title[1].replace('어렵습니다.', '')}<span style={{ color: BV2.oxblood }}>어렵습니다.</span>
-      </h2>
+      <BV2Header num="05" eyebrow={c.eyebrow} tone="oxblood"
+        title={<>{c.title[0]}<br/>{c.title[1].replace('어렵습니다.', '')}<span style={{ color: BV2.oxblood }}>어렵습니다.</span></>} />
 
       <div style={{
-        marginTop: m ? 36 : 56, padding: m ? '28px 24px' : '40px 44px',
+        marginTop: 0, padding: m ? '28px 24px' : '40px 44px',
         background: BV2.paper,
         display: 'grid', gridTemplateColumns: m ? '1fr' : '1fr 1fr',
         gap: m ? 24 : 56, borderTop: `2px solid ${BV2.oxblood}`,
@@ -166,8 +149,8 @@ function BV2Honest() {
           </p>
         </div>
         <div style={{
-          borderLeft: m ? 'none' : `1px solid ${BV2.ink}10`,
-          borderTop: m ? `1px solid ${BV2.ink}10` : 'none',
+          borderLeft: m ? 'none' : `1px solid ${BV2.ink}12`,
+          borderTop: m ? `1px solid ${BV2.ink}12` : 'none',
           paddingLeft: m ? 0 : 40,
           paddingTop: m ? 24 : 0,
         }}>
@@ -401,7 +384,7 @@ function BV2Cafe() {
           display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
           fontWeight: 800, fontSize: 16,
         }}>N</div>
-        <span style={{ fontSize: 12, fontWeight: 700, color: BV2.ink2, letterSpacing: 2, textTransform: 'uppercase' }}>
+        <span style={{ fontSize: 12, fontWeight: 700, color: BV2.green, letterSpacing: 2, textTransform: 'uppercase' }}>
           09 — 네이버 카페 · 352건
         </span>
       </div>
@@ -419,7 +402,7 @@ function BV2Cafe() {
         {BV2_CONTENT.cafe.map((c, i) => (
           <div key={i} className="bv2-card-hover" style={{
             background: BV2.paper, padding: m ? '16px 18px' : '20px 22px',
-            border: `1px solid ${BV2.ink}10`, cursor: 'pointer',
+            border: `1px solid ${BV2.ink}12`, cursor: 'pointer',
             display: 'flex', flexDirection: 'column', gap: 10,
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>

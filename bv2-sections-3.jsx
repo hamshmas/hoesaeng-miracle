@@ -37,7 +37,7 @@ function BV2YouTube() {
           <a key={i} className="bv2-card-hover"
             href={`https://www.youtube.com/watch?v=${v.id}`} target="_blank" rel="noopener"
             style={{
-              background: BV2.paper, border: `1px solid ${BV2.ink}10`,
+              background: BV2.paper, border: `1px solid ${BV2.ink}12`,
               cursor: 'pointer', textDecoration: 'none', color: 'inherit',
               display: 'flex', flexDirection: 'column',
             }}>
@@ -78,22 +78,13 @@ function BV2Calculator() {
   const m = useIsMobile();
   const c = BV2_CONTENT.calc;
   return (
-    <BV2Section bg="paperDeep">
+    <BV2Section bg="paperAlt">
       <div style={{
         display: 'grid', gridTemplateColumns: m ? '1fr' : '1fr 1fr',
         gap: m ? 28 : 56, alignItems: 'center',
       }}>
         <div>
-          <div style={{ fontSize: 12, fontWeight: 700, color: BV2.green, letterSpacing: 2, textTransform: 'uppercase', marginBottom: 14 }}>
-            11 — {c.eyebrow}
-          </div>
-          <h2 style={{
-            margin: 0, fontSize: m ? 32 : 56, fontWeight: 800,
-            letterSpacing: m ? -1.2 : -2, lineHeight: 1.02,
-          }}>{c.title}</h2>
-          <p style={{ fontSize: m ? 15 : 17, color: BV2.ink2, margin: '20px 0 28px', lineHeight: 1.65, maxWidth: 480 }}>
-            {c.sub}
-          </p>
+          <BV2Header num="11" eyebrow={c.eyebrow} title={c.title} sub={c.sub} />
           <a href="https://calc.tanggam.kr" target="_blank" rel="noopener" style={{ textDecoration: 'none', display: 'inline-block' }}>
             <BV2BtnPrimary tone="green">{c.cta}</BV2BtnPrimary>
           </a>
@@ -161,20 +152,9 @@ function BV2Contact() {
         gap: m ? 36 : 80, alignItems: 'start',
       }}>
         <div>
-          <div style={{ fontSize: 12, fontWeight: 700, color: BV2.greenLight, letterSpacing: 2, textTransform: 'uppercase', marginBottom: 24 }}>
-            12 — {c.eyebrow}
-          </div>
-          <h2 style={{
-            margin: 0, fontSize: m ? 36 : 54, fontWeight: 800,
-            letterSpacing: m ? -1.5 : -2, lineHeight: 1.06, color: BV2.paper,
-          }}>
-            {c.title[0]}<br/>
-            <span style={{ color: BV2.greenLight }}>{c.title[1]}</span><br/>
-            {c.title[2]}
-          </h2>
-          <p style={{ fontSize: m ? 15 : 17, lineHeight: 1.7, color: BV2.ink5, marginTop: 24, maxWidth: 460 }}>
-            {c.sub}
-          </p>
+          <BV2Header num="12" eyebrow={c.eyebrow} invert
+            title={<>{c.title[0]}<br/><span style={{ color: BV2.greenLight }}>{c.title[1]}</span><br/>{c.title[2]}</>}
+            sub={c.sub} />
           <div style={{ marginTop: m ? 32 : 48, display: 'grid', gridTemplateColumns: m ? '1fr 1fr' : '1fr 1fr', gap: 12 }}>
             <a href={`tel:${BV2_CONTENT.phone}`} style={{
               padding: m ? '16px 14px' : '20px 20px',
@@ -289,7 +269,7 @@ function BV2Footer() {
     <footer style={{
       background: BV2.paper, color: BV2.ink3,
       padding: m ? '32px 16px' : '40px 56px',
-      borderTop: `1px solid ${BV2.ink}10`,
+      borderTop: `1px solid ${BV2.ink}12`,
       fontSize: 12,
     }}>
       <div style={{
@@ -310,7 +290,7 @@ function BV2Footer() {
         </div>
       </div>
       <div style={{
-        paddingTop: 16, borderTop: `1px solid ${BV2.ink}10`,
+        paddingTop: 16, borderTop: `1px solid ${BV2.ink}12`,
         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
         flexDirection: m ? 'column' : 'row', gap: 6,
       }}>

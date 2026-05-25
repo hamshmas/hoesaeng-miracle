@@ -10,7 +10,7 @@ function BV2Nav() {
       padding: m ? '14px 16px' : '20px 56px',
       display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       background: BV2.paper,
-      borderBottom: `1px solid ${BV2.ink}10`,
+      borderBottom: `1px solid ${BV2.ink}12`,
       position: 'sticky', top: 0, zIndex: 50,
       backdropFilter: 'saturate(150%) blur(8px)',
     }}>
@@ -127,17 +127,10 @@ function BV2LawyerProfile() {
         </div>
 
         <div>
-          <div style={{ fontSize: 12, fontWeight: 700, color: BV2.green, letterSpacing: 2, textTransform: 'uppercase', marginBottom: 14 }}>
-            01 — 한 사람의 변호사가 끝까지
-          </div>
-          <h2 style={{
-            margin: 0, fontSize: m ? 36 : 56, fontWeight: 800,
-            letterSpacing: m ? -1.5 : -2.2, lineHeight: 1,
-          }}>
-            회생의기적을 만드는<br/>변호사.
-          </h2>
+          <BV2Header num="01" eyebrow="한 사람의 변호사가 끝까지"
+            title={<>회생의기적을 만드는<br/>변호사.</>} />
           <div style={{
-            marginTop: 28, display: 'flex', alignItems: 'baseline', gap: 14, flexWrap: 'wrap',
+            marginTop: 0, display: 'flex', alignItems: 'baseline', gap: 14, flexWrap: 'wrap',
           }}>
             <span style={{ fontSize: m ? 36 : 48, fontWeight: 800, letterSpacing: -1.5 }}>{c.name}</span>
             <span style={{ fontSize: 14, color: BV2.ink3 }}>{c.title}</span>
@@ -152,7 +145,7 @@ function BV2LawyerProfile() {
               <div key={i} style={{
                 display: 'grid', gridTemplateColumns: m ? '60px 1fr' : '80px 1fr',
                 gap: m ? 12 : 20, padding: m ? '14px 16px' : '18px 24px',
-                borderBottom: i < c.creds.length - 1 ? `1px solid ${BV2.ink}10` : 'none',
+                borderBottom: i < c.creds.length - 1 ? `1px solid ${BV2.ink}12` : 'none',
                 alignItems: 'center',
               }}>
                 <div style={{ fontSize: 11, letterSpacing: 2, color: BV2.green, fontWeight: 700, textTransform: 'uppercase' }}>{cred.k}</div>
@@ -190,7 +183,7 @@ function BV2Stats() {
         {BV2_CONTENT.stats.map((s, i) => (
           <div key={i} className="bv2-card-hover" style={{
             background: BV2.paper, padding: m ? '20px 18px' : '32px 28px 28px',
-            border: `1px solid ${BV2.ink}14`, cursor: 'pointer',
+            border: `1px solid ${BV2.ink}12`, cursor: 'pointer',
             display: 'flex', flexDirection: 'column', minHeight: m ? 200 : 270,
           }}>
             <div style={{
@@ -209,7 +202,7 @@ function BV2Stats() {
             <div style={{ fontSize: m ? 11 : 13, color: BV2.ink3, marginBottom: 'auto' }}>{s.sub}</div>
             <div style={{
               marginTop: m ? 16 : 24, paddingTop: m ? 12 : 16,
-              borderTop: `1px solid ${BV2.ink}10`,
+              borderTop: `1px solid ${BV2.ink}12`,
             }}>
               <BV2Source url={s.src} />
             </div>
@@ -232,17 +225,8 @@ function BV2Nationwide() {
         gap: m ? 32 : 64, alignItems: 'start',
       }}>
         <div>
-          <div style={{ fontSize: 12, fontWeight: 700, color: BV2.green, letterSpacing: 2, textTransform: 'uppercase', marginBottom: 14 }}>
-            03 — {c.eyebrow}
-          </div>
-          <h2 style={{
-            margin: 0, fontSize: m ? 36 : 56, fontWeight: 800,
-            letterSpacing: m ? -1.5 : -2.2, lineHeight: 1.04,
-          }}>{c.title}</h2>
-          <p style={{ fontSize: m ? 15 : 17, lineHeight: 1.7, color: BV2.ink2, margin: '20px 0 12px', maxWidth: 580 }}>
-            {bv2RenderBold(c.body)}
-          </p>
-          <p style={{ fontSize: m ? 14 : 15, lineHeight: 1.65, color: BV2.ink3, margin: '0 0 32px', maxWidth: 580 }}>
+          <BV2Header num="03" eyebrow={c.eyebrow} title={c.title} sub={c.body} />
+          <p style={{ fontSize: m ? 14 : 15, lineHeight: 1.65, color: BV2.ink3, margin: '-12px 0 32px', maxWidth: 580 }}>
             {c.body2}
           </p>
 
@@ -257,7 +241,7 @@ function BV2Nationwide() {
             {c.steps.map((s, i) => (
               <div key={i} style={{
                 background: BV2.paper, padding: m ? '14px 16px' : '20px 18px',
-                border: `1px solid ${BV2.ink}10`,
+                border: `1px solid ${BV2.ink}12`,
                 display: 'flex', flexDirection: m ? 'row' : 'column',
                 alignItems: m ? 'center' : 'flex-start',
                 gap: m ? 12 : 16,

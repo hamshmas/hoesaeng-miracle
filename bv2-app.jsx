@@ -23,7 +23,7 @@ function BV2App() {
         <BV2Honest />
         <BV2Situations />
         <BV2Handwritten />
-        <BV2MidCta tone="amber" eyebrow="다음 손편지의 주인공" title="당신의 사건도 결과로 보여드리겠습니다." />
+        <BV2MidCta tone="green" eyebrow="다음 손편지의 주인공" title="당신의 사건도 결과로 보여드리겠습니다." />
         <BV2Lawtalk />
         <BV2Cafe />
         <BV2YouTube />

@@ -16,8 +16,9 @@ function BV2Section({ id, bg = 'paper', children, style = {} }) {
 }
 
 // SectionHeader — eyebrow w/ section number, h2, optional sub.
-function BV2Header({ num, eyebrow, title, sub, align = 'left', invert = false, maxWidth = 720 }) {
-  const accent = invert ? BV2.greenLight : BV2.green;
+// tone: 'green' (default), 'oxblood' (warning), 'greenLight' (dark bg via invert)
+function BV2Header({ num, eyebrow, title, sub, align = 'left', invert = false, tone = 'green', maxWidth = 720 }) {
+  const accent = invert ? BV2.greenLight : (tone === 'oxblood' ? BV2.oxblood : BV2.green);
   const ink = invert ? BV2.paper : BV2.ink;
   const ink2 = invert ? BV2.ink5 : BV2.ink2;
   return (
@@ -30,8 +31,8 @@ function BV2Header({ num, eyebrow, title, sub, align = 'left', invert = false, m
       </div>
       <h2 style={{
         margin: 0, color: ink, fontWeight: 800,
-        fontSize: 'clamp(32px, 5.6vw, 64px)', lineHeight: 1.02,
-        letterSpacing: 'clamp(-1.2px, -0.18vw, -2.4px)',
+        fontSize: 'clamp(36px, 5vw, 56px)', lineHeight: 1.04,
+        letterSpacing: 'clamp(-1.5px, -0.18vw, -2px)',
         maxWidth, marginLeft: align === 'center' ? 'auto' : undefined,
         marginRight: align === 'center' ? 'auto' : undefined,
       }}>{title}</h2>
@@ -113,10 +114,13 @@ function BV2BtnPrimary({ children, full, tone = 'ink', ...rest }) {
   );
 }
 
-function BV2BtnSecondary({ children, full, ...rest }) {
+function BV2BtnSecondary({ children, full, tone = 'light', ...rest }) {
+  const dark = tone === 'dark';
   return (
     <button className="bv2-btn-secondary" {...rest} style={{
-      background: BV2.paper, color: BV2.ink, border: `1px solid ${BV2.ink}`,
+      background: dark ? 'rgba(255,255,255,0.08)' : BV2.paper,
+      color: dark ? BV2.paper : BV2.ink,
+      border: `1px solid ${dark ? 'rgba(255,255,255,0.18)' : BV2.ink}`,
       padding: '15px 20px', fontFamily: BV2.sans, fontSize: 14, fontWeight: 600,
       cursor: 'pointer', letterSpacing: -0.2,
       width: full ? '100%' : undefined,
@@ -185,14 +189,13 @@ function BV2Counter({ value, suffix = '', style = {} }) {
 }
 
 // Mid-page CTA strip — visual punctuation between sections.
-// `tone` chooses the bg: 'green' (default, primary), 'amber' (warm), 'ink' (dark).
+// `tone` chooses the bg: 'green' (default, light) or 'ink' (dark, hand-off into Contact).
 function BV2MidCta({ eyebrow, title, tone = 'green' }) {
   const m = useIsMobile();
   const dark = tone === 'ink';
-  const bg = tone === 'amber' ? BV2.amberLight : tone === 'ink' ? BV2.ink : BV2.greenLight;
-  const accent = tone === 'amber' ? BV2.amber : dark ? BV2.greenLight : BV2.green;
+  const bg = dark ? BV2.ink : BV2.greenLight;
+  const accent = dark ? BV2.greenLight : BV2.green;
   const ink = dark ? BV2.paper : BV2.ink;
-  const ink2 = dark ? BV2.ink5 : BV2.ink2;
   return (
     <BV2Section bg={bg} style={{ paddingTop: m ? 40 : 56, paddingBottom: m ? 40 : 56 }}>
       <div style={{
@@ -212,31 +215,13 @@ function BV2MidCta({ eyebrow, title, tone = 'green' }) {
         </div>
         <div style={{ display: 'flex', flexDirection: m ? 'column' : 'row', gap: 10 }}>
           <a href={`tel:${BV2_CONTENT.phone}`} style={{ flex: 1, textDecoration: 'none' }}>
-            <button style={{
-              width: '100%', minHeight: 50, padding: '14px 18px',
-              background: dark ? 'rgba(255,255,255,0.08)' : BV2.paper,
-              color: ink, border: `1px solid ${dark ? 'rgba(255,255,255,0.18)' : ink + '22'}`,
-              fontFamily: BV2.sans, fontSize: 14, fontWeight: 700,
-              cursor: 'pointer', letterSpacing: -0.2,
-            }}>📞 전화 {BV2_CONTENT.phone}</button>
+            <BV2BtnSecondary full tone={dark ? 'dark' : 'light'}>📞 전화 {BV2_CONTENT.phone}</BV2BtnSecondary>
           </a>
           <a href={BV2_CONTENT.kakaoUrl} target="_blank" rel="noopener" style={{ flex: 1, textDecoration: 'none' }}>
-            <button style={{
-              width: '100%', minHeight: 50, padding: '14px 18px',
-              background: dark ? 'rgba(255,255,255,0.08)' : BV2.paper,
-              color: ink, border: `1px solid ${dark ? 'rgba(255,255,255,0.18)' : ink + '22'}`,
-              fontFamily: BV2.sans, fontSize: 14, fontWeight: 700,
-              cursor: 'pointer', letterSpacing: -0.2,
-            }}>💬 카카오톡</button>
+            <BV2BtnSecondary full tone={dark ? 'dark' : 'light'}>💬 카카오톡</BV2BtnSecondary>
           </a>
           <a href="#bv2-contact" style={{ flex: 1.2, textDecoration: 'none' }}>
-            <button style={{
-              width: '100%', minHeight: 50, padding: '14px 18px',
-              background: dark ? BV2.greenAccent : BV2.ink, color: BV2.paper, border: 'none',
-              fontFamily: BV2.sans, fontSize: 14, fontWeight: 800,
-              cursor: 'pointer', letterSpacing: -0.2,
-              display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-            }}>변호사 직접 회신 받기 <span>→</span></button>
+            <BV2BtnPrimary full tone={dark ? 'green' : 'ink'}>변호사 직접 회신 받기</BV2BtnPrimary>
           </a>
         </div>
       </div>
