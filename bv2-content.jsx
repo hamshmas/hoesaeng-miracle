@@ -46,8 +46,8 @@ const BV2_CONTENT = {
   stats: [
     { n: '2,211', suf: '건+', l: '누적 성공 사례', sub: '2026.5 기준', src: 'blackstonelaw.co.kr' },
     { n: '25,450', suf: '명', l: '유튜브 "회생의기적"', sub: '구독자', src: 'youtube.com/@개인회생' },
-    { n: '352', suf: '건', l: '네이버 카페', sub: '실제 의뢰인 후기', src: 'cafe.naver.com' },
-    { n: '360', suf: '건', l: '로톡 등록', sub: '법률사례', src: 'lawtalk.co.kr' },
+    { n: '352', suf: '건', l: '네이버 카페 후기', sub: '실제 의뢰인 후기', src: 'cafe.naver.com' },
+    { n: '360', suf: '건', l: '로톡 등록 성공사례', sub: '법률사례', src: 'lawtalk.co.kr' },
   ],
 
   nationwide: {
