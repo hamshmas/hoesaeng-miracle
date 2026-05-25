@@ -112,17 +112,19 @@ function BV2LawyerProfile() {
         display: 'grid',
         gridTemplateColumns: m ? '1fr' : '460px 1fr',
         gap: m ? 32 : 64,
-        alignItems: m ? 'start' : 'stretch',
+        alignItems: 'start',
       }}>
-        <div style={{ height: '100%' }}>
+        <div>
           <img
             src="profile.png"
-            width={1024}
-            height={1536}
             alt="대표변호사 이승진"
-            style={m
-              ? { width: '100%', height: 'auto', display: 'block' }
-              : { width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', display: 'block' }}
+            style={{
+              width: '100%',
+              aspectRatio: '1 / 1',
+              objectFit: 'cover',
+              objectPosition: 'center 8%',
+              display: 'block',
+            }}
           />
         </div>
 
