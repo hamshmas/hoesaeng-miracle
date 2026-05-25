@@ -118,17 +118,11 @@ function BV2LawyerProfile() {
         <div>
           <img
             src="profile.png"
+            width={1024}
+            height={1536}
             alt="대표변호사 이승진"
-            style={{ width: '100%', aspectRatio: '3 / 4', objectFit: 'cover', display: 'block' }}
+            style={{ width: '100%', height: 'auto', display: 'block' }}
           />
-          <div style={{ marginTop: 16, padding: '14px 16px', background: BV2.paper, border: `1px solid ${BV2.ink}10` }}>
-            <div style={{ fontSize: 11, color: BV2.ink3, letterSpacing: 2, marginBottom: 6 }}>EXTERNAL PROOF</div>
-            <div style={{ display: 'grid', gap: 8 }}>
-              <BV2Source url="lawtalk.co.kr — 등록 사례 923건" />
-              <BV2Source url="youtube.com/@개인회생 — 구독자 25,450명" />
-              <BV2Source url="cafe.naver.com — 후기 352건" />
-            </div>
-          </div>
         </div>
 
         <div>
