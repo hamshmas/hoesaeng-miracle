@@ -1,15 +1,30 @@
 // B V2 — Form context + validation + ContactForm + StickyCTA
 // Owns the form state so SituationCards can prefill the textarea and scroll
 // to the form section. Validation is real (name + phone + agree required;
-// phone pattern checked).
+// phone pattern checked). submit() POSTs to Google Apps Script webhook with
+// IP, honeypot, rate-limit, speed-gate, and fires GA4/Naver conversions.
+
+const GSCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyh5tunh1e2cZeL8Rzid5HKYoGB5nexjhOrmuaR0lk3a6pIzEKdyio1eoYQ6pFN2MlzzA/exec';
+const LEAD_SUBMIT_KEY = 'hoesaeng_lead_submits';
+const LEAD_MAX_PER_DAY = 2;
+const PAGE_LOAD_TS = Date.now();
+let VISITOR_IP = '';
+if (typeof window !== 'undefined') {
+  fetch('https://api.ipify.org?format=json')
+    .then((r) => r.json())
+    .then((d) => { VISITOR_IP = d.ip || ''; })
+    .catch(() => {});
+}
 
 const FormCtx = React.createContext(null);
 
 function FormProvider({ children }) {
-  const [values, setValues] = React.useState({ name: '', phone: '', note: '', agree: false });
+  const [values, setValues] = React.useState({ name: '', phone: '', note: '', agree: false, website: '' });
   const [errors, setErrors] = React.useState({});
   const [submitted, setSubmitted] = React.useState(false);
   const [touched, setTouched] = React.useState({});
+  const [sending, setSending] = React.useState(false);
+  const [sendError, setSendError] = React.useState('');
   const formRef = React.useRef(null);
 
   const validate = React.useCallback((v) => {
@@ -46,16 +61,82 @@ function FormProvider({ children }) {
     }, 600);
   }, []);
 
-  const submit = React.useCallback(() => {
+  const submit = React.useCallback(async () => {
     const e = validate(values);
     setErrors(e);
     setTouched({ name: true, phone: true, note: true, agree: true });
     setSubmitted(true);
-    return Object.keys(e).length === 0;
+    setSendError('');
+    if (Object.keys(e).length > 0) return false;
+
+    // Honeypot — bot filled hidden field; show success but don't send.
+    if (values.website) return true;
+
+    // Rate-limit per device (max 2/day, resets at local midnight).
+    try {
+      const raw = localStorage.getItem(LEAD_SUBMIT_KEY);
+      const today = new Date().toDateString();
+      const todays = (raw ? JSON.parse(raw) : []).filter((t) => new Date(t).toDateString() === today);
+      if (todays.length >= LEAD_MAX_PER_DAY) return true; // silent success
+    } catch (_) {}
+
+    // Speed gate — submissions in first 3s likely bot.
+    if (Date.now() - PAGE_LOAD_TS < 3000) {
+      setSendError('잠시 후 다시 시도해주세요.');
+      return false;
+    }
+
+    setSending(true);
+    try {
+      const data = new FormData();
+      data.append('name', values.name);
+      data.append('tel', values.phone);
+      data.append('memo', values.note || '');
+      data.append('consent', values.agree ? 'yes' : '');
+      data.append('source', window.location.href);
+      data.append('ua', navigator.userAgent);
+      data.append('ip', VISITOR_IP);
+      await fetch(GSCRIPT_URL, { method: 'POST', mode: 'no-cors', body: data });
+
+      try {
+        const raw = localStorage.getItem(LEAD_SUBMIT_KEY);
+        const today = new Date().toDateString();
+        const todays = (raw ? JSON.parse(raw) : []).filter((t) => new Date(t).toDateString() === today);
+        todays.push(Date.now());
+        localStorage.setItem(LEAD_SUBMIT_KEY, JSON.stringify(todays));
+      } catch (_) {}
+
+      try {
+        if (window.wcs) {
+          if (!window.wcs_add) window.wcs_add = {};
+          window.wcs_add['wa'] = 's_239fc16c4c17';
+          const _nasa = { cnv: window.wcs.cnv('4', '1') };
+          window.wcs.trans(_nasa);
+        }
+      } catch (_) {}
+
+      try {
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', 'generate_lead', {
+            event_category: 'form',
+            event_label: 'lead_form_submit',
+            currency: 'KRW',
+            value: 50000,
+          });
+        }
+      } catch (_) {}
+
+      setSending(false);
+      return true;
+    } catch (err) {
+      setSending(false);
+      setSendError('전송 실패. 1670-7708으로 전화 주세요.');
+      return false;
+    }
   }, [values, validate]);
 
   return (
-    <FormCtx.Provider value={{ values, errors, touched, submitted, formRef, setField, onBlur, prefill, submit }}>
+    <FormCtx.Provider value={{ values, errors, touched, submitted, sending, sendError, formRef, setField, onBlur, prefill, submit }}>
       {children}
     </FormCtx.Provider>
   );

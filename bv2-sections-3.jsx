@@ -147,11 +147,11 @@ function BV2Calculator() {
 function BV2Contact() {
   const m = useIsMobile();
   const c = BV2_CONTENT.contact;
-  const { submit, submitted, errors, values } = useForm();
+  const { submit, submitted, errors, values, sending, sendError, setField } = useForm();
   const [showSuccess, setShowSuccess] = React.useState(false);
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    if (submit()) setShowSuccess(true);
+    if (await submit()) setShowSuccess(true);
   };
 
   return (
@@ -226,14 +226,28 @@ function BV2Contact() {
             <>
               {c.fields.map((f) => <FormField key={f.k} {...f} />)}
               <AgreeCheckbox />
-              <button type="submit" className="bv2-btn-primary" style={{
+              {/* honeypot — must stay empty; bots fill arbitrary fields */}
+              <input type="text" name="website" tabIndex={-1} autoComplete="off"
+                value={values.website} onChange={(e) => setField('website', e.target.value)}
+                aria-hidden="true"
+                style={{ position: 'absolute', left: -9999, width: 1, height: 1, opacity: 0 }} />
+              <button type="submit" disabled={sending} className="bv2-btn-primary" style={{
                 marginTop: 4, background: BV2.greenLight, color: BV2.greenDeep, border: 'none',
-                padding: '20px 28px', fontSize: 16, fontWeight: 800, cursor: 'pointer', fontFamily: BV2.sans,
+                padding: '20px 28px', fontSize: 16, fontWeight: 800,
+                cursor: sending ? 'wait' : 'pointer', fontFamily: BV2.sans,
                 letterSpacing: -0.3, display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                opacity: sending ? 0.6 : 1,
               }}>
-                <span>{c.submit}</span>
+                <span>{sending ? '전송 중…' : c.submit}</span>
                 <span>→</span>
               </button>
+              {sendError && (
+                <div style={{
+                  padding: '12px 14px', background: 'rgba(244,180,180,0.08)',
+                  border: '1px solid rgba(244,180,180,0.35)', color: '#F4B4B4',
+                  fontSize: 13, lineHeight: 1.55,
+                }}>{sendError}</div>
+              )}
               <div style={{
                 fontSize: 12, color: BV2.ink5, lineHeight: 1.65,
                 display: 'flex', alignItems: 'flex-start', gap: 8,
