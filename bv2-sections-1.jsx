@@ -275,35 +275,13 @@ function BV2Nationwide() {
         </div>
 
         <div>
-          {/* Map placeholder with region pills overlaid */}
-          <div style={{
-            background: BV2.paper, border: `1px solid ${BV2.ink}12`,
-            padding: m ? 20 : 28, position: 'relative',
-          }}>
-            <div style={{ fontSize: 11, color: BV2.ink3, letterSpacing: 2, fontWeight: 700, marginBottom: 16 }}>
-              진행 중인 지역
-            </div>
-            <img
-              src="southkorea.svg"
-              alt="대한민국 — 전국 진행 가능"
-              style={{ width: '100%', aspectRatio: '3 / 4', objectFit: 'contain', marginBottom: 20, display: 'block' }}
-            />
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-              {c.regions.map((r) => (
-                <span key={r} style={{
-                  fontSize: 12, padding: '5px 10px',
-                  background: BV2.greenLighter, color: BV2.green,
-                  borderRadius: 99, fontWeight: 600, letterSpacing: -0.2,
-                }}>{r}</span>
-              ))}
-            </div>
-            <div style={{
-              marginTop: 16, padding: '10px 14px', background: BV2.greenLight,
-              fontSize: m ? 12 : 13, color: BV2.greenDeep, fontWeight: 600, lineHeight: 1.5,
-            }}>
-              ✓ 12개 광역시·도 모두 진행 가능
-            </div>
-          </div>
+          <img
+            src="southkorea-map.png"
+            width={800}
+            height={1200}
+            alt="대한민국 전국 서비스 — 서울 본사 · 15개 지역 진행 가능"
+            style={{ width: '100%', height: 'auto', display: 'block' }}
+          />
         </div>
       </div>
     </BV2Section>
