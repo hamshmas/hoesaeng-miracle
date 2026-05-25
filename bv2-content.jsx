@@ -139,6 +139,7 @@ const BV2_CONTENT = {
     fields: [
       { k: 'name', l: '성함', req: true, ph: '홍길동', type: 'text' },
       { k: 'phone', l: '연락처', req: true, ph: '010-0000-0000', type: 'tel' },
+      { k: 'time', l: '희망 연락 시간 (선택)', req: false, ph: '예) 오늘 오후 / 평일 저녁 / 내일 오전 10시 이후', type: 'text' },
       { k: 'note', l: '현재 채무 상황 (선택)', req: false, ph: '예) 카드 4곳 약 6,500만원, 6개월 연체 / 월 소득 280만원', area: true },
     ],
     agree: '상담 진행을 위한 개인정보 수집·이용에 동의합니다 (필수)',

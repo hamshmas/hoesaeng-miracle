@@ -94,7 +94,7 @@ function BV2Calculator() {
           <p style={{ fontSize: m ? 15 : 17, color: BV2.ink2, margin: '20px 0 28px', lineHeight: 1.65, maxWidth: 480 }}>
             {c.sub}
           </p>
-          <a href="https://calc.tanggam.kr" style={{ textDecoration: 'none', display: 'inline-block' }}>
+          <a href="https://calc.tanggam.kr" target="_blank" rel="noopener" style={{ textDecoration: 'none', display: 'inline-block' }}>
             <BV2BtnPrimary tone="green">{c.cta}</BV2BtnPrimary>
           </a>
           <div style={{ fontSize: 12, color: BV2.ink3, marginTop: 16, lineHeight: 1.6, maxWidth: 480 }}>

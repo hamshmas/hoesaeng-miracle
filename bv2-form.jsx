@@ -19,7 +19,7 @@ if (typeof window !== 'undefined') {
 const FormCtx = React.createContext(null);
 
 function FormProvider({ children }) {
-  const [values, setValues] = React.useState({ name: '', phone: '', note: '', agree: false, website: '' });
+  const [values, setValues] = React.useState({ name: '', phone: '', time: '', note: '', agree: false, website: '' });
   const [errors, setErrors] = React.useState({});
   const [submitted, setSubmitted] = React.useState(false);
   const [touched, setTouched] = React.useState({});
@@ -64,7 +64,7 @@ function FormProvider({ children }) {
   const submit = React.useCallback(async () => {
     const e = validate(values);
     setErrors(e);
-    setTouched({ name: true, phone: true, note: true, agree: true });
+    setTouched({ name: true, phone: true, time: true, note: true, agree: true });
     setSubmitted(true);
     setSendError('');
     if (Object.keys(e).length > 0) return false;
@@ -91,6 +91,7 @@ function FormProvider({ children }) {
       const data = new FormData();
       data.append('name', values.name);
       data.append('tel', values.phone);
+      data.append('time', values.time || '');
       data.append('memo', values.note || '');
       data.append('consent', values.agree ? 'yes' : '');
       data.append('source', window.location.href);
