@@ -359,6 +359,100 @@
     line-height: 1.7;
     text-align: left;
   }
+  /* ===== Nav phone (desktop only) ===== */
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .nav-tel {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--primary);
+    letter-spacing: -0.3px;
+  }
+  @media (max-width: 599px) {
+    .nav-tel { display: none; }
+  }
+  /* ===== Hero phone strip ===== */
+  .hero-tel {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    padding: 10px 14px;
+    border-radius: 999px;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    margin-bottom: 14px;
+  }
+  .hero-tel strong {
+    font-size: 17px;
+    font-weight: 800;
+  }
+  .badge-24h {
+    background: var(--primary);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 999px;
+    letter-spacing: -0.2px;
+  }
+  /* ===== Mid-page CTA ===== */
+  .mid-cta {
+    margin-top: 32px;
+    padding: 24px 22px;
+    background: linear-gradient(135deg, var(--primary-light) 0%, #FFFFFF 100%);
+    border: 1px solid var(--border-soft);
+    border-radius: 20px;
+    text-align: center;
+  }
+  .mid-cta > p {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-strong);
+    line-height: 1.5;
+    margin-bottom: 16px;
+    letter-spacing: -0.3px;
+  }
+  .mid-cta .row {
+    display: flex;
+    gap: 8px;
+  }
+  .mid-cta .row > a {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    transition: all 0.15s ease;
+  }
+  .mid-cta .row > a.primary {
+    background: var(--primary);
+    color: #fff;
+  }
+  .mid-cta .row > a.primary:hover {
+    background: var(--primary-dark);
+  }
+  .mid-cta .row > a.tel {
+    background: #FFF;
+    color: var(--text-strong);
+    border: 1px solid var(--border);
+  }
+  .mid-cta .row > a.tel:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+  }
   .section-head {
     margin-bottom: 32px;
   }
@@ -1311,12 +1405,18 @@
       <span class="name">회생의<span class="brand">기적</span></span>
       <span class="sub">빚탕감 전문</span>
     </div>
-    <a class="nav-cta" href="#contact">상담하기</a>
+    <div class="nav-right">
+      <a class="nav-tel" href="tel:1670-7708">📞 1670-7708</a>
+      <a class="nav-cta" href="#contact">상담하기</a>
+    </div>
   </nav>
 
   <!-- Hero -->
   <section class="hero">
     <span class="pre">대한변호사협회 인증 도산 변호사</span>
+    <a class="hero-tel" href="tel:1670-7708">
+      📞 <strong>1670-7708</strong> <span class="badge-24h">24시 상담</span>
+    </a>
     <h1>
       빚, <span class="accent">정리할 수 있습니다.</span><br />
       변호사 본인이 끝까지.
@@ -1459,6 +1559,13 @@
       </div>
     </div>
     <p class="legal-note">* 본 사례는 대표변호사가 직접 진행한 실제 인가 사건이며, 결과는 의뢰인의 채무·소득·재산 등 개별 상황에 따라 달라질 수 있습니다. ‘2,211건’은 대표변호사가 처리한 회생/파산 사건 누적 건수(내부 집계 기준)입니다.</p>
+    <div class="mid-cta">
+      <p>비슷한 상황이신가요?<br />변호사가 직접 가능성을 검토해드립니다.</p>
+      <div class="row">
+        <a class="primary" href="#contact">💬 변호사 직접 회신 받기</a>
+        <a class="tel" href="tel:1670-7708">📞 1670-7708</a>
+      </div>
+    </div>
   </section>
 
   <!-- Honest disclosure -->
@@ -1522,6 +1629,13 @@
     <a class="verify-link" href="https://www.blackstonelaw.co.kr/main/review.html" target="_blank" rel="noopener">
       자필후기 모두 보기 →
     </a>
+    <div class="mid-cta">
+      <p>이분들도 처음엔 막막했습니다.<br />지금 상황부터 들어보겠습니다.</p>
+      <div class="row">
+        <a class="primary" href="#contact">💬 변호사 직접 회신 받기</a>
+        <a class="tel" href="tel:1670-7708">📞 1670-7708</a>
+      </div>
+    </div>
   </section>
 
   <!-- LawTalk cases -->
@@ -1704,6 +1818,13 @@
       <p class="disclaimer">
         ※ 예상치이며, 실제 결과는 사실관계·증거에 따라 달라질 수 있습니다. 정확한 분석은 변호사 상담을 통해 받아보세요.
       </p>
+      <div class="mid-cta">
+        <p>예상 변제금이 나왔다면,<br />변호사 검토로 정확도를 높이세요.</p>
+        <div class="row">
+          <a class="primary" href="#contact">💬 변호사 직접 회신 받기</a>
+          <a class="tel" href="tel:1670-7708">📞 1670-7708</a>
+        </div>
+      </div>
     </div>
   </section>
 
