@@ -341,11 +341,12 @@ function BV2Lawtalk() {
         gap: m ? 10 : 14,
       }}>
         {BV2_CONTENT.lawtalk.map((c, i) => (
-          <div key={i} className="bv2-card-hover" style={{
+          <a key={i} className="bv2-card-hover" href={c.url} target="_blank" rel="noopener" style={{
             background: BV2.paper, padding: m ? '18px 18px' : '24px 20px',
             border: `1px solid ${BV2.ink}12`, cursor: 'pointer',
             display: 'flex', flexDirection: 'column', gap: 14,
             minHeight: m ? 'auto' : 220,
+            textDecoration: 'none', color: 'inherit',
           }}>
             <div style={{
               display: 'inline-flex', padding: '3px 8px', alignSelf: 'flex-start',
@@ -360,7 +361,7 @@ function BV2Lawtalk() {
               <span style={{ fontFamily: BV2.mono }}>lawtalk.co.kr</span>
               <span>↗</span>
             </div>
-          </div>
+          </a>
         ))}
       </div>
 

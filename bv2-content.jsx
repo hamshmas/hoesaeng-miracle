@@ -100,11 +100,11 @@ const BV2_CONTENT = {
   ],
 
   lawtalk: [
-    { tag: '회생/파산', t: '코인 투자 손실 → 돌려막기·카드깡 누적', rate: '90.62' },
-    { tag: '회생/파산', t: '코로나 폐업 + 가족 건강 악화', rate: '87.17' },
-    { tag: '회생/파산', t: '부동산 중개업 거래 급감, 채무 누적', rate: '85.70' },
-    { tag: '회생/파산', t: '생활비 부족, 카드·대출 누적', rate: '83.30' },
-    { tag: '회생/파산', t: '빚보증 + 보이스피싱 피해', rate: '80.00' },
+    { tag: '회생/파산', t: '코인 투자 손실 → 돌려막기·카드깡 누적', rate: '90.62', url: 'https://www.lawtalk.co.kr/posts/119484' },
+    { tag: '회생/파산', t: '코로나 폐업 + 가족 건강 악화', rate: '87.17', url: 'https://www.lawtalk.co.kr/posts/118715' },
+    { tag: '회생/파산', t: '부동산 중개업 거래 급감, 채무 누적', rate: '85.70', url: 'https://www.lawtalk.co.kr/posts/157419' },
+    { tag: '회생/파산', t: '생활비 부족, 카드·대출 누적', rate: '83.30', url: 'https://www.lawtalk.co.kr/posts/156664' },
+    { tag: '회생/파산', t: '빚보증 + 보이스피싱 피해', rate: '80.00', url: 'https://www.lawtalk.co.kr/posts/105447' },
   ],
 
   cafe: [
