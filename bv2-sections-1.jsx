@@ -52,26 +52,8 @@ function BV2Hero() {
   const c = BV2_CONTENT.hero;
   return (
     <BV2Section bg="paper" style={{ paddingTop: m ? 48 : 120, paddingBottom: m ? 56 : 96 }}>
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-        <BV2VerifiedPill text={c.badge} />
-        <div style={{
-          display: 'inline-flex', alignItems: 'center', gap: 8,
-          padding: '6px 12px 6px 6px',
-          background: BV2.oxbloodLight, color: BV2.oxblood,
-          fontSize: 12, fontWeight: 700, letterSpacing: -0.1,
-        }}>
-          <span style={{
-            width: 18, height: 18, borderRadius: 9,
-            background: BV2.oxblood, color: BV2.paper,
-            display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: 11, fontWeight: 800,
-          }}>✗</span>
-          사무장 위임 NO · 변호사 본인 검토
-        </div>
-      </div>
-
       <h1 style={{
-        margin: m ? '28px 0 0' : '40px 0 0', fontWeight: 800,
+        margin: 0, fontWeight: 800,
         fontSize: m ? 56 : 120, lineHeight: 0.95,
         letterSpacing: m ? -2.5 : -5,
         color: BV2.ink, maxWidth: 1000,
