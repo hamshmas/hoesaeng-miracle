@@ -112,7 +112,7 @@ function BV2LawyerProfile() {
     <BV2Section bg="paperAlt">
       <div style={{
         display: 'grid',
-        gridTemplateColumns: m ? '1fr' : '380px 1fr',
+        gridTemplateColumns: m ? '1fr' : '460px 1fr',
         gap: m ? 32 : 64,
         alignItems: m ? 'start' : 'stretch',
       }}>
