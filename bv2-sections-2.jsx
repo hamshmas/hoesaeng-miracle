@@ -89,8 +89,10 @@ function BV2CaseStudy() {
         <div>
           <img
             src="repayment-plan.jpg"
+            width={1357}
+            height={1315}
             alt="법원 인가 결정문 — 변제예정액표"
-            style={{ width: '100%', aspectRatio: '4 / 3', objectFit: 'cover', display: 'block', border: `1px solid ${BV2.ink}12` }}
+            style={{ width: '100%', height: 'auto', display: 'block', border: `1px solid ${BV2.ink}12` }}
           />
           <div style={{
             marginTop: 16, display: 'grid', gridTemplateColumns: 'auto 1fr', gap: 14,
