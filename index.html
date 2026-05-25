@@ -2268,6 +2268,41 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     window.addEventListener('load', check);
   })();
+
+  /* ===== 전화/카톡 클릭 전환 추적 ===== */
+  (function() {
+    function fireConversion(type) {
+      try {
+        if (typeof gtag === 'function') {
+          gtag('event', type, {
+            event_category: 'contact',
+            event_label: type,
+            currency: 'KRW',
+            value: 50000
+          });
+        }
+      } catch (_) {}
+      try {
+        if (window.wcs) {
+          if (!wcs_add) var wcs_add = {};
+          wcs_add["wa"] = "s_239fc16c4c17";
+          var _nasa = {};
+          _nasa["cnv"] = wcs.cnv("4", "1");
+          wcs.trans(_nasa);
+        }
+      } catch (_) {}
+    }
+    document.addEventListener('click', function(e) {
+      const a = e.target.closest && e.target.closest('a[href]');
+      if (!a) return;
+      const href = a.getAttribute('href') || '';
+      if (href.indexOf('tel:') === 0) {
+        fireConversion('phone_call_click');
+      } else if (href.indexOf('pf.kakao.com') !== -1 || href.indexOf('kakao.com/chat') !== -1) {
+        fireConversion('kakao_chat_click');
+      }
+    }, true);
+  })();
 </script>
 
 <script>
