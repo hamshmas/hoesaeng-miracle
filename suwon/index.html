@@ -130,20 +130,20 @@
   }
   .hero-quote {
     margin-top: 28px;
-    padding: 16px 18px;
-    background: var(--bg-soft);
-    border-left: 3px solid var(--primary);
-    border-radius: 4px 12px 12px 4px;
-    font-size: 14px;
-    line-height: 1.65;
-    color: var(--text-base);
+    padding: 2px 0 2px 14px;
+    background: transparent;
+    border-left: 2px solid var(--border);
+    border-radius: 0;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-weak);
   }
   .hero-quote .signer {
     display: block;
-    margin-top: 6px;
-    font-size: 12px;
+    margin-top: 4px;
+    font-size: 11px;
     font-weight: 700;
-    color: var(--text-strong);
+    color: var(--text-base);
   }
   .results-link {
     display: inline-flex;
@@ -277,11 +277,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 52px;
+    height: 56px;
     border-radius: 14px;
     font-size: 14px;
     font-weight: 800;
     letter-spacing: -0.3px;
+    white-space: nowrap;
   }
   .sticky-tel {
     background: var(--primary);
@@ -293,10 +294,15 @@
     color: #181600;
     box-shadow: 0 8px 20px rgba(254,229,0,0.32);
   }
+  .sticky-form {
+    background: var(--text-strong);
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(25,31,40,0.20);
+  }
   @media (min-width: 768px) {
     .sticky-cta { display: none; }
   }
-  /* ===== Daegu variant: hero sub CTA ===== */
+  /* ===== Hero sub CTA ===== */
   .hero-cta-sub {
     display: flex;
     gap: 8px;
@@ -339,9 +345,11 @@
     margin-left: 2px;
     vertical-align: super;
   }
-  /* ===== Daegu variant: info card ===== */
+  /* ===== Info card ===== */
   .info-card {
-    background: var(--bg-soft);
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
     border: 1px solid var(--border-soft);
     border-radius: 20px;
     padding: 24px 22px;
@@ -351,13 +359,197 @@
   }
   .info-card p + p { margin-top: 14px; }
   .info-card strong { color: var(--text-strong); font-weight: 700; }
-  /* ===== Daegu variant: legal footnote ===== */
+  /* ===== Korea map background ===== */
+  .kr-section {
+    position: relative;
+    overflow: hidden;
+  }
+  .kr-section > .section-head,
+  .kr-section > .info-card {
+    position: relative;
+    z-index: 1;
+  }
+  .kr-map-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 95%;
+    max-height: 440px;
+    max-width: 78%;
+    width: auto;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.13;
+    filter: brightness(0);
+  }
+  /* ===== Legal footnote ===== */
   .legal-note {
     margin-top: 24px;
     font-size: 11px;
     color: var(--text-weak);
     line-height: 1.7;
     text-align: left;
+  }
+  /* ===== Nav phone (desktop only) ===== */
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .nav-tel {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+    padding: 8px 12px;
+    border-radius: 999px;
+  }
+  /* ===== Hero phone strip ===== */
+  .hero-tel {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    padding: 10px 14px;
+    border-radius: 999px;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    margin-bottom: 14px;
+  }
+  .hero-tel strong {
+    font-size: 17px;
+    font-weight: 800;
+  }
+  .badge-24h {
+    background: var(--primary);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 999px;
+    letter-spacing: -0.2px;
+  }
+  /* ===== Mid-page CTA ===== */
+  .mid-cta {
+    margin-top: 32px;
+    padding: 26px 22px;
+    background: linear-gradient(135deg, #F3F8FF 0%, #FFFFFF 100%);
+    border: 1px solid var(--border-soft);
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 2px 12px rgba(49,130,246,0.06);
+  }
+  .mid-cta > p {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-strong);
+    line-height: 1.5;
+    margin-bottom: 16px;
+    letter-spacing: -0.3px;
+  }
+  .mid-cta .row {
+    display: flex;
+    gap: 8px;
+  }
+  .mid-cta .row > a {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    transition: all 0.15s ease;
+  }
+  .mid-cta .row > a.primary {
+    background: var(--primary);
+    color: #fff;
+  }
+  .mid-cta .row > a.primary:hover {
+    background: var(--primary-dark);
+  }
+  .mid-cta .row > a.tel {
+    background: #FFF;
+    color: var(--text-strong);
+    border: 1px solid var(--border);
+  }
+  .mid-cta .row > a.tel:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+  /* ===== Situation cards ===== */
+  .situation-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  @media (min-width: 540px) {
+    .situation-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  .situation-card {
+    display: block;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px 18px;
+    transition: all 0.15s ease;
+    text-align: left;
+  }
+  .situation-card:hover {
+    border-color: var(--primary);
+    background: var(--bg-soft);
+    transform: translateY(-1px);
+  }
+  .situation-card:active {
+    transform: scale(0.98);
+    background: var(--primary-light);
+  }
+  .situation-card .ic {
+    font-size: 22px;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .situation-card h3 {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--text-strong);
+    letter-spacing: -0.4px;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+  .situation-card p {
+    font-size: 13px;
+    color: var(--text-base);
+    line-height: 1.5;
+    margin-bottom: 14px;
+  }
+  .situation-card .card-cta {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--primary);
+    letter-spacing: -0.2px;
+  }
+  /* ===== Mobile compaction overrides ===== */
+  @media (max-width: 599px) {
+    .hero { padding: 56px 22px 40px; }
+    section.block { padding: 56px 22px; }
+    section.block.flush { padding-top: 40px; }
+    .logo .sub { display: none; }
+    .nav-cta { display: none; }
+    .topnav { padding: 12px 18px; }
+    .form-box input,
+    .form-box textarea { padding: 16px 16px; }
+    .form-box textarea { min-height: 96px; }
   }
   .section-head {
     margin-bottom: 32px;
@@ -1311,7 +1503,10 @@
       <span class="name">회생의<span class="brand">기적</span></span>
       <span class="sub">빚탕감 전문</span>
     </div>
-    <a class="nav-cta" href="#contact">상담하기</a>
+    <div class="nav-right">
+      <a class="nav-tel" href="tel:1670-7708">📞 1670-7708</a>
+      <a class="nav-cta" href="#contact">상담하기</a>
+    </div>
   </nav>
 
   <!-- Hero -->
@@ -1332,7 +1527,6 @@
       <a class="btn-sub" href="tel:1670-7708">📞 1670-7708 전화상담</a>
       <a class="btn-sub kakao" href="https://pf.kakao.com/_Exnxnkxj/chat" target="_blank" rel="noopener">💬 카카오톡 상담</a>
     </div>
-    <a class="results-link" href="#cases">결과는 아래에서 ↓</a>
     <p class="hero-quote">
       "광고가 아니라, 결과로 말씀드립니다."
       <span class="signer">— 대표 변호사 이승진</span>
@@ -1412,14 +1606,14 @@
   </section>
 
   <!-- Featured case -->
-  <!-- Daegu: 방문 없이 진행 가능 -->
+  <!-- 수원 방문 없이 진행 가능 -->
   <section class="block">
     <div class="section-head">
       <div class="eyebrow">수원 거주 의뢰인께</div>
       <h2>수원에서도 방문 없이<br />진행 가능합니다.</h2>
     </div>
     <div class="info-card">
-      <p>개인회생은 서류와 법원 절차 중심으로 진행됩니다. 대구 거주자도 <strong>전화·카톡·온라인 자료 제출</strong>로 상담 및 진행이 가능합니다.</p>
+      <p>개인회생은 서류와 법원 절차 중심으로 진행됩니다. 수원 거주자도 <strong>전화·카톡·온라인 자료 제출</strong>로 상담 및 진행이 가능합니다.</p>
       <p>다만 관할 법원과 사건 특성에 따라 보정 방향은 달라질 수 있어, <strong>처음부터 도산전문변호사의 검토</strong>가 필요합니다.</p>
     </div>
   </section>
@@ -1459,6 +1653,13 @@
       </div>
     </div>
     <p class="legal-note">* 본 사례는 대표변호사가 직접 진행한 실제 인가 사건이며, 결과는 의뢰인의 채무·소득·재산 등 개별 상황에 따라 달라질 수 있습니다. ‘2,211건’은 대표변호사가 처리한 회생/파산 사건 누적 건수(내부 집계 기준)입니다.</p>
+    <div class="mid-cta">
+      <p>비슷한 상황이신가요?<br />변호사가 직접 가능성을 검토해드립니다.</p>
+      <div class="row">
+        <a class="primary" href="#contact">💬 내 사건도 가능한지 확인하기</a>
+        <a class="tel" href="tel:1670-7708">📞 1670-7708</a>
+      </div>
+    </div>
   </section>
 
   <!-- Honest disclosure -->
@@ -1481,6 +1682,60 @@
         이런 상황은 무리하게 회생을 추진하지 않습니다. 채무조정·자산 정리 등 다른 방향을 함께 검토합니다.
         <span class="signer">— 대표 변호사 이승진</span>
       </div>
+    </div>
+    <div class="mid-cta">
+      <p>내 상황도 해당하는지 확신이 없다면</p>
+      <div class="row">
+        <a class="primary" href="#contact">💬 가능 여부 먼저 물어보기</a>
+        <a class="tel" href="tel:1670-7708">📞 1670-7708</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 상황별 빠른 안내 -->
+  <section class="block">
+    <div class="section-head">
+      <div class="eyebrow">상황별 빠른 안내</div>
+      <h2>지금 어떤<br />상황이신가요?</h2>
+      <p>해당하는 상황을 선택하시면, 어떤 검토가 필요한지 미리 알려드립니다.</p>
+    </div>
+    <div class="situation-grid">
+      <a class="situation-card" href="#contact">
+        <div class="ic">⏰</div>
+        <h3>아직 연체 전입니다</h3>
+        <p>연체 전에 신청 가능성부터 확인하세요.</p>
+        <span class="card-cta">내 상황 상담받기 →</span>
+      </a>
+      <a class="situation-card" href="#contact">
+        <div class="ic">📞</div>
+        <h3>독촉 전화가 오고 있습니다</h3>
+        <p>채권자 대응과 금지명령 가능성을 검토해야 합니다.</p>
+        <span class="card-cta">내 상황 상담받기 →</span>
+      </a>
+      <a class="situation-card" href="#contact">
+        <div class="ic">💼</div>
+        <h3>급여압류가 걱정됩니다</h3>
+        <p>압류 전 신청 타이밍이 중요합니다.</p>
+        <span class="card-cta">내 상황 상담받기 →</span>
+      </a>
+      <a class="situation-card" href="#contact">
+        <div class="ic">📉</div>
+        <h3>주식·코인 손실이 있습니다</h3>
+        <p>사용처와 청산가치 반영 여부를 봐야 합니다.</p>
+        <span class="card-cta">내 상황 상담받기 →</span>
+      </a>
+      <a class="situation-card" href="#contact">
+        <div class="ic">🏪</div>
+        <h3>개인사업자입니다</h3>
+        <p>매출·비용·세금, 사업 유지 가능성을 같이 봐야 합니다.</p>
+        <span class="card-cta">내 상황 상담받기 →</span>
+      </a>
+      <a class="situation-card" href="#contact">
+        <div class="ic">💰</div>
+        <h3>수임료가 부담됩니다</h3>
+        <p>분납 가능 여부를 상담에서 확인하세요.</p>
+        <span class="card-cta">내 상황 상담받기 →</span>
+      </a>
     </div>
   </section>
 
@@ -1522,6 +1777,13 @@
     <a class="verify-link" href="https://www.blackstonelaw.co.kr/main/review.html" target="_blank" rel="noopener">
       자필후기 모두 보기 →
     </a>
+    <div class="mid-cta">
+      <p>이분들도 처음엔 막막했습니다.<br />지금 상황부터 들어보겠습니다.</p>
+      <div class="row">
+        <a class="primary" href="#contact">💬 비슷한 사례 상담받기</a>
+        <a class="tel" href="tel:1670-7708">📞 1670-7708</a>
+      </div>
+    </div>
   </section>
 
   <!-- LawTalk cases -->
@@ -1704,6 +1966,13 @@
       <p class="disclaimer">
         ※ 예상치이며, 실제 결과는 사실관계·증거에 따라 달라질 수 있습니다. 정확한 분석은 변호사 상담을 통해 받아보세요.
       </p>
+      <div class="mid-cta">
+        <p>예상 변제금이 나왔다면,<br />변호사 검토로 정확도를 높이세요.</p>
+        <div class="row">
+          <a class="primary" href="#contact">💬 계산 결과 변호사 검토받기</a>
+          <a class="tel" href="tel:1670-7708">📞 1670-7708</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1778,13 +2047,14 @@
 
 <div class="sticky-cta" id="stickyCta" aria-hidden="true">
   <div class="sticky-cta-row">
-    <a class="sticky-tel" href="tel:1670-7708">📞 1670-7708</a>
-    <a class="sticky-kakao" href="https://pf.kakao.com/_Exnxnkxj/chat" target="_blank" rel="noopener">💬 카카오톡</a>
+    <a class="sticky-tel" href="tel:1670-7708">📞 전화상담</a>
+    <a class="sticky-kakao" href="https://pf.kakao.com/_Exnxnkxj/chat" target="_blank" rel="noopener">💬 카톡상담</a>
+    <a class="sticky-form" href="#contact">📝 변호사 회신</a>
   </div>
 </div>
 
 <script>
-  /* ===== Sticky CTA show/hide (위 스크롤 시 노출) ===== */
+  /* ===== Sticky CTA show/hide (다운 스크롤 숨김, 업 스크롤 노출 — Safari URL바와 자연스럽게 일치) ===== */
   (function() {
     const cta = document.getElementById('stickyCta');
     const contact = document.getElementById('contact');
