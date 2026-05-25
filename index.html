@@ -357,6 +357,30 @@
   }
   .info-card p + p { margin-top: 14px; }
   .info-card strong { color: var(--text-strong); font-weight: 700; }
+  /* ===== Korea map background ===== */
+  .kr-section {
+    position: relative;
+    overflow: hidden;
+  }
+  .kr-section > .section-head,
+  .kr-section > .info-card {
+    position: relative;
+    z-index: 1;
+  }
+  .kr-map-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 95%;
+    max-height: 440px;
+    max-width: 78%;
+    width: auto;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.07;
+    filter: brightness(0);
+  }
   /* ===== Legal footnote ===== */
   .legal-note {
     margin-top: 24px;
@@ -1581,7 +1605,8 @@
 
   <!-- Featured case -->
   <!-- 전국 무방문 가능 -->
-  <section class="block">
+  <section class="block kr-section">
+    <img class="kr-map-bg" src="/southkorea.svg" alt="" aria-hidden="true" />
     <div class="section-head">
       <div class="eyebrow">전국 거주 의뢰인께</div>
       <h2>전국 어디서나 방문 없이<br />진행 가능합니다.</h2>
@@ -2028,19 +2053,25 @@
 </div>
 
 <script>
-  /* ===== Sticky CTA show/hide (항상 노출, 히어로·폼 영역 제외) ===== */
+  /* ===== Sticky CTA show/hide (다운 스크롤 숨김, 업 스크롤 노출 — Safari URL바와 자연스럽게 일치) ===== */
   (function() {
     const cta = document.getElementById('stickyCta');
     const contact = document.getElementById('contact');
     if (!cta || !contact) return;
+    let lastY = window.scrollY;
     let ticking = false;
+    const THRESHOLD = 6;
     function update() {
       ticking = false;
       const y = window.scrollY;
+      const dy = y - lastY;
+      if (Math.abs(dy) < THRESHOLD) return;
       const rect = contact.getBoundingClientRect();
       const inView = rect.top < window.innerHeight && rect.bottom > 0;
       const scrolledEnough = y > 360;
-      cta.classList.toggle('show', scrolledEnough && !inView);
+      const goingUp = dy < 0;
+      cta.classList.toggle('show', scrolledEnough && goingUp && !inView);
+      lastY = y;
     }
     window.addEventListener('scroll', function() {
       if (!ticking) {
@@ -2048,17 +2079,7 @@
         requestAnimationFrame(update);
       }
     }, { passive: true });
-    update();
-    // iOS Safari 가변 하단 URL바가 sticky를 덮지 않게 보상
-    if (window.visualViewport) {
-      const adjustBottom = () => {
-        const offset = window.innerHeight - window.visualViewport.height;
-        cta.style.bottom = (offset > 0 ? offset : 0) + 'px';
-      };
-      window.visualViewport.addEventListener('resize', adjustBottom);
-      window.visualViewport.addEventListener('scroll', adjustBottom);
-      adjustBottom();
-    }
+    window.addEventListener('resize', function() { lastY = window.scrollY; });
   })();
 </script>
 <script>
