@@ -249,14 +249,31 @@ function BV2Situations() {
   );
 }
 
-// ─────────── Handwritten reviews — horizontal scroll grid ───────────
+// ─────────── Handwritten reviews — image-only gallery ───────────
+const BV2_HANDWRITTEN_IMAGES = [
+  'reviews/review-01.png', 'reviews/review-02.png', 'reviews/review-03.png',
+  'reviews/review-04.png', 'reviews/review-05.png', 'reviews/review-06.jpg',
+  'reviews/review-07.jpg', 'reviews/review-08.jpg', 'reviews/review-09.jpg',
+  'reviews/review-10.jpg', 'reviews/review-11.jpg', 'reviews/review-12.jpg',
+  'reviews/review-13.jpg',
+];
+
 function BV2Handwritten() {
   const m = useIsMobile();
-  const items = BV2_CONTENT.handwritten;
-  // Pre-computed deterministic tilts so cards have natural rotation
-  // (chosen, not random — keeps server/client output stable).
-  const tilts = [-2.4, 1.6, -1.2, 2.8, -2.0, 1.4];
-  const accentColors = [BV2.amberLight, '#F0EAD8', BV2.greenLighter, '#EFE8DA', '#F2EAD2', BV2.amberLight];
+  const [zoomed, setZoomed] = React.useState(null);
+  // Pre-computed deterministic tilts (chosen, not random — stable across renders).
+  const tilts = [-2.4, 1.6, -1.2, 2.8, -2.0, 1.4, -1.8, 2.2, -2.6, 1.0, -1.4, 2.4, -2.0];
+  const accents = [BV2.amberLight, '#F0EAD8', BV2.greenLighter, '#EFE8DA', '#F2EAD2'];
+
+  React.useEffect(() => {
+    if (!zoomed) return;
+    const onKey = (e) => { if (e.key === 'Escape') setZoomed(null); };
+    document.addEventListener('keydown', onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => { document.removeEventListener('keydown', onKey); document.body.style.overflow = prev; };
+  }, [zoomed]);
+
   return (
     <BV2Section bg="paperDeep">
       <BV2Header num="07" eyebrow="손편지로 받은 진심" title="의뢰인이 직접 쓴 자필후기."
@@ -264,57 +281,56 @@ function BV2Handwritten() {
 
       <div className={m ? 'bv2-hscroll' : ''} style={{
         display: m ? 'flex' : 'grid',
-        gridTemplateColumns: m ? undefined : 'repeat(3, 1fr)',
+        gridTemplateColumns: m ? undefined : 'repeat(4, 1fr)',
         gap: m ? 12 : 20,
         paddingBottom: m ? 8 : 0,
         marginLeft: m ? -16 : 0, marginRight: m ? -16 : 0,
         paddingLeft: m ? 16 : 0, paddingRight: m ? 16 : 0,
       }}>
-        {items.map((it, i) => (
-          <div key={i} style={{
-            flex: m ? '0 0 280px' : undefined,
-            background: accentColors[i % accentColors.length],
-            padding: m ? '24px 22px' : '32px 28px',
+        {BV2_HANDWRITTEN_IMAGES.map((src, i) => (
+          <div key={src} style={{
+            flex: m ? '0 0 240px' : undefined,
+            background: accents[i % accents.length],
+            padding: m ? 10 : 12,
             transform: `rotate(${tilts[i % tilts.length]}deg)`,
             boxShadow: '0 12px 28px rgba(8,9,8,0.08), 0 2px 6px rgba(8,9,8,0.06)',
             transition: `transform .25s ${BV2.ease}`,
-            display: 'flex', flexDirection: 'column',
-            minHeight: m ? 240 : 280,
-            cursor: 'pointer',
+            cursor: 'zoom-in',
             position: 'relative',
           }}
-            onMouseEnter={(e) => e.currentTarget.style.transform = `rotate(0deg) scale(1.02)`}
-            onMouseLeave={(e) => e.currentTarget.style.transform = `rotate(${tilts[i % tilts.length]}deg)`}>
+            onMouseEnter={(e) => e.currentTarget.style.transform = `rotate(0deg) scale(1.04)`}
+            onMouseLeave={(e) => e.currentTarget.style.transform = `rotate(${tilts[i % tilts.length]}deg)`}
+            onClick={() => setZoomed(src)}>
             <div style={{
               position: 'absolute', top: -6, left: '50%', transform: 'translateX(-50%)',
               width: 60, height: 14, background: 'rgba(0,0,0,0.06)',
               borderRadius: 2,
             }} />
-            <div className="bv2-handwritten" style={{
-              fontSize: m ? 22 : 26, lineHeight: 1.35, color: BV2.ink, fontWeight: 400,
-              marginBottom: 14, letterSpacing: -0.5,
-            }}>
-              {it.title}
-            </div>
-            <div style={{ fontSize: m ? 13 : 14, color: BV2.ink2, lineHeight: 1.65, marginBottom: 'auto' }}>
-              {it.preview}
-            </div>
-            <div style={{
-              marginTop: 20, paddingTop: 12, borderTop: `1px dashed ${BV2.ink}30`,
-              display: 'flex', justifyContent: 'space-between', fontSize: 11, color: BV2.ink3,
-            }}>
-              <span>의뢰인 자필</span>
-              <span>전체 보기 →</span>
-            </div>
+            <img src={src} alt={`의뢰인 자필후기 ${i + 1}`} loading="lazy" style={{
+              display: 'block', width: '100%', height: 'auto', background: '#fff',
+            }} />
           </div>
         ))}
       </div>
 
-      <div style={{ marginTop: m ? 24 : 32, textAlign: 'center' }}>
-        <a href="#" style={{ textDecoration: 'none' }}>
-          <BV2BtnSecondary>자필후기 모두 보기 →</BV2BtnSecondary>
-        </a>
-      </div>
+      {zoomed && (
+        <div onClick={() => setZoomed(null)} style={{
+          position: 'fixed', inset: 0, background: 'rgba(8,9,8,0.88)',
+          zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center',
+          padding: m ? 16 : 40, cursor: 'zoom-out',
+        }}>
+          <img src={zoomed} alt="자필후기 확대" style={{
+            maxWidth: '100%', maxHeight: '100%', objectFit: 'contain',
+            boxShadow: '0 24px 80px rgba(0,0,0,0.5)',
+          }} />
+          <button onClick={(e) => { e.stopPropagation(); setZoomed(null); }} aria-label="닫기" style={{
+            position: 'absolute', top: m ? 12 : 24, right: m ? 12 : 24,
+            width: 40, height: 40, border: 'none', borderRadius: '50%',
+            background: 'rgba(255,255,255,0.15)', color: '#fff', fontSize: 22,
+            cursor: 'pointer', lineHeight: 1,
+          }}>×</button>
+        </div>
+      )}
     </BV2Section>
   );
 }
