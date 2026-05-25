@@ -27,6 +27,41 @@
     wcs_add["wa"] = "s_239fc16c4c17";
     if(window.wcs) { wcs_do(); }
   </script>
+  <!-- Phone / Kakao click conversion tracking (GA4 + Naver Wcs) -->
+  <script>
+  (function () {
+    function fireConversion(type) {
+      try {
+        if (typeof gtag === 'function') {
+          gtag('event', type, {
+            event_category: 'contact',
+            event_label: type,
+            currency: 'KRW',
+            value: 50000
+          });
+        }
+      } catch (_) {}
+      try {
+        if (window.wcs) {
+          if (!window.wcs_add) window.wcs_add = {};
+          window.wcs_add['wa'] = 's_239fc16c4c17';
+          var _nasa = { cnv: window.wcs.cnv('4', '1') };
+          window.wcs.trans(_nasa);
+        }
+      } catch (_) {}
+    }
+    document.addEventListener('click', function (e) {
+      var a = e.target && e.target.closest && e.target.closest('a[href]');
+      if (!a) return;
+      var href = a.getAttribute('href') || '';
+      if (href.indexOf('tel:') === 0) {
+        fireConversion('phone_call_click');
+      } else if (href.indexOf('pf.kakao.com') !== -1 || href.indexOf('kakao.com/chat') !== -1) {
+        fireConversion('kakao_chat_click');
+      }
+    }, true);
+  })();
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
