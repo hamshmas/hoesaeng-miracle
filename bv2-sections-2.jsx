@@ -137,47 +137,45 @@ function BV2Honest() {
   const c = BV2_CONTENT.honest;
   return (
     <BV2Section bg="paperAlt">
-      <div style={{ maxWidth: 1000 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 24 }}>
-          <BV2Mono ch="!" size={20} bg={BV2.oxblood} color={BV2.paper} />
-          <span style={{ fontSize: 12, fontWeight: 700, color: BV2.oxblood, letterSpacing: 2, textTransform: 'uppercase' }}>
-            05 — {c.eyebrow}
-          </span>
-        </div>
-        <h2 style={{
-          margin: 0, fontSize: m ? 36 : 64, fontWeight: 800,
-          letterSpacing: m ? -1.5 : -2.4, lineHeight: 1.02,
-        }}>
-          {c.title[0]}<br/>{c.title[1].replace('어렵습니다.', '')}<span style={{ color: BV2.oxblood }}>어렵습니다.</span>
-        </h2>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 24 }}>
+        <BV2Mono ch="!" size={20} bg={BV2.oxblood} color={BV2.paper} />
+        <span style={{ fontSize: 12, fontWeight: 700, color: BV2.oxblood, letterSpacing: 2, textTransform: 'uppercase' }}>
+          05 — {c.eyebrow}
+        </span>
+      </div>
+      <h2 style={{
+        margin: 0, fontSize: m ? 36 : 64, fontWeight: 800,
+        letterSpacing: m ? -1.5 : -2.4, lineHeight: 1.02,
+      }}>
+        {c.title[0]}<br/>{c.title[1].replace('어렵습니다.', '')}<span style={{ color: BV2.oxblood }}>어렵습니다.</span>
+      </h2>
 
+      <div style={{
+        marginTop: m ? 36 : 56, padding: m ? '28px 24px' : '40px 44px',
+        background: BV2.paper,
+        display: 'grid', gridTemplateColumns: m ? '1fr' : '1fr 1fr',
+        gap: m ? 24 : 56, borderTop: `2px solid ${BV2.oxblood}`,
+      }}>
+        <div>
+          <div style={{ fontSize: 12, color: BV2.ink3, letterSpacing: 2, marginBottom: 8, fontWeight: 700 }}>CASE</div>
+          <h3 style={{ margin: 0, fontSize: m ? 22 : 28, fontWeight: 700, letterSpacing: -0.8, lineHeight: 1.25 }}>
+            {c.case}
+          </h3>
+          <p style={{ fontSize: m ? 14 : 15, lineHeight: 1.75, color: BV2.ink2, margin: '16px 0 0' }}>
+            {c.body}
+          </p>
+        </div>
         <div style={{
-          marginTop: m ? 36 : 56, padding: m ? '28px 24px' : '40px 44px',
-          background: BV2.paper,
-          display: 'grid', gridTemplateColumns: m ? '1fr' : '1fr 1fr',
-          gap: m ? 24 : 56, borderTop: `2px solid ${BV2.oxblood}`,
+          borderLeft: m ? 'none' : `1px solid ${BV2.ink}10`,
+          borderTop: m ? `1px solid ${BV2.ink}10` : 'none',
+          paddingLeft: m ? 0 : 40,
+          paddingTop: m ? 24 : 0,
         }}>
-          <div>
-            <div style={{ fontSize: 12, color: BV2.ink3, letterSpacing: 2, marginBottom: 8, fontWeight: 700 }}>CASE</div>
-            <h3 style={{ margin: 0, fontSize: m ? 22 : 28, fontWeight: 700, letterSpacing: -0.8, lineHeight: 1.25 }}>
-              {c.case}
-            </h3>
-            <p style={{ fontSize: m ? 14 : 15, lineHeight: 1.75, color: BV2.ink2, margin: '16px 0 0' }}>
-              {c.body}
-            </p>
-          </div>
-          <div style={{
-            borderLeft: m ? 'none' : `1px solid ${BV2.ink}10`,
-            borderTop: m ? `1px solid ${BV2.ink}10` : 'none',
-            paddingLeft: m ? 0 : 40,
-            paddingTop: m ? 24 : 0,
-          }}>
-            <div style={{ fontSize: 12, color: BV2.ink3, letterSpacing: 2, marginBottom: 8, fontWeight: 700 }}>변호사 코멘트</div>
-            <p style={{ margin: 0, fontSize: m ? 16 : 18, lineHeight: 1.65, color: BV2.ink, fontWeight: 500 }}>
-              “{c.quote.replace('다른 방향을 함께 검토', '')}<u>다른 방향을 함께 검토</u>합니다.”
-            </p>
-            <div style={{ fontSize: 13, color: BV2.ink3, marginTop: 14 }}>{c.attr}</div>
-          </div>
+          <div style={{ fontSize: 12, color: BV2.ink3, letterSpacing: 2, marginBottom: 8, fontWeight: 700 }}>변호사 코멘트</div>
+          <p style={{ margin: 0, fontSize: m ? 16 : 18, lineHeight: 1.65, color: BV2.ink, fontWeight: 500 }}>
+            “{c.quote.replace('다른 방향을 함께 검토', '')}<u>다른 방향을 함께 검토</u>합니다.”
+          </p>
+          <div style={{ fontSize: 13, color: BV2.ink3, marginTop: 14 }}>{c.attr}</div>
         </div>
       </div>
     </BV2Section>
