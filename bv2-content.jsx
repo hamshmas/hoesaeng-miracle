@@ -9,7 +9,7 @@ const BV2_CONTENT = {
   kakao: '회생의기적 채널',
   kakaoUrl: 'https://pf.kakao.com/_Exnxnkxj/chat',
   youtubeChannelUrl: 'https://www.youtube.com/@%EA%B0%9C%EC%9D%B8%ED%9A%8C%EC%83%9D',
-  cafeUrl: 'https://cafe.naver.com/f-e/cafes/30974285/articles/6549?boardtype=L&userDisplay=50&menuid=14&referrerAllArticles=false&page=1',
+  cafeUrl: 'https://cafe.naver.com/blstlaw/6549',
   lawtalkUrl: 'https://www.lawtalk.co.kr/directory/profile/5455-%EC%9D%B4%EC%8A%B9%EC%A7%84/case/counselling',
 
   hero: {
