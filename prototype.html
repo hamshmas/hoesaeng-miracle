@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>회생의기적 — 디바이스 프리뷰</title>
+  <link
+    rel="stylesheet"
+    as="style"
+    crossorigin
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css"
+  />
+  <style>
+    :root {
+      --bg: #1a1916;
+      --panel: #232220;
+      --fg: #f0eee9;
+      --fg2: #a8a5a0;
+      --accent: #1F7B5A;
+      --line: rgba(240,238,233,0.1);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--fg);
+      font-family: "Pretendard Variable", Pretendard, system-ui, sans-serif;
+      min-height: 100vh; overflow-x: auto; }
+
+    .toolbar {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(26,25,22,0.85); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+      padding: 14px 24px;
+      display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    }
+    .brand { display: flex; align-items: baseline; gap: 12px; }
+    .brand .name { font-size: 16px; font-weight: 700; letter-spacing: -0.3px; }
+    .brand .sub { font-size: 12px; color: var(--fg2); }
+
+    .toggle {
+      display: inline-flex; background: var(--panel); padding: 4px; border-radius: 4px;
+      border: 1px solid var(--line);
+    }
+    .toggle button {
+      background: transparent; color: var(--fg2); border: none;
+      padding: 7px 14px; font-size: 12px; font-weight: 600; cursor: pointer;
+      font-family: inherit; letter-spacing: -0.1px;
+      transition: all .15s ease;
+      white-space: nowrap;
+    }
+    .toggle button.active { background: var(--accent); color: var(--fg); }
+
+    .actions { display: flex; gap: 8px; align-items: center; }
+    .actions a {
+      color: var(--fg2); text-decoration: none; font-size: 12px;
+      padding: 7px 12px; border: 1px solid var(--line); border-radius: 4px;
+      transition: all .15s ease;
+    }
+    .actions a:hover { color: var(--fg); border-color: var(--fg2); }
+
+    .stage {
+      padding: 32px 24px 64px;
+      display: flex; gap: 32px; align-items: flex-start;
+      min-height: calc(100vh - 64px);
+      width: max-content; min-width: 100%;
+    }
+    .stage.stack { flex-direction: column; align-items: center; }
+
+    .device {
+      background: var(--panel); border-radius: 16px;
+      padding: 14px; border: 1px solid var(--line);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+      display: flex; flex-direction: column;
+    }
+    .device .label {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 4px 8px 12px;
+      font-size: 11px; letter-spacing: 2px; color: var(--fg2); font-weight: 600;
+    }
+    .device .label .dot {
+      width: 7px; height: 7px; border-radius: 4px; background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(31,123,90,0.25); margin-right: 8px;
+    }
+    .device .label .left { display: flex; align-items: center; }
+    .device .dims { font-family: ui-monospace, Menlo, monospace; color: var(--fg2); opacity: 0.7; }
+
+    .frame {
+      background: #FAFAF7; border-radius: 8px; overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+    .frame iframe {
+      display: block; border: 0; background: #FAFAF7;
+    }
+
+    .device.mobile iframe { width: 375px; height: 812px; }
+    .device.desktop iframe { width: 1280px; height: 800px; }
+    .device.tablet iframe { width: 768px; height: 1024px; }
+
+    .stage.single .device.mobile iframe { height: 900px; }
+    .stage.single .device.desktop iframe { height: 900px; }
+
+    .notes {
+      max-width: 320px; padding: 24px;
+      background: var(--panel); border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+    .notes h3 { margin: 0 0 12px; font-size: 13px; letter-spacing: 1.5px;
+      color: var(--accent); text-transform: uppercase; }
+    .notes ul { margin: 0; padding-left: 18px; font-size: 13px; color: var(--fg2); line-height: 1.7; }
+    .notes ul li b { color: var(--fg); font-weight: 600; }
+
+    @media (max-width: 900px) {
+      .toolbar { padding: 10px 16px; flex-wrap: wrap; }
+      .stage { padding: 16px; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <div class="brand">
+      <span class="name">회생의기적</span>
+      <span class="sub">디바이스 프리뷰 — 모바일 + 데스크탑</span>
+    </div>
+    <div class="toggle" id="toggle">
+      <button data-view="both" class="active">📱 + 💻 비교</button>
+      <button data-view="mobile">📱 모바일</button>
+      <button data-view="desktop">💻 데스크탑</button>
+    </div>
+    <div class="actions">
+      <a href="index.html" target="_blank">새 창에서 열기 ↗</a>
+    </div>
+  </div>
+
+  <div class="stage" id="stage">
+    <div class="device mobile">
+      <div class="label">
+        <span class="left"><span class="dot"></span>MOBILE · 우선순위</span>
+        <span class="dims">375 × 812</span>
+      </div>
+      <div class="frame">
+        <iframe src="index.html" title="Mobile preview"></iframe>
+      </div>
+    </div>
+
+    <div class="device desktop">
+      <div class="label">
+        <span class="left"><span class="dot"></span>DESKTOP</span>
+        <span class="dims">1280 × 800</span>
+      </div>
+      <div class="frame">
+        <iframe src="index.html" title="Desktop preview"></iframe>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h3>체크리스트</h3>
+      <ul>
+        <li><b>상황별 카드 → 폼</b><br/>6개 카드 모두 #contact로 스크롤 — 카드 컨텍스트 prefill 여부 확인</li>
+        <li><b>Sticky CTA (모바일)</b><br/>히어로 지나면 하단에 전화 · 카톡 · 변호사 회신 3-up 바</li>
+        <li><b>nav-tel pill</b><br/>상단 네비 전화번호 pill — 모든 페이지 공통</li>
+        <li><b>중간 CTA</b><br/>스크롤 중간 4지점에 단일 CTA 삽입 — 이탈 방지</li>
+        <li><b>전국 지도</b><br/>"전국 어디서나" 섹션 뒤 South Korea 실루엣 (메인 페이지 한정)</li>
+        <li><b>전화 / 카톡 클릭</b><br/>GA4 + Naver Wcs 전환 추적 (`tel_click` / `kakao_click`)</li>
+        <li><b>지역 페이지</b><br/>busan · daegu · daejeon · gwangju · incheon · jeju · suwon · uijeongbu · chuncheon</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    const stage = document.getElementById('stage');
+    const buttons = document.querySelectorAll('#toggle button');
+    const setView = (v) => {
+      buttons.forEach((b) => b.classList.toggle('active', b.dataset.view === v));
+      stage.classList.toggle('single', v !== 'both');
+      const mobile = stage.querySelector('.device.mobile');
+      const desktop = stage.querySelector('.device.desktop');
+      mobile.style.display = (v === 'desktop') ? 'none' : '';
+      desktop.style.display = (v === 'mobile') ? 'none' : '';
+    };
+    buttons.forEach((b) => b.addEventListener('click', () => setView(b.dataset.view)));
+  </script>
+</body>
+</html>
