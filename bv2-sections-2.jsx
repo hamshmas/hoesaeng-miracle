@@ -130,7 +130,7 @@ function BV2Honest() {
   const c = BV2_CONTENT.honest;
   return (
     <BV2Section bg="paperAlt">
-      <BV2Header num="05" eyebrow={c.eyebrow} tone="oxblood"
+      <BV2Header num="06" eyebrow={c.eyebrow} tone="oxblood"
         title={<>{c.title[0]}<br/>{c.title[1].replace('어렵습니다.', '')}<span style={{ color: BV2.oxblood }}>어렵습니다.</span></>} />
 
       <div style={{
@@ -177,7 +177,7 @@ function BV2Situations() {
       }}>
         <div>
           <div style={{ fontSize: 12, fontWeight: 700, color: BV2.green, letterSpacing: 2, textTransform: 'uppercase', marginBottom: 14 }}>
-            06 — 상황별 빠른 안내
+            07 — 상황별 빠른 안내
           </div>
           <h2 style={{
             margin: 0, fontSize: m ? 32 : 56, fontWeight: 800,
@@ -268,7 +268,7 @@ function BV2Handwritten() {
 
   return (
     <BV2Section bg="paperDeep">
-      <BV2Header num="07" eyebrow="손편지로 받은 진심" title="의뢰인이 직접 쓴 자필후기."
+      <BV2Header num="08" eyebrow="손편지로 받은 진심" title="의뢰인이 직접 쓴 자필후기."
         sub="**위조 불가능한, 업체가 손댈 수 없는** 진심의 흔적." />
 
       <div className={m ? 'bv2-hscroll' : ''} style={{
@@ -332,7 +332,7 @@ function BV2Lawtalk() {
   const m = useIsMobile();
   return (
     <BV2Section bg="paper">
-      <BV2Header num="08" eyebrow="로톡 공식 등록 · 925건" title="이런 결과들을 꾸준히 만들어왔습니다."
+      <BV2Header num="05" eyebrow="로톡 공식 등록 · 925건" title="이런 결과들을 꾸준히 만들어왔습니다."
         sub="변호사 본인이 로톡에 등록한 실제 사건. 클릭 시 정식 사례 페이지로 이동합니다." />
 
       <div style={{
