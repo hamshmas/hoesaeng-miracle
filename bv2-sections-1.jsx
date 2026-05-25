@@ -112,7 +112,7 @@ function BV2LawyerProfile() {
         display: 'grid',
         gridTemplateColumns: m ? '1fr' : '560px 1fr',
         gap: m ? 32 : 64,
-        alignItems: 'start',
+        alignItems: m ? 'start' : 'center',
       }}>
         <div>
           <img
