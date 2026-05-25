@@ -7,7 +7,7 @@ function BV2YouTube() {
   const c = BV2_CONTENT.youtube;
   return (
     <BV2Section bg="paper">
-      <BV2Header num="10" eyebrow={c.eyebrow} title={c.title} sub={c.sub} />
+      <BV2Header num="09" eyebrow={c.eyebrow} title={c.title} sub={c.sub} />
 
       {/* Channel card */}
       <a className="bv2-card-hover" href={BV2_CONTENT.youtubeChannelUrl} target="_blank" rel="noopener" style={{
@@ -84,7 +84,7 @@ function BV2Calculator() {
         gap: m ? 28 : 56, alignItems: 'center',
       }}>
         <div>
-          <BV2Header num="11" eyebrow={c.eyebrow} title={c.title} sub={c.sub} />
+          <BV2Header num="10" eyebrow={c.eyebrow} title={c.title} sub={c.sub} />
           <a href="https://calc.tanggam.kr" target="_blank" rel="noopener" style={{ textDecoration: 'none', display: 'inline-block' }}>
             <BV2BtnPrimary tone="green">{c.cta}</BV2BtnPrimary>
           </a>
@@ -152,7 +152,7 @@ function BV2Contact() {
         gap: m ? 36 : 80, alignItems: 'start',
       }}>
         <div>
-          <BV2Header num="12" eyebrow={c.eyebrow} invert
+          <BV2Header num="11" eyebrow={c.eyebrow} invert
             title={<>{c.title[0]}<br/><span style={{ color: BV2.greenLight }}>{c.title[1]}</span><br/>{c.title[2]}</>}
             sub={c.sub} />
           <div style={{ marginTop: m ? 32 : 48, display: 'grid', gridTemplateColumns: m ? '1fr 1fr' : '1fr 1fr', gap: 12 }}>

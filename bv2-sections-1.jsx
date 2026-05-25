@@ -87,8 +87,34 @@ function BV2Hero() {
         </div>
       </div>
 
+      {/* Inline stats row — replaces the separate Stats section */}
       <div style={{
-        marginTop: m ? 48 : 88, padding: m ? '20px 0' : '32px 0',
+        marginTop: m ? 40 : 64, paddingTop: m ? 32 : 40,
+        borderTop: `1px solid ${BV2.ink}12`,
+        display: 'grid',
+        gridTemplateColumns: m ? '1fr 1fr' : 'repeat(4, 1fr)',
+        gap: m ? 20 : 32,
+      }}>
+        {BV2_CONTENT.stats.map((s, i) => (
+          <div key={i}>
+            <div style={{
+              fontSize: m ? 28 : 40, fontWeight: 800, letterSpacing: -1,
+              fontVariantNumeric: 'tabular-nums', lineHeight: 1.05,
+            }}>
+              {s.n}<span style={{ fontSize: m ? 16 : 22, color: BV2.ink3, fontWeight: 600 }}>{s.suf}</span>
+            </div>
+            <div style={{ fontSize: m ? 12 : 13, color: BV2.ink, marginTop: 8, fontWeight: 600, letterSpacing: -0.2 }}>
+              {s.l}
+            </div>
+            <div style={{ fontSize: 10, color: BV2.ink3, marginTop: 4, fontFamily: BV2.mono }}>
+              {s.src}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div style={{
+        marginTop: m ? 32 : 56, padding: m ? '20px 0' : '24px 0',
         borderTop: `1px solid ${BV2.ink}`,
         display: 'grid', gridTemplateColumns: m ? '1fr' : '1fr auto',
         alignItems: 'center', gap: m ? 8 : 32,
@@ -223,7 +249,7 @@ function BV2Nationwide() {
         gap: m ? 32 : 64, alignItems: 'start',
       }}>
         <div>
-          <BV2Header num="03" eyebrow={c.eyebrow} title={c.title} sub={c.body} />
+          <BV2Header num="02" eyebrow={c.eyebrow} title={c.title} sub={c.body} />
           <p style={{ fontSize: m ? 14 : 15, lineHeight: 1.65, color: BV2.ink3, margin: '-12px 0 32px', maxWidth: 580 }}>
             {c.body2}
           </p>
