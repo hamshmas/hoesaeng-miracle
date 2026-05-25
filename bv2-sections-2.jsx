@@ -384,7 +384,7 @@ function BV2Lawtalk() {
       </div>
 
       <div style={{ marginTop: m ? 24 : 32, textAlign: 'center' }}>
-        <a href="#" style={{ textDecoration: 'none' }}>
+        <a href={BV2_CONTENT.lawtalkUrl} target="_blank" rel="noopener" style={{ textDecoration: 'none' }}>
           <BV2BtnSecondary>로톡에서 전체 923건 보기 →</BV2BtnSecondary>
         </a>
       </div>

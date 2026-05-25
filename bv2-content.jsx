@@ -10,6 +10,7 @@ const BV2_CONTENT = {
   kakaoUrl: 'https://pf.kakao.com/_Exnxnkxj/chat',
   youtubeChannelUrl: 'https://www.youtube.com/@%EA%B0%9C%EC%9D%B8%ED%9A%8C%EC%83%9D',
   cafeUrl: 'https://cafe.naver.com/f-e/cafes/30974285/articles/6549?boardtype=L&userDisplay=50&menuid=14&referrerAllArticles=false&page=1',
+  lawtalkUrl: 'https://www.lawtalk.co.kr/directory/profile/5455-%EC%9D%B4%EC%8A%B9%EC%A7%84',
 
   hero: {
     badge: '대한변호사협회 인증 도산 변호사',
