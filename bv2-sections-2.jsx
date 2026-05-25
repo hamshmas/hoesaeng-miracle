@@ -81,7 +81,7 @@ function BV2CaseStudy() {
         {/* Evidence panel */}
         <div>
           <img
-            src="repayment-plan.jpg"
+            src="/repayment-plan.jpg"
             width={1357}
             height={1315}
             alt="법원 인가 결정문 — 변제예정액표"
@@ -235,19 +235,19 @@ function BV2Situations() {
 // ─────────── Handwritten reviews — image-only gallery ───────────
 // width/height included so cards reserve aspect-ratio space before lazy images load
 const BV2_HANDWRITTEN_IMAGES = [
-  { src: 'reviews/review-01.png', w: 1000, h: 907 },
-  { src: 'reviews/review-02.png', w: 1000, h: 1263 },
-  { src: 'reviews/review-03.png', w: 1000, h: 1157 },
-  { src: 'reviews/review-04.png', w: 1000, h: 1063 },
-  { src: 'reviews/review-05.png', w: 1000, h: 1088 },
-  { src: 'reviews/review-06.jpg', w: 782,  h: 846 },
-  { src: 'reviews/review-07.jpg', w: 833,  h: 1015 },
-  { src: 'reviews/review-08.jpg', w: 890,  h: 1033 },
-  { src: 'reviews/review-09.jpg', w: 932,  h: 671 },
-  { src: 'reviews/review-10.jpg', w: 1022, h: 1042 },
-  { src: 'reviews/review-11.jpg', w: 1026, h: 1195 },
-  { src: 'reviews/review-12.jpg', w: 877,  h: 635 },
-  { src: 'reviews/review-13.jpg', w: 399,  h: 573 },
+  { src: '/reviews/review-01.png', w: 1000, h: 907 },
+  { src: '/reviews/review-02.png', w: 1000, h: 1263 },
+  { src: '/reviews/review-03.png', w: 1000, h: 1157 },
+  { src: '/reviews/review-04.png', w: 1000, h: 1063 },
+  { src: '/reviews/review-05.png', w: 1000, h: 1088 },
+  { src: '/reviews/review-06.jpg', w: 782,  h: 846 },
+  { src: '/reviews/review-07.jpg', w: 833,  h: 1015 },
+  { src: '/reviews/review-08.jpg', w: 890,  h: 1033 },
+  { src: '/reviews/review-09.jpg', w: 932,  h: 671 },
+  { src: '/reviews/review-10.jpg', w: 1022, h: 1042 },
+  { src: '/reviews/review-11.jpg', w: 1026, h: 1195 },
+  { src: '/reviews/review-12.jpg', w: 877,  h: 635 },
+  { src: '/reviews/review-13.jpg', w: 399,  h: 573 },
 ];
 
 function BV2Handwritten() {

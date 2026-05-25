@@ -57,7 +57,9 @@ function BV2Hero() {
         fontSize: m ? 56 : 120, lineHeight: 0.95,
         letterSpacing: m ? -2.5 : -5,
         color: BV2.ink, maxWidth: 1000,
-      }}>{c.h1[0]}<br/>{c.h1[1]}</h1>
+      }}>{c.h1.map((line, i) => (
+        <React.Fragment key={i}>{i > 0 && <br/>}{line}</React.Fragment>
+      ))}</h1>
       <div style={{
         marginTop: m ? 16 : 20,
         fontSize: m ? 22 : 38, fontWeight: 400, color: BV2.ink2,
@@ -142,7 +144,7 @@ function BV2LawyerProfile() {
       }}>
         <div>
           <img
-            src="profile.png"
+            src="/profile.png"
             width={1024}
             height={1536}
             alt="대표변호사 이승진"
@@ -282,7 +284,7 @@ function BV2Nationwide() {
 
         <div>
           <img
-            src="southkorea-map.png"
+            src="/southkorea-map.png"
             width={800}
             height={1200}
             alt="대한민국 전국 서비스 — 서울 본사 · 15개 지역 진행 가능"

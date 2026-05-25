@@ -2,6 +2,14 @@
 // Korean copy lifted from land1.tanggam.kr + expanded for the additional
 // sections requested (handwritten reviews, lawtalk cases, cafe reviews,
 // youtube interviews, calculator entry, nationwide).
+// City pages set `window.CITY = '<key>'` before loading this script;
+// hero h1 and nationwide section then swap to city-specific copy.
+
+const BV2_CITIES = {
+  busan: '부산', chuncheon: '춘천', daegu: '대구', daejeon: '대전',
+  gwangju: '광주', incheon: '인천', jeju: '제주', suwon: '수원', uijeongbu: '의정부',
+};
+const _CITY = (typeof window !== 'undefined' && window.CITY && BV2_CITIES[window.CITY]) || null;
 
 const BV2_CONTENT = {
   brand: { name: '회생의기적', sub: '블랙스톤 법률사무소 · 빚탕감 전문' },
@@ -14,7 +22,7 @@ const BV2_CONTENT = {
 
   hero: {
     badge: '대한변호사협회 인증 도산 변호사',
-    h1: ['빚, 정리할 수', '있습니다.'],
+    h1: _CITY ? [`${_CITY}에서도`, '빚, 정리할 수', '있습니다.'] : ['빚, 정리할 수', '있습니다.'],
     h2: '변호사 본인이 끝까지.',
     body: '사무장이 아니라 **도산전문변호사가 직접** 검토합니다. **2,211건**의 성공사례와 **94.18%** 탕감 인가사례로 증명합니다.',
     cta: '변호사 직접 회신 받기',
@@ -43,9 +51,11 @@ const BV2_CONTENT = {
   ],
 
   nationwide: {
-    eyebrow: '전국 거주 의뢰인께',
-    title: '전국 어디서나 방문 없이 진행 가능합니다.',
-    body: '개인회생은 서류와 법원 절차 중심으로 진행됩니다. **전국 어디서나 전화·카톡·온라인 자료 제출**로 상담 및 진행이 가능합니다.',
+    eyebrow: _CITY ? `${_CITY} 거주 의뢰인께` : '전국 거주 의뢰인께',
+    title: _CITY ? `${_CITY}에서도 방문 없이 진행 가능합니다.` : '전국 어디서나 방문 없이 진행 가능합니다.',
+    body: _CITY
+      ? `개인회생은 서류와 법원 절차 중심으로 진행됩니다. **${_CITY} 거주자도 전화·카톡·온라인 자료 제출**로 상담 및 진행이 가능합니다.`
+      : '개인회생은 서류와 법원 절차 중심으로 진행됩니다. **전국 어디서나 전화·카톡·온라인 자료 제출**로 상담 및 진행이 가능합니다.',
     body2: '다만 관할 법원과 사건 특성에 따라 보정 방향은 달라질 수 있어, 처음부터 도산전문변호사의 검토가 필요합니다.',
     steps: [
       { k: '1', l: '전화 / 카톡 1차 상담', t: '약 20~30분' },
