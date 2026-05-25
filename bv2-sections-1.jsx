@@ -110,21 +110,17 @@ function BV2LawyerProfile() {
     <BV2Section bg="paperAlt">
       <div style={{
         display: 'grid',
-        gridTemplateColumns: m ? '1fr' : '460px 1fr',
+        gridTemplateColumns: m ? '1fr' : '560px 1fr',
         gap: m ? 32 : 64,
         alignItems: 'start',
       }}>
         <div>
           <img
             src="profile.png"
+            width={1024}
+            height={1536}
             alt="대표변호사 이승진"
-            style={{
-              width: '100%',
-              aspectRatio: '1 / 1',
-              objectFit: 'cover',
-              objectPosition: 'center 8%',
-              display: 'block',
-            }}
+            style={{ width: '100%', height: 'auto', display: 'block' }}
           />
         </div>
 
