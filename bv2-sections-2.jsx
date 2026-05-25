@@ -250,12 +250,21 @@ function BV2Situations() {
 }
 
 // ─────────── Handwritten reviews — image-only gallery ───────────
+// width/height included so cards reserve aspect-ratio space before lazy images load
 const BV2_HANDWRITTEN_IMAGES = [
-  'reviews/review-01.png', 'reviews/review-02.png', 'reviews/review-03.png',
-  'reviews/review-04.png', 'reviews/review-05.png', 'reviews/review-06.jpg',
-  'reviews/review-07.jpg', 'reviews/review-08.jpg', 'reviews/review-09.jpg',
-  'reviews/review-10.jpg', 'reviews/review-11.jpg', 'reviews/review-12.jpg',
-  'reviews/review-13.jpg',
+  { src: 'reviews/review-01.png', w: 1000, h: 907 },
+  { src: 'reviews/review-02.png', w: 1000, h: 1263 },
+  { src: 'reviews/review-03.png', w: 1000, h: 1157 },
+  { src: 'reviews/review-04.png', w: 1000, h: 1063 },
+  { src: 'reviews/review-05.png', w: 1000, h: 1088 },
+  { src: 'reviews/review-06.jpg', w: 782,  h: 846 },
+  { src: 'reviews/review-07.jpg', w: 833,  h: 1015 },
+  { src: 'reviews/review-08.jpg', w: 890,  h: 1033 },
+  { src: 'reviews/review-09.jpg', w: 932,  h: 671 },
+  { src: 'reviews/review-10.jpg', w: 1022, h: 1042 },
+  { src: 'reviews/review-11.jpg', w: 1026, h: 1195 },
+  { src: 'reviews/review-12.jpg', w: 877,  h: 635 },
+  { src: 'reviews/review-13.jpg', w: 399,  h: 573 },
 ];
 
 function BV2Handwritten() {
@@ -287,8 +296,8 @@ function BV2Handwritten() {
         marginLeft: m ? -16 : 0, marginRight: m ? -16 : 0,
         paddingLeft: m ? 16 : 0, paddingRight: m ? 16 : 0,
       }}>
-        {BV2_HANDWRITTEN_IMAGES.map((src, i) => (
-          <div key={src} style={{
+        {BV2_HANDWRITTEN_IMAGES.map((img, i) => (
+          <div key={img.src} style={{
             flex: m ? '0 0 240px' : undefined,
             background: accents[i % accents.length],
             padding: m ? 10 : 12,
@@ -300,13 +309,13 @@ function BV2Handwritten() {
           }}
             onMouseEnter={(e) => e.currentTarget.style.transform = `rotate(0deg) scale(1.04)`}
             onMouseLeave={(e) => e.currentTarget.style.transform = `rotate(${tilts[i % tilts.length]}deg)`}
-            onClick={() => setZoomed(src)}>
+            onClick={() => setZoomed(img.src)}>
             <div style={{
               position: 'absolute', top: -6, left: '50%', transform: 'translateX(-50%)',
               width: 60, height: 14, background: 'rgba(0,0,0,0.06)',
               borderRadius: 2,
             }} />
-            <img src={src} alt={`의뢰인 자필후기 ${i + 1}`} loading="lazy" style={{
+            <img src={img.src} width={img.w} height={img.h} alt={`의뢰인 자필후기 ${i + 1}`} loading="lazy" style={{
               display: 'block', width: '100%', height: 'auto', background: '#fff',
             }} />
           </div>
