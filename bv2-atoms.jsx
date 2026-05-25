@@ -184,7 +184,68 @@ function BV2Counter({ value, suffix = '', style = {} }) {
   );
 }
 
+// Mid-page CTA strip — visual punctuation between sections.
+// `tone` chooses the bg: 'green' (default, primary), 'amber' (warm), 'ink' (dark).
+function BV2MidCta({ eyebrow, title, tone = 'green' }) {
+  const m = useIsMobile();
+  const dark = tone === 'ink';
+  const bg = tone === 'amber' ? BV2.amberLight : tone === 'ink' ? BV2.ink : BV2.greenLight;
+  const accent = tone === 'amber' ? BV2.amber : dark ? BV2.greenLight : BV2.green;
+  const ink = dark ? BV2.paper : BV2.ink;
+  const ink2 = dark ? BV2.ink5 : BV2.ink2;
+  return (
+    <BV2Section bg={bg} style={{ paddingTop: m ? 40 : 56, paddingBottom: m ? 40 : 56 }}>
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: m ? '1fr' : '1.4fr 1fr',
+        gap: m ? 20 : 48, alignItems: 'center',
+      }}>
+        <div>
+          {eyebrow && (
+            <div style={{ fontSize: 11, fontWeight: 700, color: accent, letterSpacing: 2, textTransform: 'uppercase', marginBottom: 10 }}>
+              {eyebrow}
+            </div>
+          )}
+          <div style={{ fontSize: m ? 22 : 30, fontWeight: 700, color: ink, lineHeight: 1.3, letterSpacing: -0.6 }}>
+            {title}
+          </div>
+        </div>
+        <div style={{ display: 'flex', flexDirection: m ? 'column' : 'row', gap: 10 }}>
+          <a href={`tel:${BV2_CONTENT.phone}`} style={{ flex: 1, textDecoration: 'none' }}>
+            <button style={{
+              width: '100%', minHeight: 50, padding: '14px 18px',
+              background: dark ? 'rgba(255,255,255,0.08)' : BV2.paper,
+              color: ink, border: `1px solid ${dark ? 'rgba(255,255,255,0.18)' : ink + '22'}`,
+              fontFamily: BV2.sans, fontSize: 14, fontWeight: 700,
+              cursor: 'pointer', letterSpacing: -0.2,
+            }}>📞 전화 {BV2_CONTENT.phone}</button>
+          </a>
+          <a href={BV2_CONTENT.kakaoUrl} target="_blank" rel="noopener" style={{ flex: 1, textDecoration: 'none' }}>
+            <button style={{
+              width: '100%', minHeight: 50, padding: '14px 18px',
+              background: dark ? 'rgba(255,255,255,0.08)' : BV2.paper,
+              color: ink, border: `1px solid ${dark ? 'rgba(255,255,255,0.18)' : ink + '22'}`,
+              fontFamily: BV2.sans, fontSize: 14, fontWeight: 700,
+              cursor: 'pointer', letterSpacing: -0.2,
+            }}>💬 카카오톡</button>
+          </a>
+          <a href="#bv2-contact" style={{ flex: 1.2, textDecoration: 'none' }}>
+            <button style={{
+              width: '100%', minHeight: 50, padding: '14px 18px',
+              background: dark ? BV2.greenAccent : BV2.ink, color: BV2.paper, border: 'none',
+              fontFamily: BV2.sans, fontSize: 14, fontWeight: 800,
+              cursor: 'pointer', letterSpacing: -0.2,
+              display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+            }}>변호사 직접 회신 받기 <span>→</span></button>
+          </a>
+        </div>
+      </div>
+    </BV2Section>
+  );
+}
+
 Object.assign(window, {
   BV2Section, BV2Header, BV2VerifiedPill, BV2Mono, BV2Num,
   BV2BtnPrimary, BV2BtnSecondary, BV2Source, BV2DataBar, BV2Ph, BV2Counter,
+  BV2MidCta,
 });
