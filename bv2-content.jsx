@@ -68,18 +68,43 @@ const BV2_CONTENT = {
     regions: ['서울', '경기·인천', '강원', '충청', '대전', '대구', '경북', '부산·울산', '경남', '광주', '전남·전북', '제주'],
   },
 
+  // Section-level meta (eyebrow/title/sub/disclaimer) + 3 cases.
+  // Each case has rate/debt/forgiven/repay/months/detail/image.
   case: {
     eyebrow: '대표 성공 사례',
     title: '94%의 빚이 사라졌습니다.',
     sub: '실제 의뢰인의 개인회생 인가 결정문 기준.',
-    rate: '94.18',
-    debt: '3.3억원',
-    forgiven: '3.1억원',
-    repay: '5.82%',
-    detail: '변호사가 직접 설계한 변제계획안으로 인가 결정. 의뢰 당시 절망에 가까운 상황이었지만 끝까지 매달려 최대 탕감을 만들었습니다.',
-    evidence: '법원이 인가한 실제 변제예정액표의 일부. 제3항 변제율 「원금의 5.82% 상당액」 — 즉 94.18%가 탕감됨.',
     disclaimer: '* 본 사례는 대표변호사가 직접 진행한 실제 인가 사건이며, 결과는 의뢰인의 채무·소득·재산 등 개별 상황에 따라 달라질 수 있습니다.',
   },
+  cases: [
+    {
+      rate: '94.18',
+      debt: '3.3억원',
+      forgiven: '3.1억원',
+      repay: '5.82%',
+      months: null,
+      detail: '변호사가 직접 설계한 변제계획안으로 인가 결정. 의뢰 당시 절망에 가까운 상황이었지만 끝까지 매달려 최대 탕감을 만들었습니다.',
+      image: '/repayment-plan.jpg',
+    },
+    {
+      rate: '94.3',
+      debt: '5.2억원',
+      forgiven: '4.9억원',
+      repay: '5.7%',
+      months: '60개월',
+      detail: '5억대의 대규모 채무에서도 94.3% 탕감 인가. 경기신용보증재단·은행·카드사가 얽힌 복잡한 채권 구조에서 변호사가 변제계획안을 직접 설계·보정한 사건입니다.',
+      image: '/repayment-plan2.jpg',
+    },
+    {
+      rate: '89.3',
+      debt: '8,117만원',
+      forgiven: '7,251만원',
+      repay: '10.7%',
+      months: '36개월',
+      detail: '신용·카드·서민금융이 얽힌 복합 채무 구성에서도 89.3% 탕감 인가. 청산가치 검토와 변제계획안 보정까지 변호사가 직접 진행한 사건입니다.',
+      image: '/repayment-plan3.jpg',
+    },
+  ],
 
   honest: {
     eyebrow: '솔직히 말씀드립니다',

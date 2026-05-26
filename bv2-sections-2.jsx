@@ -2,126 +2,147 @@
 // CaseStudy (94%), Honest, SituationCards (form prefill!), Handwritten,
 // Lawtalk cases (with bar charts), Cafe reviews.
 
-// ─────────── 94% Case Study — split layout with bar chart ───────────
+// ─────────── Case Study — 3 cases, split layout with bar chart per case ───────────
 function BV2CaseStudy() {
   const m = useIsMobile();
-  const c = BV2_CONTENT.case;
+  const meta = BV2_CONTENT.case;
+  const cases = BV2_CONTENT.cases;
   return (
     <BV2Section bg="paper">
-      <BV2Header num="03" eyebrow={c.eyebrow} title={c.title} sub={c.sub} />
+      <BV2Header num="03" eyebrow={meta.eyebrow} title={meta.title} sub={meta.sub} />
 
-      <div style={{
-        marginTop: 0,
-        display: 'grid',
-        gridTemplateColumns: m ? '1fr' : '1fr 1.2fr',
-        gap: m ? 16 : 32, alignItems: 'stretch',
-      }}>
-        {/* Result panel — dark */}
-        <div style={{
-          background: BV2.ink, color: BV2.paper,
-          padding: m ? '32px 24px' : '48px 40px',
-          display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
-        }}>
-          <div>
-            <div style={{ fontSize: 12, color: BV2.ink5, letterSpacing: 2, textTransform: 'uppercase', marginBottom: m ? 16 : 24 }}>
-              최종 탕감률
-            </div>
-            <div style={{
-              fontSize: m ? 110 : 200, fontWeight: 800, lineHeight: 0.85,
-              letterSpacing: m ? -5 : -10, fontVariantNumeric: 'tabular-nums',
-            }}>
-              94<span style={{ fontSize: m ? 50 : 80, color: BV2.ink5 }}>.18</span>
-              <span style={{ fontSize: m ? 50 : 80 }}>%</span>
-            </div>
+      {cases.map((c, idx) => (
+        <BV2CasePanel key={idx} c={c} idx={idx} total={cases.length} m={m} />
+      ))}
 
-            {/* Bar chart viz */}
-            <div style={{ marginTop: m ? 24 : 36, paddingTop: 20, borderTop: `1px solid ${BV2.ink5}33` }}>
-              <div style={{ fontSize: 11, color: BV2.ink5, letterSpacing: 2, marginBottom: 14, fontWeight: 700 }}>
-                채무 → 변제 비율
-              </div>
-              <div style={{ position: 'relative', height: 32, background: 'rgba(255,255,255,0.08)', borderRadius: 4, overflow: 'hidden' }}>
-                <ChartBars />
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 8, fontSize: 11, color: BV2.ink5 }}>
-                <div>
-                  <span style={{ display: 'inline-block', width: 8, height: 8, background: BV2.greenAccent, marginRight: 6 }} />
-                  탕감 94.18%
-                </div>
-                <div>
-                  <span style={{ display: 'inline-block', width: 8, height: 8, background: BV2.oxblood, marginRight: 6 }} />
-                  변제 5.82%
-                </div>
-              </div>
-            </div>
-
-            <div style={{
-              marginTop: m ? 24 : 32,
-              display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0,
-              borderTop: `1px solid ${BV2.ink5}33`,
-            }}>
-              <div style={{ padding: '20px 12px 0 0', borderRight: `1px solid ${BV2.ink5}33` }}>
-                <div style={{ fontSize: 10, color: BV2.ink5, letterSpacing: 2, marginBottom: 6 }}>의뢰 당시 채무</div>
-                <div style={{ fontSize: m ? 20 : 24, fontWeight: 700, letterSpacing: -0.5 }}>{c.debt}</div>
-              </div>
-              <div style={{ padding: '20px 0 0 12px' }}>
-                <div style={{ fontSize: 10, color: BV2.ink5, letterSpacing: 2, marginBottom: 6 }}>탕감액</div>
-                <div style={{ fontSize: m ? 20 : 24, fontWeight: 700, letterSpacing: -0.5, color: BV2.greenLight }}>{c.forgiven}</div>
-              </div>
-            </div>
-          </div>
-
-          <div style={{
-            marginTop: m ? 28 : 40, padding: m ? '16px 20px' : '20px 24px',
-            background: 'rgba(255,255,255,.05)',
-            borderLeft: `3px solid ${BV2.greenLight}`,
-            fontSize: m ? 13 : 14, lineHeight: 1.6, color: '#D5D6D2',
-          }}>{c.detail}</div>
-        </div>
-
-        {/* Evidence panel */}
-        <div>
-          <img
-            src="/repayment-plan.jpg"
-            width={1357}
-            height={1315}
-            alt="법원 인가 결정문 — 변제예정액표"
-            style={{ width: '100%', height: 'auto', display: 'block', border: `1px solid ${BV2.ink}12` }}
-          />
-          <div style={{
-            marginTop: 16, display: 'grid', gridTemplateColumns: 'auto 1fr', gap: 14,
-            padding: '14px 0', borderBottom: `1px solid ${BV2.ink}12`,
-          }}>
-            <BV2Mono ch="i" size={20} bg={BV2.green} color={BV2.paper} />
-            <div style={{ fontSize: m ? 13 : 14, color: BV2.ink2, lineHeight: 1.55 }}>
-              ▲ {c.evidence.split('「')[0]}「<b>원금의 5.82% 상당액</b>」 — 즉 <b style={{ color: BV2.green }}>94.18%</b>가 탕감됨.
-            </div>
-          </div>
-          <p style={{ fontSize: 12, color: BV2.ink3, lineHeight: 1.65, marginTop: 16 }}>{c.disclaimer}</p>
-        </div>
-      </div>
+      <p style={{ fontSize: 12, color: BV2.ink3, lineHeight: 1.65, marginTop: m ? 24 : 32 }}>
+        {meta.disclaimer}
+      </p>
     </BV2Section>
   );
+}
 
-  // Animated split bar inside the dark panel.
-  function ChartBars() {
-    const [ref, inView] = useInView();
-    return (
-      <div ref={ref} style={{ position: 'absolute', inset: 0, display: 'flex' }}>
+function BV2CasePanel({ c, idx, total, m }) {
+  const [main, dec] = c.rate.split('.');
+  const decFontSize = m ? 50 : 80;
+  const cols = c.months ? '1fr 1fr 1fr' : '1fr 1fr';
+  return (
+    <div style={{
+      marginTop: idx === 0 ? 0 : (m ? 40 : 56),
+      paddingTop: idx === 0 ? 0 : (m ? 40 : 56),
+      borderTop: idx === 0 ? 'none' : `1px solid ${BV2.ink}12`,
+      display: 'grid',
+      gridTemplateColumns: m ? '1fr' : '1fr 1.2fr',
+      gap: m ? 16 : 32, alignItems: 'stretch',
+    }}>
+      {/* Result panel — dark */}
+      <div style={{
+        background: BV2.ink, color: BV2.paper,
+        padding: m ? '32px 24px' : '48px 40px',
+        display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
+      }}>
+        <div>
+          <div style={{ fontSize: 12, color: BV2.ink5, letterSpacing: 2, textTransform: 'uppercase', marginBottom: m ? 16 : 24 }}>
+            사례 {idx + 1} / {total} · 최종 탕감률
+          </div>
+          <div style={{
+            fontSize: m ? 110 : 200, fontWeight: 800, lineHeight: 0.85,
+            letterSpacing: m ? -5 : -10, fontVariantNumeric: 'tabular-nums',
+          }}>
+            {main}{dec ? <span style={{ fontSize: decFontSize, color: BV2.ink5 }}>.{dec}</span> : null}
+            <span style={{ fontSize: decFontSize }}>%</span>
+          </div>
+
+          {/* Bar chart viz */}
+          <div style={{ marginTop: m ? 24 : 36, paddingTop: 20, borderTop: `1px solid ${BV2.ink5}33` }}>
+            <div style={{ fontSize: 11, color: BV2.ink5, letterSpacing: 2, marginBottom: 14, fontWeight: 700 }}>
+              채무 → 변제 비율
+            </div>
+            <div style={{ position: 'relative', height: 32, background: 'rgba(255,255,255,0.08)', borderRadius: 4, overflow: 'hidden' }}>
+              <ChartBars rate={c.rate} repay={c.repay} />
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 8, fontSize: 11, color: BV2.ink5 }}>
+              <div>
+                <span style={{ display: 'inline-block', width: 8, height: 8, background: BV2.greenAccent, marginRight: 6 }} />
+                탕감 {c.rate}%
+              </div>
+              <div>
+                <span style={{ display: 'inline-block', width: 8, height: 8, background: BV2.oxblood, marginRight: 6 }} />
+                변제 {c.repay}
+              </div>
+            </div>
+          </div>
+
+          <div style={{
+            marginTop: m ? 24 : 32,
+            display: 'grid', gridTemplateColumns: cols, gap: 0,
+            borderTop: `1px solid ${BV2.ink5}33`,
+          }}>
+            <div style={{ padding: '20px 12px 0 0', borderRight: `1px solid ${BV2.ink5}33` }}>
+              <div style={{ fontSize: 10, color: BV2.ink5, letterSpacing: 2, marginBottom: 6 }}>의뢰 당시 채무</div>
+              <div style={{ fontSize: m ? 20 : 24, fontWeight: 700, letterSpacing: -0.5 }}>{c.debt}</div>
+            </div>
+            <div style={{ padding: '20px 12px 0 12px', borderRight: c.months ? `1px solid ${BV2.ink5}33` : 'none' }}>
+              <div style={{ fontSize: 10, color: BV2.ink5, letterSpacing: 2, marginBottom: 6 }}>탕감액</div>
+              <div style={{ fontSize: m ? 20 : 24, fontWeight: 700, letterSpacing: -0.5, color: BV2.greenLight }}>{c.forgiven}</div>
+            </div>
+            {c.months ? (
+              <div style={{ padding: '20px 0 0 12px' }}>
+                <div style={{ fontSize: 10, color: BV2.ink5, letterSpacing: 2, marginBottom: 6 }}>변제 기간</div>
+                <div style={{ fontSize: m ? 20 : 24, fontWeight: 700, letterSpacing: -0.5 }}>{c.months}</div>
+              </div>
+            ) : null}
+          </div>
+        </div>
+
         <div style={{
-          width: inView ? '94.18%' : '0%', background: BV2.greenAccent,
-          transition: `width 1.4s ${BV2.ease}`,
-          display: 'flex', alignItems: 'center', paddingLeft: 12,
-          fontSize: 11, fontWeight: 800, color: BV2.paper, letterSpacing: -0.2,
-        }}>94.18% 탕감</div>
-        <div style={{
-          flex: 1, background: BV2.oxblood,
-          display: 'flex', alignItems: 'center', justifyContent: 'flex-end', paddingRight: 8,
-          fontSize: 10, fontWeight: 700, color: BV2.paper, opacity: inView ? 1 : 0,
-          transition: `opacity 1.4s ${BV2.ease} 0.6s`,
-        }}>5.82%</div>
+          marginTop: m ? 28 : 40, padding: m ? '16px 20px' : '20px 24px',
+          background: 'rgba(255,255,255,.05)',
+          borderLeft: `3px solid ${BV2.greenLight}`,
+          fontSize: m ? 13 : 14, lineHeight: 1.6, color: '#D5D6D2',
+        }}>{c.detail}</div>
       </div>
-    );
-  }
+
+      {/* Evidence panel */}
+      <div>
+        <img
+          src={c.image}
+          alt={`법원 인가 결정문 — 변제예정액표 (사례 ${idx + 1})`}
+          style={{ width: '100%', height: 'auto', display: 'block', border: `1px solid ${BV2.ink}12` }}
+        />
+        <div style={{
+          marginTop: 16, display: 'grid', gridTemplateColumns: 'auto 1fr', gap: 14,
+          padding: '14px 0', borderBottom: `1px solid ${BV2.ink}12`,
+        }}>
+          <BV2Mono ch="i" size={20} bg={BV2.green} color={BV2.paper} />
+          <div style={{ fontSize: m ? 13 : 14, color: BV2.ink2, lineHeight: 1.55 }}>
+            ▲ 법원이 인가한 실제 변제예정액표의 일부. 변제율 「<b>원금의 {c.repay} 상당액</b>」 — 즉 <b style={{ color: BV2.green }}>{c.rate}%</b>가 탕감됨.{c.months ? ` (${c.months} 변제)` : ''}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Animated split bar inside the dark panel.
+function ChartBars({ rate, repay }) {
+  const [ref, inView] = useInView();
+  return (
+    <div ref={ref} style={{ position: 'absolute', inset: 0, display: 'flex' }}>
+      <div style={{
+        width: inView ? `${rate}%` : '0%', background: BV2.greenAccent,
+        transition: `width 1.4s ${BV2.ease}`,
+        display: 'flex', alignItems: 'center', paddingLeft: 12,
+        fontSize: 11, fontWeight: 800, color: BV2.paper, letterSpacing: -0.2,
+      }}>{rate}% 탕감</div>
+      <div style={{
+        flex: 1, background: BV2.oxblood,
+        display: 'flex', alignItems: 'center', justifyContent: 'flex-end', paddingRight: 8,
+        fontSize: 10, fontWeight: 700, color: BV2.paper, opacity: inView ? 1 : 0,
+        transition: `opacity 1.4s ${BV2.ease} 0.6s`,
+      }}>{repay}</div>
+    </div>
+  );
 }
 
 // ─────────── Honest — "이런 경우는 어렵습니다" ───────────
