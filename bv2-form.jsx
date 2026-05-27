@@ -110,8 +110,8 @@ function FormProvider({ children }) {
       try {
         if (window.wcs) {
           if (!window.wcs_add) window.wcs_add = {};
-          window.wcs_add['wa'] = 's_239fc16c4c17';
-          const _nasa = { cnv: window.wcs.cnv('4', '1') };
+          window.wcs_add['wa'] = 's_52ed07736a49';
+          const _nasa = { cnv: window.wcs.cnv('2', '50000') };
           window.wcs.trans(_nasa);
         }
       } catch (_) {}

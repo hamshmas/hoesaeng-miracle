@@ -24,8 +24,9 @@
   <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
   <script type="text/javascript">
     if(!wcs_add) var wcs_add = {};
-    wcs_add["wa"] = "s_239fc16c4c17";
-    if(window.wcs) { wcs_do(); }
+    wcs_add["wa"] = "s_52ed07736a49";
+    if(!_nasa) var _nasa = {};
+    if(window.wcs) { wcs.inflow(); wcs_do(); }
   </script>
   <!-- Phone / Kakao click conversion tracking (GA4 + Naver Wcs) -->
   <script>
@@ -44,8 +45,8 @@
       try {
         if (window.wcs) {
           if (!window.wcs_add) window.wcs_add = {};
-          window.wcs_add['wa'] = 's_239fc16c4c17';
-          var _nasa = { cnv: window.wcs.cnv('4', '1') };
+          window.wcs_add['wa'] = 's_52ed07736a49';
+          var _nasa = { cnv: window.wcs.cnv('5', '30000') };
           window.wcs.trans(_nasa);
         }
       } catch (_) {}
