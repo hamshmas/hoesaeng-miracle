@@ -131,7 +131,7 @@ function FormProvider({ children }) {
       return true;
     } catch (err) {
       setSending(false);
-      setSendError('전송 실패. 1670-7708으로 전화 주세요.');
+      setSendError('전송 실패. 1833-3100으로 전화 주세요.');
       return false;
     }
   }, [values, validate]);
@@ -215,7 +215,7 @@ function StickyCTA() {
           color: BV2.paper, borderRadius: 6,
         }}>
           <div style={{ fontSize: 10, color: BV2.ink5, marginBottom: 2 }}>전화</div>
-          <div style={{ fontSize: 13, fontWeight: 700 }}>1670-7708</div>
+          <div style={{ fontSize: 13, fontWeight: 700 }}>{BV2_CONTENT.phone}</div>
         </a>
         <a href={BV2_CONTENT.kakaoUrl} target="_blank" rel="noopener" style={{
           textDecoration: 'none', display: 'flex', flexDirection: 'column',

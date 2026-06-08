@@ -13,7 +13,8 @@ const _CITY = (typeof window !== 'undefined' && window.CITY && BV2_CITIES[window
 
 const BV2_CONTENT = {
   brand: { name: '회생의기적', sub: '블랙스톤 법률사무소 · 빚탕감 전문' },
-  phone: '1670-7708',
+  phone: '1833-3100',
+  seoulPhone: '02-6101-3100',
   kakao: '회생의기적 채널',
   kakaoUrl: 'https://pf.kakao.com/_Exnxnkxj/chat',
   youtubeChannelUrl: 'https://www.youtube.com/@%EA%B0%9C%EC%9D%B8%ED%9A%8C%EC%83%9D',

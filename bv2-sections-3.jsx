@@ -284,7 +284,8 @@ function BV2Footer() {
         </div>
         <div>
           <div style={{ fontSize: 11, letterSpacing: 2, color: BV2.green, fontWeight: 700, marginBottom: 8 }}>INFORMATION</div>
-          <div style={{ lineHeight: 1.6 }}>TEL · <b style={{ color: BV2.ink }}>{BV2_CONTENT.phone}</b> (24시 상담)</div>
+          <div style={{ lineHeight: 1.6 }}>TEL · <b style={{ color: BV2.ink }}>{BV2_CONTENT.phone}</b> (전국·24시 상담)</div>
+          <div style={{ lineHeight: 1.6 }}>서울사무소 · <b style={{ color: BV2.ink }}>{BV2_CONTENT.seoulPhone}</b></div>
           <div style={{ lineHeight: 1.6 }}>EMAIL · revive.blackstone@gmail.com</div>
           <div style={{ lineHeight: 1.6, marginTop: 8, fontStyle: 'italic' }}>{f.note}</div>
         </div>
