@@ -31,23 +31,23 @@
   <!-- Phone / Kakao click conversion tracking (GA4 + Naver Wcs) -->
   <script>
   (function () {
-    function fireConversion(type) {
+    function fireConversion(gaType, wcsType) {
       try {
         if (typeof gtag === 'function') {
-          gtag('event', type, {
+          gtag('event', gaType, {
             event_category: 'contact',
-            event_label: type,
+            event_label: gaType,
             currency: 'KRW',
             value: 50000
           });
         }
       } catch (_) {}
       try {
-        if (window.wcs) {
+        if (window.wcs && typeof window.wcs.trans === 'function') {
           if (!window.wcs_add) window.wcs_add = {};
           window.wcs_add['wa'] = 's_52ed07736a49';
-          var _nasa = { cnv: window.wcs.cnv('5', '30000') };
-          window.wcs.trans(_nasa);
+          var _conv = { type: wcsType, value: '30000' };
+          window.wcs.trans(_conv);
         }
       } catch (_) {}
     }
@@ -56,9 +56,9 @@
       if (!a) return;
       var href = a.getAttribute('href') || '';
       if (href.indexOf('tel:') === 0) {
-        fireConversion('phone_call_click');
+        fireConversion('phone_call_click', 'call');
       } else if (href.indexOf('pf.kakao.com') !== -1 || href.indexOf('kakao.com/chat') !== -1) {
-        fireConversion('kakao_chat_click');
+        fireConversion('kakao_chat_click', 'inquiry');
       }
     }, true);
   })();

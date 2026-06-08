@@ -108,11 +108,11 @@ function FormProvider({ children }) {
       } catch (_) {}
 
       try {
-        if (window.wcs) {
+        if (window.wcs && typeof window.wcs.trans === 'function') {
           if (!window.wcs_add) window.wcs_add = {};
           window.wcs_add['wa'] = 's_52ed07736a49';
-          const _nasa = { cnv: window.wcs.cnv('2', '50000') };
-          window.wcs.trans(_nasa);
+          const _conv = { type: 'lead', value: '50000' };
+          window.wcs.trans(_conv);
         }
       } catch (_) {}
 
