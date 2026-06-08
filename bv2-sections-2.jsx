@@ -407,7 +407,7 @@ function BV2Cafe() {
           fontWeight: 800, fontSize: 16,
         }}>N</div>
         <span style={{ fontSize: 12, fontWeight: 700, color: BV2.green, letterSpacing: 2, textTransform: 'uppercase' }}>
-          08 — 네이버 카페 · 352건
+          08 — 네이버 카페 · 375건
         </span>
       </div>
       <h2 style={{
