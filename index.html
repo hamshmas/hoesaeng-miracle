@@ -56,9 +56,9 @@
       if (!a) return;
       var href = a.getAttribute('href') || '';
       if (href.indexOf('tel:') === 0) {
-        fireConversion('phone_call_click', 'call');
+        fireConversion('phone_call_click', 'custom002');
       } else if (href.indexOf('pf.kakao.com') !== -1 || href.indexOf('kakao.com/chat') !== -1) {
-        fireConversion('kakao_chat_click', 'inquiry');
+        fireConversion('kakao_chat_click', 'custom001');
       }
     }, true);
   })();
